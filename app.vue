@@ -1,5 +1,5 @@
 <template>
-  <div class="w-[100%] max-w-[1024px] mx-auto px-[50px]">
+  <div class="bg-black pt-[60px]">
     <TopBar />
     <NuxtRouteAnnouncer />
     <NuxtPage />

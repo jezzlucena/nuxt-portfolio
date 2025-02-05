@@ -1,1 +1,37 @@
 @import "tailwindcss";
+
+@font-face {
+	font-family: "opensans";
+	src: url("~/assets/fonts/OpenSans-Regular.ttf") format("opentype");
+}
+
+@font-face {
+	font-family: "opensans-light";
+	src: url("~/assets/fonts/OpenSans-Light.ttf") format("opentype");
+}
+
+@font-face {
+	font-family: "opensans-bold";
+	src: url("~/assets/fonts/OpenSans-Bold.ttf") format("opentype");
+}
+
+@font-face {
+	font-family: "myriad-boldcond";
+	src: url("~/assets/fonts/MyriadPro-BoldCond.otf") format("opentype");
+}
+
+@font-face {
+	font-family: "myriad-cond";
+	src: url("~/assets/fonts/MyriadPro-Cond.otf") format("opentype");
+}
+
+html, body {
+	height: 100%;
+	width: 100%;
+	min-width: 375px;
+	font-family: opensans;
+	font-smoothing: antialiased;
+	-webkit-font-smoothing: antialiased;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+	letter-spacing: 1px;
+}
