@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   app: {
     head: {
-      title: "Jezz Lucena's Web Portfolio",
+      title: "Portfolio - Jezz Lucena",
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1'
     }
@@ -18,6 +18,7 @@ export default defineNuxtConfig({
     ],
   },
   devServer: {
+    host: '0.0.0.0',
     port: 8080
   },
   plugins: [

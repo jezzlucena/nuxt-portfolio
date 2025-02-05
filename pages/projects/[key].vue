@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import PROJECTS from 'assets/json/projects.json'
+import PROJECTS from '~/assets/json/projects'
 import type { Project } from '~/types/Project';
 
 const route = useRoute();
