@@ -12,10 +12,10 @@ const formattedDate = twoWeeksAgo.toLocaleDateString('en-US', {
   <div class="footer">
     <div class="buttonAreaWrapper">
       <div class="buttonArea">
-        <a class="button" target="_blank" href="http://linkedin.com/in/jezzlucena">LinkedIn &#x2197;</a>
-        <a class="button" target="_blank" href="/files/JezzLucenaResume2024.pdf">Resumé (pdf) &#x2197;</a>
+        <Button theme="light" href="http://linkedin.com/in/jezzlucena" external>LinkedIn</Button>
+        <Button theme="light" href="/files/JezzLucenaResume2024.pdf" external>Resumé (pdf)</Button>
         <br/>
-        <a class="button contactButton" href="mailto:jezzlucena@gmail.com" data-page="contact">Contact</a>
+        <Button theme="light" href="mailto:jezzlucena@gmail.com">Contact</Button>
         <br/>
         <br/>
         <div class="emailText">...or reach out directly at <b>jezzlucena@gmail.com</b></div>
@@ -49,84 +49,6 @@ const formattedDate = twoWeeksAgo.toLocaleDateString('en-US', {
   text-decoration: underline;
 }
 
-.button {
-	display: inline-block;
-	font-family: opensans;
-	text-transform: none;
-	height: 30px;
-	line-height: 30px;
-	padding: 0 30px;
-	margin: 10px;
-	margin-right: 5px;
-	font-size: 14px;
-	letter-spacing: 1px;
-	color: black;
-	background-color: black;
-	border: 1px solid white;
-	text-decoration: none !important;
-  white-space: nowrap;
-	cursor: pointer;
-	transition: all 0.2s linear;
-}
-	a.button[href=""], a.button[href="#"] {
-		opacity: 0.5;
-		pointer-events: none;
-	}
-
-	.button:hover {
-		box-shadow: 7px 7px 0 -1px rgba(0, 0, 0, 1);
-	}
-
-	.buttonAreaWrapper .button:hover {
-		box-shadow: 5px 5px 0 -1px rgba(255, 255, 255, 1);
-	}
-
-	.button:active {
-		background-color: #fff;
-		color: black;
-		transition: all 0 linear;
-	}
-
-	.button.tile {
-		height: 130px;
-		width: 190px;
-		padding: 0;
-		background-color: white;
-	}
-
-		.button.tile .thumb {
-			float: left;
-			width: 100%;
-			height: 99px;
-			opacity: 1;
-			background-size: cover;
-			background-position: center center;
-			background-repeat: no-repeat;
-			pointer-events: none;
-			transition: all 0.2s linear;
-		}
-
-		.button.tile:hover .thumb {
-			opacity: 0.7;
-		}
-
-		.button.tile .caption {
-			height: 30px;
-			width: 130px;
-			margin-top: 99px;
-			padding: 0 30px;
-			border-top: 1px solid white;
-			background-color: black;
-			text-align: center;
-			transition: all 0.2s linear;
-		}
-
-		.button.tile:active .caption {
-			background-color: #fff;
-			color: black;
-			transition: all 0 linear;
-		}
-
 .buttonAreaWrapper {
 	display: table;
 	text-align: center;
@@ -137,12 +59,6 @@ const formattedDate = twoWeeksAgo.toLocaleDateString('en-US', {
   background-color: black;
   color: white;
 }
-
-  .buttonAreaWrapper .button {
-    color: black;
-    background-color: white;
-    border: 1px solid black;
-  }
 
 	.buttonArea {
 		display: table-cell;

@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import $ from 'jquery'
 import PROJECTS from '~/assets/json/projects';
+
 const galleryMode = ref<'columns' | 'list'>('columns');
 const isShowingGallery = ref(true);
 let galleryTimeout: NodeJS.Timeout;
@@ -17,20 +19,70 @@ const toggleGalleryMode = () => {
     isShowingGallery.value = true;
   }, 700);
 }
+
+const onLoad = () => {
+  window.addEventListener('scroll', function(){
+  	triggerScrollClasses();
+  });
+
+  window.addEventListener('resize', function(){
+  	triggerScrollClasses();
+  });
+
+  setTimeout(() => {
+    triggerScrollClasses();
+  }, 0);
+}
+
+const triggerScrollClasses = () => {
+	let scrollTop = $(window).scrollTop() || 0;
+	let windowHeight = window.innerHeight;
+
+	$('body').toggleClass('scrolled', (scrollTop > 0));
+	$('body').toggleClass('foldPassed', (scrollTop > windowHeight/3));
+
+	$('.trigger:not(.triggered)').each(function(index){
+		if(isOnScreen($(this))){
+			$(this).addClass('triggered');
+		}
+	});
+}
+
+const isOnScreen = function(element: JQuery<HTMLElement>){
+    const win = $(window);
+
+    const viewport = {
+        top: win.scrollTop() || 0,
+        left: win.scrollLeft() || 0,
+        right: (win.scrollLeft() || 0) + (win.width() || 0),
+        bottom: (win.scrollTop() || 0) + (win.height() || 0)
+    };
+
+    const offset = element.offset();
+
+    const bounds = {
+        top: offset?.top || 0,
+        left: offset?.left || 0,
+        right: (offset?.left || 0) + (element.outerWidth() || 0),
+        bottom: (offset?.top || 0) + (element.outerHeight() || 0)
+    };
+
+    return (!(
+      viewport.right < bounds.left ||
+      viewport.left > bounds.right ||
+      viewport.bottom < bounds.top ||
+      viewport.top > bounds.bottom)
+    );
+}
+
+onMounted(() => onLoad());
+onUnmounted(() => {
+  window.removeEventListener('resize', triggerScrollClasses);
+  window.removeEventListener('scroll', triggerScrollClasses);
+});
 </script>
 
 <template>
-  <div class="header fixed">
-    <Logo />
-  </div>
-
-  <div class="header relative">
-    <div class="text">
-      <span>Jezz Lucena</span>
-      <span class="title">Full Stack Engineer</span>
-    </div>
-  </div>
-
   <div class="content relative bg-white">
     <div class="w-[100%] max-w-[1024px] mx-auto p-[50px]">
       <div class="title">
@@ -42,7 +94,7 @@ const toggleGalleryMode = () => {
 					</div>
 				</div>
         <div class="gallery" :class="{ [galleryMode]: true, show: isShowingGallery }">
-          <a v-for="[key, project] of Object.entries(PROJECTS)" :href="`/projects/${key}`" class="item trigger triggered" :class="{ noVideo: !project.thumbVideoUrl }">
+          <a v-for="[key, project] of Object.entries(PROJECTS)" :href="`/projects/${key}`" class="item trigger" :class="{ noVideo: !project.thumbVideoUrl }">
             <div class="thumbContainer loadingGradient">
               <video class="thumbVideo" autoplay muted playsinline loop :src="project.thumbVideoUrl || undefined"></video>
               <img class="thumb" :src="project.thumbImgUrl">
@@ -61,60 +113,9 @@ const toggleGalleryMode = () => {
         </div>
     </div>
   </div>
-
-  <Footer />
 </template>
 
-<style>
-.header {
-	min-height: 180px;
-  height: 65vh;
-  width: 100%;
-
-  &.fixed {
-    background-color: black;
-  }
-
-  &.relative {
-    background-color: transparent;
-    pointer-events: none;
-
-    .text {
-      position: absolute;
-      bottom: 0;
-      margin-bottom: 6vh;
-      width: 100%;
-      font-size: 24px;
-      line-height: 30px;
-      font-family: myriad-cond;
-      color: white;
-      letter-spacing: 3px;
-      padding: 20px 0 20px;
-      background-color: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(10px);
-      text-align: center;
-      text-transform: uppercase;
-
-      .title {
-        position: relative;
-        font-family: myriad-boldcond;
-        padding-left: 15px;
-        margin-left: 15px;
-
-        &::after {
-          content: '';
-          position: absolute;
-          top: 50%;
-          left: 0;
-          height: 40px;
-          border-right: 1px solid white;
-          transform: translateY(-50%);
-        }
-      }
-    }
-  }
-}
-
+<style scoped>
 .content .title {
   position: relative;
   font-family: myriad-boldcond;
@@ -209,10 +210,6 @@ const toggleGalleryMode = () => {
     &.triggered {
       opacity: 1;
       transition-delay: 0.5s;
-    }
-
-    &.template {
-      display: none;
     }
   }
 
