@@ -15,7 +15,7 @@
 
     <NuxtRouteAnnouncer />
     <NuxtPage />
-    
+
     <Footer />
   </div>
 </template>
@@ -65,6 +65,20 @@
           border-right: 1px solid white;
           transform: translateY(-50%);
         }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    height: 75vh;
+    
+    .title {
+      display: block;
+
+      &::after {
+        display: none;
       }
     }
   }

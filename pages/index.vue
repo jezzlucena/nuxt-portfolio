@@ -197,6 +197,19 @@ onUnmounted(() => {
     column-count: 3;
   }
 
+  @media (max-width: 760px) {
+    &.columns {
+      column-count: 2;
+    }
+  }
+
+  @media (max-width: 480px) {
+    &.columns {
+      column-count: 1;
+    }
+  }
+
+
   .item {
     position: relative;
     display: flex;
@@ -237,6 +250,7 @@ onUnmounted(() => {
     &.columns .thumbContainer {
       margin-right: 0;
       margin-bottom: 10px;
+      width: 100%;
     }
 
     @media(max-width: 600px) {
@@ -340,9 +354,13 @@ onUnmounted(() => {
               }
 
               .company::after {
-                content: ' \2022 ';
+                content: ' \2022  ';
               }
             }
+          }
+
+          &.list span {
+            display: block;
           }
 
   .loadingGradient {
@@ -364,6 +382,12 @@ onUnmounted(() => {
   }
   100%{
     background-position: 100% 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .content .title {
+    text-align: left;
   }
 }
 </style>

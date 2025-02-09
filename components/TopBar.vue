@@ -1,9 +1,14 @@
 <script setup lang="ts">
 const { isScrolled } = useScroll();
+const isNavOpen = ref(false);
+
+const toggleNavOpen = () => {
+  isNavOpen.value = !isNavOpen.value;
+}
 </script>
 
 <template>
-  <div class="topBar" :class="{ scrolled: isScrolled }">
+  <div class="topBar" :class="{ scrolled: isScrolled, navOpen: isNavOpen }">
     <div class="flex w-[100%] max-w-[1024px] mx-auto px-[50px]">
       <NuxtLink to="/" class="logo">
         <img src="~/assets/img/logo.png" class="inline mr-3" width="40"/>
@@ -11,10 +16,17 @@ const { isScrolled } = useScroll();
         <span class="title pl-3">Full Stack Engineer</span>
       </NuxtLink>
       <div class="grow"></div>
-      <NuxtLink to="/about">About</NuxtLink>
-      <NuxtLink to="/">Portfolio</NuxtLink>
-      <a href="/files/JezzLucenaResume2024.pdf" target="_blank">Resumé</a>
-      <a href="mailto:jezzlucena@gmail.com" target="_blank">Contact</a>
+      <div class="hamburger" @click="toggleNavOpen">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+      <div class="links">
+        <NuxtLink to="/about">About</NuxtLink>
+        <NuxtLink to="/">Portfolio</NuxtLink>
+        <a href="/files/JezzLucenaResume2024.pdf" target="_blank">Resumé</a>
+        <a href="mailto:jezzlucena@gmail.com" target="_blank">Contact</a>
+      </div>
     </div>
   </div>
 </template>
@@ -30,12 +42,15 @@ const { isScrolled } = useScroll();
   text-transform: uppercase;
   font-size: 18px;
   border-bottom: 1px solid transparent;
-  transition: 1s border-bottom-color ease, 1s background-color ease;
+  background-color: black;
+  transition: 1s border-bottom-color ease;
   color: white;
   z-index: 1;
 }
 
 .logo {
+  pointer-events: none;
+
   &, & > .title, & > .name {
     opacity: 0;
     transition: 0.5s opacity ease;
@@ -59,9 +74,9 @@ const { isScrolled } = useScroll();
 
 .topBar.scrolled {
   border-bottom-color: white;
-  background-color: black;
 
   .logo {
+    pointer-events: auto;
     transition-delay: 0.3s;
 
     &, & .name, & .title {
@@ -95,7 +110,7 @@ a {
       position: absolute;
       left: 20px;
       right: 20px;
-      bottom: 20px;
+      bottom: -5px;
       height: 3px;
       background-color: white;
     }
@@ -109,6 +124,89 @@ a {
       border-right: 1px solid white;
       transform: translateY(-50%);
     }
+  }
+}
+
+.links {
+  transition: 0.5s transform ease, 1s border-color ease;
+}
+
+.hamburger {
+  display: none;
+  padding-top: 15px;
+  cursor: pointer;
+  
+  .line {
+    width: 30px;
+    border-top: 3px solid white;
+    transform-origin: 100% 50%;
+    transition: 0.5s transform ease, 0.5s opacity ease;
+
+    &:not(:last-child) {
+      margin-bottom: 8px;
+    }
+  }
+}
+
+.topBar.navOpen {
+  .hamburger {
+    .line:nth-child(1) {
+      transform: rotate(-45deg);
+    }
+
+    .line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .line:nth-child(3) {
+      transform: rotate(45deg);
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  .links {
+    position: absolute;
+    top: 100%;
+    left: 100%;
+    background-color: black;
+    border: 1px solid black;
+    text-align: center;
+
+    a {
+      display: block;
+      margin: 0 40px;
+      padding: 5px 20px;
+
+      &.router-link-active::before {
+        bottom: 20px;
+      }
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  .topBar.scrolled .links {
+    border-bottom: 1px white solid;
+    border-left: 1px white solid;
+  }
+
+  .hamburger {
+    display: inline-block;
+  }
+  
+  .topBar.navOpen {
+    .links {
+      transform: translateX(-100%);
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    display: none;
   }
 }
 </style>
