@@ -1,0 +1,52 @@
+<script setup lang="ts">
+const props = defineProps<{
+  label: string,
+  keywords: string[]
+}>();
+</script>
+
+<template>
+  <span class="keywords">
+    <span class="label big">{{ props.label }}</span>
+    <span v-for="keyword of props.keywords" class="keyword">{{ keyword }}</span>
+  </span>
+</template>
+
+<style scoped>
+.keywords {
+  font-family: opensans;
+  letter-spacing: 2px;
+  margin-right: 5px;
+  font-size: 0;
+  color: white;
+
+  .label, .keyword {
+    font-size: 14px;
+    color: black;
+  }
+
+  .label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 6px;
+    font-family: myriad-boldcond;
+    letter-spacing: 2px;
+    margin-top: 15px;
+    text-transform: uppercase;
+  }
+
+  .keyword {
+    display: inline-block;
+    white-space: nowrap;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    margin-right: 6px;
+    border: 1px solid black;
+    padding: 2px 10px;
+
+    &.not(:last-child)::after {
+      content: ',';
+    }
+  }
+}
+</style>

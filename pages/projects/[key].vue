@@ -39,21 +39,10 @@ if (!project) {
 
 						<br>
 
-						<span class="keywords">
-							<span class="label big">Stack</span>
-              <span v-for="keyword of project.stack.split(',')">
-                <span class="keyword">{{ keyword }}</span>,
-              </span>
-            </span>
+						<Keywords label="Stack" :keywords="project.stack.split(',')" />
 						<br>
 
-						<span class="keywords">
-							<span class="label big">Platforms</span>
-              <span v-for="keyword of project.platforms.split(',')">
-                <span class="keyword">{{ keyword }}</span>,
-              </span>
-            </span>
-
+						<Keywords label="Platforms" :keywords="project.platforms.split(',')" />
 						<br>
 
 						<div class="projectButtons">

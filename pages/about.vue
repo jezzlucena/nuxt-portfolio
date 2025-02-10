@@ -1,4 +1,21 @@
 <script setup lang="ts">
+const KEYWORDS = [
+  "JavaScript",
+  "TypeScript",
+  "React",
+  "NextJS",
+  "NuxtJS",
+  "Python",
+  "Django",
+  "ES6",
+  "HTML5",
+  "CSS3",
+  "Ruby on Rails",
+  "Agile Software Development",
+  "UX/UI Design",
+  "RESTful APIs",
+  "i18n"
+];
 const isCollapsed = ref(true);
 
 const toggleCollapsed = () => {
@@ -15,24 +32,9 @@ const toggleCollapsed = () => {
               <a class="profilePicture Jezz" target="_blank" href="http://linkedin.com/in/jezzlucena"></a>
               <div class="profileName">Jezz Lucena</div>
               <div class="profileTitle">Full Stack Software Engineer</div>
-              <span class="keywords">
-                <span class="label">Keywords: </span>
-                <span class="keyword">JavaScript</span>,
-                <span class="keyword">TypeScript</span>,
-                <span class="keyword">React</span>,
-                <span class="keyword">NextJS</span>,
-                <span class="keyword">NuxtJS</span>,
-                <span class="keyword">Python</span>,
-                <span class="keyword">Django</span>,
-                <span class="keyword">ES6</span>,
-                <span class="keyword">HTML5</span>,
-                <span class="keyword">CSS3</span>,
-                <span class="keyword">Ruby on Rails</span>,
-                <span class="keyword">Agile Software Development</span>,
-                <span class="keyword">UX/UI Design</span>,
-                <span class="keyword">RESTful APIs</span>,
-                <span class="keyword">i18n</span>
-              </span>
+              
+              <Keywords label="Keywords" :keywords="KEYWORDS" />
+
               <div class="profileButtons">
                 <Button external>Download Resumé (pdf)</Button>
                 <a href="resource/JezzLucenaResume2020.pdf" target="_blank" class="button"></a>
