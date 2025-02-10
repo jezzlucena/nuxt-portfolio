@@ -86,31 +86,31 @@ onUnmounted(() => {
   <div class="content relative bg-white">
     <div class="w-[100%] max-w-[1024px] mx-auto p-[50px]">
       <div class="title">
-					<span>Some of my work</span>
+        <span>Some of my work</span>
 
-					<div class="toggle" :class="{ [galleryMode]: true, show: isShowingGallery }" @click="toggleGalleryMode">
-						<div class="icon columns"><div class="symbol"></div></div>
-						<div class="icon list"><div class="symbol"></div></div>
-					</div>
-				</div>
-        <div class="gallery" :class="{ [galleryMode]: true, show: isShowingGallery }">
-          <a v-for="[key, project] of Object.entries(PROJECTS)" :href="`/projects/${key}`" class="item trigger" :class="{ noVideo: !project.thumbVideoUrl }">
-            <div class="thumbContainer loadingGradient">
-              <video class="thumbVideo" autoplay muted playsinline loop :src="project.thumbVideoUrl || undefined"></video>
-              <img class="thumb" :src="project.thumbImgUrl">
-            </div>
-
-            <div class="detailsContainer">
-              <div class="name">{{ project.name }}</div>
-              <div class="subtitle">
-                <span class="role">{{ project.role }}</span>
-                <span class="company">{{ project.company }}</span>
-                <span class="year">{{ project.year }}</span>
-              </div>
-              <div class="description">{{ project.description }}</div>
-            </div>
-          </a>
+        <div class="toggle" :class="{ [galleryMode]: true, show: isShowingGallery }" @click="toggleGalleryMode">
+          <div class="icon columns"><div class="symbol"></div></div>
+          <div class="icon list"><div class="symbol"></div></div>
         </div>
+      </div>
+      <div class="gallery" :class="{ [galleryMode]: true, show: isShowingGallery }">
+        <a v-for="[key, project] of Object.entries(PROJECTS)" :href="`/projects/${key}`" class="item trigger" :class="{ noVideo: !project.thumbVideoUrl }">
+          <div class="thumbContainer loadingGradient">
+            <video class="thumbVideo" autoplay muted playsinline loop :src="project.thumbVideoUrl || undefined"></video>
+            <img class="thumb" :src="project.thumbImgUrl">
+          </div>
+
+          <div class="detailsContainer">
+            <div class="name">{{ project.name }}</div>
+            <div class="subtitle">
+              <span class="role">{{ project.role }}</span>
+              <span class="company">{{ project.company }}</span>
+              <span class="year">{{ project.year }}</span>
+            </div>
+            <div class="description">{{ project.description }}</div>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 </template>
