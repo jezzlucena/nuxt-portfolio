@@ -17,7 +17,10 @@ if (!project) {
   <div class="content bg-white relative">
     <div id="project" class="section project w-[100%] max-w-[1024px] mx-auto p-[50px]">
 				<div class="textContainer">
+          <div class="title">{{ project.name }}</div>
+
 					<video :src="project.thumbVideoUrl" v-if="project.thumbVideoUrl" class="projectPicture" autoplay muted playsinline loop></video>
+          <img :src="project.thumbImgUrl" v-else class="projectPicture" />
 					
 					<div class="description">
 						<div class="projectName">
@@ -82,6 +85,19 @@ if (!project) {
 <style scoped>
 .content {
   .project {
+    .title {
+      position: relative;
+      font-family: myriad-boldcond;
+      letter-spacing: 2px;
+      text-align: center;
+      border-top: 1px solid black;
+      border-bottom: 1px solid black;
+      line-height: 70px;
+      font-size: 22px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
     .label {
       font-family: myriad-boldcond;
       font-weight: normal;
@@ -111,7 +127,7 @@ if (!project) {
       display: block;
       margin: 0 auto 30px;
       background-color: black;
-      width: 80%;
+      width: 100%;
       height: auto;
       max-height: 600px;
       box-sizing: border-box;
