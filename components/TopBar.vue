@@ -133,7 +133,8 @@ a {
 
 .hamburger {
   display: none;
-  padding-top: 15px;
+  padding-top: 17px;
+  margin-right: -30px;
   cursor: pointer;
   
   .line {

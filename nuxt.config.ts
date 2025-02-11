@@ -19,7 +19,7 @@ export default defineNuxtConfig({
   },
   devServer: {
     host: '0.0.0.0',
-    port: 8080
+    port: 80
   },
   plugins: [
     { src: '~/plugins/jquery.client.js', mode: 'client' }

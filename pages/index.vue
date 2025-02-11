@@ -245,6 +245,7 @@ onUnmounted(() => {
       height: 138px;
       margin-right: 16px;
       overflow: hidden;
+      border: 1px solid black;
     }
 
     &.columns .thumbContainer {

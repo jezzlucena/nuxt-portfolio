@@ -1,0 +1,11 @@
+name: nuxt-portfolio
+
+services:
+  frontend:
+    build: ./
+    volumes:
+      - './:/app'
+      - '/app/node_modules'
+      - '/app/.output'
+    ports:
+      - 80:80
