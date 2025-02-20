@@ -9,3 +9,4 @@ services:
       - '/app/.output'
     ports:
       - 8080:8080
+    restart: always
