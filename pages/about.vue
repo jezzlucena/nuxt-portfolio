@@ -37,7 +37,7 @@ const toggleCollapsed = () => {
 
               <div class="profileButtons">
                 <Button external>Download Resumé (pdf)</Button>
-                <a href="resource/JezzLucenaResume2020.pdf" target="_blank" class="button"></a>
+                <a href="resource/JezzLucenaResume2025.pdf" target="_blank" class="button"></a>
               </div>
             </div>
           </div>

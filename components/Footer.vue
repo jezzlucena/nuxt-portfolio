@@ -13,7 +13,7 @@ const formattedDate = twoWeeksAgo.toLocaleDateString('en-US', {
     <div class="buttonAreaWrapper">
       <div class="buttonArea">
         <Button theme="light" href="http://linkedin.com/in/jezzlucena" external>LinkedIn</Button>
-        <Button theme="light" href="/files/JezzLucenaResume2024.pdf" external>Resumé (pdf)</Button>
+        <Button theme="light" href="/files/JezzLucenaResume2025.pdf" external>Resumé (pdf)</Button>
         <br/>
         <Button theme="light" href="mailto:jezzlucena@gmail.com">Contact</Button>
         <br/>

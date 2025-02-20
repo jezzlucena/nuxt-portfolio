@@ -24,7 +24,7 @@ const toggleNavOpen = () => {
       <div class="links">
         <NuxtLink to="/about">About</NuxtLink>
         <NuxtLink to="/">Portfolio</NuxtLink>
-        <a href="/files/JezzLucenaResume2024.pdf" target="_blank">Resumé</a>
+        <a href="/files/JezzLucenaResume2025.pdf" target="_blank">Resumé</a>
         <a href="mailto:jezzlucena@gmail.com" target="_blank">Contact</a>
       </div>
     </div>
