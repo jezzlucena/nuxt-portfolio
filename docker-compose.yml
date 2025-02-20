@@ -8,4 +8,4 @@ services:
       - '/app/node_modules'
       - '/app/.output'
     ports:
-      - 80:80
+      - 8080:8080

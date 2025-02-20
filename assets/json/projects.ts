@@ -50,7 +50,7 @@ const PROJECTS: { [key: string]: Project } = {
     "liveDemoUrl": null
   },
   "thermofisher": {
-    "name": "Precision Medicine",
+    "name": "Thermo Fisher Precision Medicine",
     "company": "Kaon Interactive",
     "year": 2018,
     "role": "Full Stack Engineer (Contract)",
