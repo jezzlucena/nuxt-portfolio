@@ -47,7 +47,7 @@ const PROJECTS: { [key: string]: Project } = {
     "behanceUrl": "https://www.behance.net/gallery/74097417/Dell-OME-Gamified-Experience",
     "videoUrl": "https://youtu.be/McDy33GSPUM",
     "githubUrl": null,
-    "liveDemoUrl": null
+    "liveDemoUrl": "https://demos.jezzlucena.com/DellOME"
   },
   "thermofisher": {
     "name": "Thermo Fisher Precision Medicine",
@@ -63,7 +63,7 @@ const PROJECTS: { [key: string]: Project } = {
     "behanceUrl": "https://www.behance.net/gallery/74097771/Thermo-Fisher-Precision-Medicine",
     "videoUrl": "https://youtu.be/JUgZ73YrFKs",
     "githubUrl": null,
-    "liveDemoUrl": null
+    "liveDemoUrl": "https://demos.jezzlucena.com/ThermoFisher_ADN"
   },
   "abbott": {
     "name": "Abbott Transformation",
@@ -127,7 +127,7 @@ const PROJECTS: { [key: string]: Project } = {
     "behanceUrl": "https://www.behance.net/gallery/74097473/DxMA-Awards-Catalog",
     "videoUrl": "https://youtu.be/aQ6I_z8w9vo",
     "githubUrl": null,
-    "liveDemoUrl": null
+    "liveDemoUrl": "https://demos.jezzlucena.com/DxMA_2016"
   },
   "f5": {
     "name": "F5 Hybrid Cloud",
@@ -143,7 +143,7 @@ const PROJECTS: { [key: string]: Project } = {
     "behanceUrl": "https://www.behance.net/gallery/74097513/F5-Hybrid-Cloud",
     "videoUrl": "https://youtu.be/Bp1X9JAe0VE",
     "githubUrl": null,
-    "liveDemoUrl": null
+    "liveDemoUrl": "https://demos.jezzlucena.com/F5_ADN"
   },
   "hyundai": {
     "name": "Hyundai HB20s Launch",
@@ -174,8 +174,8 @@ const PROJECTS: { [key: string]: Project } = {
     "thumbGifUrl": null,
     "behanceUrl": null,
     "videoUrl": "https://youtu.be/N8bxdOAP8Aw",
-    "githubUrl": null,
-    "liveDemoUrl": null
+    "githubUrl": "https://github.com/jezzlucena/face-api-photobooth",
+    "liveDemoUrl": "https://photobooth.jezzlucena.com"
   },
   "haystack": {
     "name": "In a Haystack",
@@ -191,7 +191,7 @@ const PROJECTS: { [key: string]: Project } = {
     "behanceUrl": "https://www.behance.net/gallery/74097641/In-a-Haystack",
     "videoUrl": null,
     "githubUrl": null,
-    "liveDemoUrl": null
+    "liveDemoUrl": "https://demos.jezzlucena.com/In_a_Haystack"
   },
   "cocacola": {
     "name": "Coca-Cola FM",
@@ -223,7 +223,7 @@ const PROJECTS: { [key: string]: Project } = {
     "behanceUrl": "https://www.behance.net/gallery/74097689/Pong-4X",
     "videoUrl": null,
     "githubUrl": "https://github.com/jezzlucena/pong_4x",
-    "liveDemoUrl": null
+    "liveDemoUrl": "https://demos.jezzlucena.com/Pong_4X"
   },
   "bandip": {
     "name": "Band IP",
