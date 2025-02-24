@@ -4,8 +4,10 @@ WORKDIR /app
 
 ENV PATH /app/node_modules/.bin:$PATH
 
+COPY package.json .
+RUN --mount=type=cache,target=/root/.npm npm install
+
 COPY . .
-RUN npm install
 
 RUN npm run build
 
