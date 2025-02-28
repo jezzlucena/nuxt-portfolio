@@ -1,6 +1,22 @@
 import type { Project } from "~/types/Project";
 
 const PROJECTS: { [key: string]: Project } = {
+  "chatbot": {
+    "name": "AI Chatbot",
+    "company": "Personal Project",
+    "year": 2020,
+    "role": "Full Stack / AI Engineer",
+    "platforms": "iOS,Android,Desktop,Web",
+    "stack": "Vue 3,Python,Hugging Face Transformers,LLMs,JavaScript,ES6,HTML5,CSS3",
+    "description": "A chatbot powered by the Large Language Model Qwen 2.5, by Alibaba Cloud.",
+    "thumbImgUrl": "/img/portfolio/chatbot/chatbot_thumb.png",
+    "thumbVideoUrl": "/img/portfolio/chatbot/chatbot_thumb.mp4",
+    "thumbGifUrl": null,
+    "behanceUrl": null,
+    "videoUrl": null,
+    "githubUrl": null,
+    "liveDemoUrl": "https://chatbot.jezzlucena.com/"
+  },
   "multiverse": {
     "name": "Burning Man: Multiverse",
     "company": "Celestial Bodies Camp",
