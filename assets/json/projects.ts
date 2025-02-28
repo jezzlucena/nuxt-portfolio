@@ -4,7 +4,7 @@ const PROJECTS: { [key: string]: Project } = {
   "chatbot": {
     "name": "AI Chatbot",
     "company": "Personal Project",
-    "year": 2020,
+    "year": 2025,
     "role": "Full Stack / AI Engineer",
     "platforms": "iOS,Android,Desktop,Web",
     "stack": "Vue 3,Python,Hugging Face Transformers,LLMs,JavaScript,ES6,HTML5,CSS3",
