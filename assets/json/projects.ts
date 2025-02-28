@@ -14,7 +14,7 @@ const PROJECTS: { [key: string]: Project } = {
     "thumbGifUrl": null,
     "behanceUrl": null,
     "videoUrl": null,
-    "githubUrl": null,
+    "githubUrl": "https://github.com/jezzlucena/vue-ai-chatbot",
     "liveDemoUrl": "https://chatbot.jezzlucena.com/"
   },
   "multiverse": {
