@@ -73,7 +73,7 @@ const handleWindowResize = () => {
     columnIndex = (columnIndex + 1) % numColumns;
   }
 
-  triggerScrollClasses();
+  nextTick(triggerScrollClasses);
 };
 
 const isOnScreen = function(element: JQuery<HTMLElement>){
@@ -246,7 +246,7 @@ onUnmounted(() => {
 
     &.triggered {
       opacity: 1;
-      transition-delay: 0.5s;
+      transition-delay: 0.3s;
     }
   }
 

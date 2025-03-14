@@ -15,11 +15,14 @@ if (!project) {
 
 <template>
   <div class="content bg-white relative">
-    <div id="project" class="section project w-[100%] max-w-[1024px] mx-auto p-[50px]">
+    <div id="project" class="section project w-[100%] max-w-[1280px] mx-auto p-[50px]">
 				<div class="textContainer">
           <div class="title">{{ project.name }}</div>
 
-					<video :src="project.thumbVideoUrl" v-if="project.thumbVideoUrl" class="projectPicture" autoplay muted playsinline loop></video>
+          <div v-if="project.thumbVideoUrl" class="projectPicture">
+            <video class="profileVideoBackground" :src="project.thumbVideoUrl" autoplay muted playsinline loop></video>
+            <video class="profileVideo" :src="project.thumbVideoUrl" autoplay muted playsinline loop></video>
+          </div>
           <img :src="project.thumbImgUrl" v-else class="projectPicture" />
 					
 					<div class="description">
@@ -126,12 +129,28 @@ if (!project) {
       position: relative;
       display: block;
       margin: 0 auto 30px;
-      background-color: black;
       width: 100%;
       height: auto;
       max-height: 600px;
       box-sizing: border-box;
       border: 1px solid black;
+
+      .profileVideo {
+        position: relative;
+        width: 100%;
+        height: auto;
+        max-height: 600px;
+      }
+
+      .profileVideoBackground {
+        position: absolute;
+        width: 100%;
+        height: auto;
+        max-height: 600px;
+        object-fit: cover;
+        object-position: 50% 50%;
+        filter: blur(5px);
+      }
     }
   }
 }
