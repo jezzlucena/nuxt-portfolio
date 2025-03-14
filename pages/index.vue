@@ -57,9 +57,9 @@ const handleWindowResize = () => {
 
   let numColumns: number;
 
-  if (window.innerWidth <= 480) {
+  if (window.innerWidth <= 670) {
     numColumns = 1;
-  } else if (window.innerWidth <= 760) {
+  } else if (window.innerWidth <= 940) {
     numColumns = 2;
   } else {
     numColumns = 3;

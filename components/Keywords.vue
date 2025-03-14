@@ -44,8 +44,9 @@ const props = defineProps<{
     border: 1px solid black;
     padding: 2px 10px;
 
-    &.not(:last-child)::after {
+    &:not(:last-child)::after {
       content: ',';
+      font-size: 0;
     }
   }
 }
