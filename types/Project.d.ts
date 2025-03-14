@@ -6,6 +6,7 @@ export type Project = {
   platforms: string;
   stack: string;
   description: string;
+  thumbAspectRatio?: number;
   thumbImgUrl: string;
   thumbVideoUrl: string | null;
   thumbGifUrl: string | null;

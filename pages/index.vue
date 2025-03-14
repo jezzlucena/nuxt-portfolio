@@ -6,6 +6,8 @@ const galleryMode = ref<'columns' | 'list'>('columns');
 const isShowingGallery = ref(true);
 let galleryTimeout: NodeJS.Timeout;
 
+const columns = ref<string[][]>([]);
+
 const toggleGalleryMode = () => {
   isShowingGallery.value = false;
 
@@ -26,12 +28,10 @@ const onLoad = () => {
   });
 
   window.addEventListener('resize', function(){
-  	triggerScrollClasses();
+  	handleWindowResize();
   });
 
-  setTimeout(() => {
-    triggerScrollClasses();
-  }, 0);
+  nextTick(handleWindowResize);
 }
 
 const triggerScrollClasses = () => {
@@ -44,9 +44,37 @@ const triggerScrollClasses = () => {
 	$('.trigger:not(.triggered)').each(function(index){
 		if(isOnScreen($(this))){
 			$(this).addClass('triggered');
+
+      setTimeout(() => {
+			  $(this).find(".loadingGradient").removeClass('loadingGradient');
+      }, 2000);
 		}
 	});
-}
+};
+
+const handleWindowResize = () => {
+  if (!import.meta.browser) return;
+
+  let numColumns: number;
+
+  if (window.innerWidth <= 480) {
+    numColumns = 1;
+  } else if (window.innerWidth <= 760) {
+    numColumns = 2;
+  } else {
+    numColumns = 3;
+  }
+
+  columns.value = Array.from({ length: numColumns }, () => []);
+  let columnIndex = 0;
+
+  for (const key in PROJECTS) {
+    columns.value[columnIndex].push(key);
+    columnIndex = (columnIndex + 1) % numColumns;
+  }
+
+  triggerScrollClasses();
+};
 
 const isOnScreen = function(element: JQuery<HTMLElement>){
     const win = $(window);
@@ -94,22 +122,24 @@ onUnmounted(() => {
         </div>
       </div>
       <div class="gallery" :class="{ [galleryMode]: true, show: isShowingGallery }">
-        <a v-for="[key, project] of Object.entries(PROJECTS)" :href="`/projects/${key}`" class="item trigger" :class="{ noVideo: !project.thumbVideoUrl }">
-          <div class="thumbContainer loadingGradient">
-            <video class="thumbVideo" autoplay muted playsinline loop :src="project.thumbVideoUrl || undefined"></video>
-            <img class="thumb" :src="project.thumbImgUrl">
-          </div>
-
-          <div class="detailsContainer">
-            <div class="name">{{ project.name }}</div>
-            <div class="subtitle">
-              <span class="role">{{ project.role }}</span>
-              <span class="company">{{ project.company }}</span>
-              <span class="year">{{ project.year }}</span>
+        <div v-for="projects of columns" class="column">
+          <a v-for="key of projects" :href="`/projects/${key}`" class="item trigger" :class="{ noVideo: !PROJECTS[key].thumbVideoUrl }">
+            <div class="thumbContainer loadingGradient" :style="{ paddingBottom: `${(PROJECTS[key].thumbAspectRatio || 0.56) * 100}%` }">
+              <video class="thumbVideo" autoplay muted playsinline loop :src="PROJECTS[key].thumbVideoUrl || undefined"></video>
+              <img class="thumb" :src="PROJECTS[key].thumbImgUrl">
             </div>
-            <div class="description">{{ project.description }}</div>
-          </div>
-        </a>
+
+            <div class="detailsContainer">
+              <div class="name">{{ PROJECTS[key].name }}</div>
+              <div class="subtitle">
+                <span class="role">{{ PROJECTS[key].role }}</span>
+                <span class="company">{{ PROJECTS[key].company }}</span>
+                <span class="year">{{ PROJECTS[key].year }}</span>
+              </div>
+              <div class="description">{{ PROJECTS[key].description }}</div>
+            </div>
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -187,28 +217,22 @@ onUnmounted(() => {
 .gallery {
   opacity: 0;
   transition: 0.5s opacity ease;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 
   &.show {
     opacity: 1;
     transition-delay: 0.5s;
   }
 
-  &.columns {
-    column-count: 3;
-  }
+  &.list {
+    flex-direction: column;
 
-  @media (max-width: 760px) {
-    &.columns {
-      column-count: 2;
+    .thumbContainer {
+      padding-bottom: 0 !important;
     }
   }
-
-  @media (max-width: 480px) {
-    &.columns {
-      column-count: 1;
-    }
-  }
-
 
   .item {
     position: relative;
@@ -242,7 +266,7 @@ onUnmounted(() => {
       flex: none;
       position: relative;
       width: 246px;
-      height: 138px;
+      padding-bottom: 56%;
       margin-right: 16px;
       overflow: hidden;
       border: 1px solid black;
