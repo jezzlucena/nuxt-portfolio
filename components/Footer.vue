@@ -1,28 +1,18 @@
-<script setup lang="ts">
-const today = new Date();
-const twoWeeksAgo = new Date(today.getTime() - 14 * 24 * 60 * 60 * 1000);
-const formattedDate = twoWeeksAgo.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-});
-</script>
-
 <template>
   <div class="footer">
     <div class="buttonAreaWrapper">
       <div class="buttonArea">
-        <Button theme="light" href="http://linkedin.com/in/jezzlucena" external>LinkedIn</Button>
-        <Button theme="light" href="/files/JezzLucenaResume2025.pdf" external>Resumé (pdf)</Button>
+        <Button theme="light" href="http://linkedin.com/in/jezzlucena" external>{{ $t("footer.linkedIn") }}</Button>
+        <Button theme="light" href="/files/JezzLucenaResume2025.pdf" external>{{ $t("footer.resume") }}</Button>
         <br/>
-        <Button theme="light" href="mailto:jezzlucena@gmail.com">Contact</Button>
+        <Button theme="light" href="mailto:jezzlucena@gmail.com">{{ $t("common.contact") }}</Button>
         <br/>
         <br/>
-        <div class="emailText">...or reach out directly at <b>jezzlucena@gmail.com</b></div>
+        <div class="emailText">{{ $t("footer.orDirectly") }} <b>jezzlucena@gmail.com</b></div>
       </div>
     </div>
 
-    <div class="disclaimer">Creative Commons Attribution-ShareAlike License<br/>Last updated in {{ formattedDate }}. <a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/2.0/">Some Rights Reserved</a>.</div>
+    <div class="disclaimer">{{ $t("footer.creativeCommons") }}<br/>{{ $t("footer.lastUpdated") }} {{ (new Date((new Date()).getTime() - 14 * 24 * 60 * 60 * 1000)).toLocaleDateString($i18n.locale || $i18n.defaultLocale, { year: 'numeric', month: 'long', day: 'numeric' }) }}. <a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/2.0/">{{ $t("footer.someRightsReserved") }}</a>.</div>
   </div>
 </template>
 

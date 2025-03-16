@@ -27,54 +27,58 @@ if (!project) {
 					
 					<div class="description">
 						<div class="projectName">
-							<span class="label">Project</span>
+							<span class="label">{{ $t("project.project") }}</span>
 							{{ project.name }}						
             </div>
 						<div class="projectCompany">
-							<span class="label">Company</span>
+							<span class="label">{{ $t("project.company") }}</span>
 							{{ project.company }}
             </div>
 						<div class="projectYear">
-							<span class="label">Shipped in</span>
+							<span class="label">{{ $t("project.shipped") }}</span>
 							{{ project.year }}
             </div>
 						<div class="projectRole">
-							<span class="label">Role on this project</span>
+							<span class="label">{{ $t("project.role") }}</span>
 							{{ project.role }}
             </div>
 
 						<br>
 
-						<Keywords label="Stack" :keywords="project.stack.split(',')" />
+						<Keywords :label="$t('project.stack')" :keywords="project.stack.split(',')" />
 						<br>
 
-						<Keywords label="Platforms" :keywords="project.platforms.split(',')" />
+						<Keywords :label="$t('project.platforms')" :keywords="project.platforms.split(',')" />
 						<br>
 
 						<div class="projectButtons">
-							<span class="label">Related Links</span>
-							<Button 
-                :href="project.liveDemoUrl || ''" 
-                target="_blank" class="button" 
-                :class="{ disabled: !project.liveDemoUrl }"
+							<span class="label">{{ $t("project.related") }}</span>
+							<Button
+                v-if="project.liveDemoUrl"
+                :href="project.liveDemoUrl" 
+                target="_blank"
+                class="button" 
                 external
               >Try Live Demo</Button>
-							<Button 
-                :href="project.videoUrl || ''" 
-                target="_blank" class="button" 
-                :class="{ disabled: !project.videoUrl }"
+							<Button
+                v-if="project.videoUrl"
+                :href="project.videoUrl" 
+                target="_blank"
+                class="button" 
                 external
               >Watch Full Video</Button>
-              <Button 
-                :href="project.behanceUrl || ''" 
-                target="_blank" class="button" 
-                :class="{ disabled: !project.behanceUrl }"
+              <Button
+                v-if="project.behanceUrl"
+                :href="project.behanceUrl" 
+                target="_blank"
+                class="button" 
                 external
               >View on Behance</Button>
-              <Button 
-                :href="project.githubUrl || ''" 
-                target="_blank" class="button" 
-                :class="{ disabled: !project.githubUrl }"
+              <Button
+                v-if="project.githubUrl"
+                :href="project.githubUrl" 
+                target="_blank"
+                class="button" 
                 external
               >View on GitHub</Button>
             </div>

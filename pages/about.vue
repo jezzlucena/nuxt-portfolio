@@ -17,10 +17,6 @@ const KEYWORDS = [
   "i18n"
 ];
 const isCollapsed = ref(true);
-
-const toggleCollapsed = () => {
-  isCollapsed.value = !isCollapsed.value;
-}
 </script>
 
 <template>
@@ -30,52 +26,52 @@ const toggleCollapsed = () => {
           <div class="aboutContainer">
             <div class="description">
               <a class="profilePicture Jezz" target="_blank" href="http://linkedin.com/in/jezzlucena"></a>
-              <div class="profileName">Jezz Lucena</div>
-              <div class="profileTitle">Full Stack Software Engineer</div>
+              <div class="profileName">{{ $t("common.jezzLucena") }}</div>
+              <div class="profileTitle">{{ $t("common.fullStackEngineer") }}</div>
               
               <Keywords label="Keywords" :keywords="KEYWORDS" />
 
               <div class="profileButtons">
-                <Button external>Download Resumé (pdf)</Button>
-                <a href="resource/JezzLucenaResume2025.pdf" target="_blank" class="button"></a>
+                <a href="resource/JezzLucenaResume2025.pdf" target="_blank" class="button">
+                  <Button external>{{ $t("about.downloadResume") }}</Button>
+                </a>
               </div>
             </div>
           </div>
           <div class="textContainer relative" :class="{ collapsed: isCollapsed }">
-            <p>Building magical end-user experiences is my true passion. I actively seek out new technologies, and stay up-to-date on the industry's most recent frameworks, languages and trends.</p>
-            <p>With a Bachelor’s degree in Computer Engineering and a Master’s degree in Interactive Media &amp; Game Development, continued education has allowed me to stay ahead of the curve and deliver exceptional work to each employer I’ve worked for - both full-time and contract.</p>
-            <p>My technical expertise includes cross-platform proficiency (Mac OS, Unix, Linux and Windows); expertise in 13 scripting/programming languages (including ES6, CSS3, HTML5, Phoenix/Elixir and PostgreSQL); and advanced knowledge of developer applications, tools, methodologies and best practices (including OOD, client/server architecture and self-test automation).</p>
+            <p v-for="paragraph of $tm('about.blurb')">{{ $rt(paragraph) }}</p>
 
             <div class="readMoreContainer">
-              <Button class="button" @click="toggleCollapsed">{{ isCollapsed ? 'Read More' : 'Collapse' }}</Button>
+              <Button v-if="isCollapsed" class="button" @click="() => { isCollapsed = false }">{{ $t("about.readMore") }}</Button>
+              <Button v-else class="button" @click="() => { isCollapsed = true }">{{ $t("about.collapse") }}</Button>
             </div>
           </div>
           <div style="clear: both;"></div>
         </div>
 
         <div class="testimonials">
-          <div class="title">Testimonials</div>
+          <div class="title">{{ $t("about.testimonials.title") }}</div>
 
           <div class="container">
-            <Testimonial href="https://www.linkedin.com/in/chrisebennett/">
-              <template #quote>Working with Jezz was a pleasure. His creative, detail oriented approach was very valuable in the product creation process at Wonderschool. I found it rare and rewarding to work with engineer who could think about the full stack of development while also empathizing with the customers needs.</template>
-              <template #author>Chris Bennet</template>
-              <template #role>CEO at Wonderschool, Inc.</template>
-              <template #connection>Chris was senior to Jezz at Wonderschool</template>
+            <Testimonial :href="$t('about.testimonials.chris.link')">
+              <template #quote>{{ $t("about.testimonials.chris.quote") }}</template>
+              <template #author>{{ $t("about.testimonials.chris.author") }}</template>
+              <template #role>{{ $t("about.testimonials.chris.role") }}</template>
+              <template #connection>{{ $t("about.testimonials.chris.connection") }}</template>
             </Testimonial>
 
-            <Testimonial href="https://www.linkedin.com/in/klewwilliams/">
-              <template #quote>Jezz and I studied together at Worcester Polytechnic Institute for our MS in Interactive Media and Game Development where we worked together on projects. Jezz is a phenomenal worker and a phenomenal personality to work with. He has a broad base of talents, particularly engineering, writing, design, and criticism, and is a truly deep thinker who is easy to collaborate on and passionate about positivity, authenticity, and morality in the work place. The best thing about Jezz as a worker is that he has true, raw talent that he's honed with practice and that he is deeply focused on making positive changes in his community and his industry with that talent and practice. He seeks to learn about others, to understand the theory behind his work, and to act beyond himself. This reflects WPI's motto, "Theory and Practice" which Jezz has truly exemplified in his academic and personal projects.</template>
-              <template #author>Klew Williams</template>
-              <template #role>UX Designer at Finalize, Inc.</template>
-              <template #connection>Jezz and Klew were grad students together at Worcester Polytechnic Institute</template>
+            <Testimonial :href="$t('about.testimonials.klew.link')">
+              <template #quote>{{ $t("about.testimonials.klew.quote") }}</template>
+              <template #author>{{ $t("about.testimonials.klew.author") }}</template>
+              <template #role>{{ $t("about.testimonials.klew.role") }}</template>
+              <template #connection>{{ $t("about.testimonials.klew.connection") }}</template>
             </Testimonial>
 
-            <Testimonial href="https://www.linkedin.com/in/chaima-jemmali-732a7655/">
-              <template #quote>Jezz is not only an excellent programmer with technical skills covering multiple languages, platforms and engines, he is also a creative thinker and designer always looking for new ideas and projects. As an active learner, he is continuously taking on new challenges to harness his skills and acquire new ones.</template>
-              <template #author>Chaima Jemmali</template>
-              <template #role>PhD Researcher at Northeastern University</template>
-              <template #connection>Jezz and Chaima were grad students together at Worcester Polytechnic Institute</template>
+            <Testimonial :href="$t('about.testimonials.chaima.link')">
+              <template #quote>{{ $t("about.testimonials.chaima.quote") }}</template>
+              <template #author>{{ $t("about.testimonials.chaima.author") }}</template>
+              <template #role>{{ $t("about.testimonials.chaima.role") }}</template>
+              <template #connection>{{ $t("about.testimonials.chaima.connection") }}</template>
             </Testimonial>
           </div>
         </div>
@@ -99,8 +95,8 @@ const toggleCollapsed = () => {
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      border: 5px solid black;
-      border-radius: 50%;
+      border: 1px solid black;
+      border-radius: 10px;
     }
 
     .profileName {

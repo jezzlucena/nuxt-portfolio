@@ -23,13 +23,8 @@ const toggleGalleryMode = () => {
 }
 
 const onLoad = () => {
-  window.addEventListener('scroll', function(){
-  	triggerScrollClasses();
-  });
-
-  window.addEventListener('resize', function(){
-  	handleWindowResize();
-  });
+  window.addEventListener('scroll', triggerScrollClasses);
+  window.addEventListener('resize', handleWindowResize);
 
   nextTick(handleWindowResize);
 }
@@ -105,8 +100,8 @@ const isOnScreen = function(element: JQuery<HTMLElement>){
 
 onMounted(() => onLoad());
 onUnmounted(() => {
-  window.removeEventListener('resize', triggerScrollClasses);
   window.removeEventListener('scroll', triggerScrollClasses);
+  window.removeEventListener('resize', handleWindowResize);
 });
 </script>
 
@@ -114,7 +109,7 @@ onUnmounted(() => {
   <div class="content relative bg-white">
     <div class="w-[100%] max-w-[1024px] mx-auto p-[50px]">
       <div class="title">
-        <span>Some of my work</span>
+        <span>{{ $t("home.myWork") }}</span>
 
         <div class="toggle" :class="{ [galleryMode]: true, show: isShowingGallery }" @click="toggleGalleryMode">
           <div class="icon columns"><div class="symbol"></div></div>

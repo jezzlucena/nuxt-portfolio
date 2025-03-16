@@ -1,0 +1,68 @@
+{
+  "common": {
+    "jezzLucena": "Jezz Lucena",
+    "fullStackEngineer": "Full Stack Engineer",
+    "about": "About",
+    "portfolio": "Portfolio",
+    "resume": "Resumé",
+    "contact": "Contact"
+  },
+  "home": {
+    "myWork": "Some of my work"
+  },
+  "about": {
+    "readMore": "Read More",
+    "collapse": "Collapse",
+    "downloadResume": "Download Resumé (pdf)",
+    "blurb": [
+      "Building magical end-user experiences is my true passion. I actively seek out new technologies, and stay up-to-date on the industry's most recent frameworks, languages and trends.",
+      "With a Bachelor’s degree in Computer Engineering and a Master’s degree in Interactive Media & Game Development, continued education has allowed me to stay ahead of the curve and deliver exceptional work to each employer I’ve worked for - both full-time and contract.",
+      "My technical expertise includes cross-platform proficiency (Mac OS, Unix, Linux and Windows); experience with 13 scripting/programming languages (including ES6, CSS3, HTML5, Phoenix/Elixir and PostgreSQL); and advanced knowledge of developer applications, tools, methodologies and best practices (including OOD, client/server architecture and self-test automation)."
+    ],
+    "testimonials": {
+      "title": "Testimonials",
+      "chris": {
+        "link": "https://www.linkedin.com/in/chrisebennett/",
+        "quote": "Working with Jezz was a pleasure. His creative, detail oriented approach was very valuable in the product creation process at Wonderschool. I found it rare and rewarding to work with engineer who could think about the full stack of development while also empathizing with the customers needs.",
+        "author": "Chris Bennet",
+        "role": "CEO at Wonderschool, Inc.",
+        "connection": "Chris was senior to Jezz at Wonderschool"
+      },
+      "klew": {
+        "link": "https://www.linkedin.com/in/klewwilliams/",
+        "quote": "Jezz and I studied together at Worcester Polytechnic Institute for our MS in Interactive Media and Game Development where we worked together on projects. Jezz is a phenomenal worker and a phenomenal personality to work with. He has a broad base of talents, particularly engineering, writing, design, and criticism, and is a truly deep thinker who is easy to collaborate on and passionate about positivity, authenticity, and morality in the work place. The best thing about Jezz as a worker is that he has true, raw talent that he's honed with practice and that he is deeply focused on making positive changes in his community and his industry with that talent and practice. He seeks to learn about others, to understand the theory behind his work, and to act beyond himself. This reflects WPI's motto, \"Theory and Practice\" which Jezz has truly exemplified in his academic and personal projects.",
+        "author": "Klew Williams",
+        "role": "UX Designer at Finalize, Inc.",
+        "connection": "Jezz and Klew were grad students together at Worcester Polytechnic Institute"
+      },
+      "chaima": {
+        "link": "https://www.linkedin.com/in/chaima-jemmali-732a7655/",
+        "quote": "Jezz is not only an excellent programmer with technical skills covering multiple languages, platforms and engines, he is also a creative thinker and designer always looking for new ideas and projects. As an active learner, he is continuously taking on new challenges to harness his skills and acquire new ones.",
+        "author": "Chaima Jemmali",
+        "role": "PhD Researcher at Northeastern University",
+        "connection": "Jezz and Chaima were grad students together at Worcester Polytechnic Institute"
+      }
+    }
+  },
+  "project": {
+    "project": "Project",
+    "company": "Company",
+    "shipped": "Shipped in",
+    "role": "Role on this project",
+    "stack": "Stack",
+    "platforms": "Platforms",
+    "related": "Related Links",
+    "tryLiveDemo": "Try Live Demo",
+    "watchVideo": "Watch Full Video",
+    "onBehance": "View on Behance",
+    "onGitHub": "View on GitHub"
+  },
+  "footer": {
+    "linkedIn": "LinkedIn",
+    "resume": "Resumé (pdf)",
+    "orDirectly": "...or reach out directly at",
+    "creativeCommons": "Creative Commons Attribution-ShareAlike License",
+    "lastUpdated": "Last updated in",
+    "someRightsReserved": "Some Rights Reserved"
+  }
+}

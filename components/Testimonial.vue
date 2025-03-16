@@ -5,24 +5,26 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="testimonial">
-    <div class="quote">
-      <p>
-        "<slot name="quote" />"
-      </p>
-    </div>
-    <a :href="props.href" target="_blank">
-      <div class="author">
-        - <slot name="author" />
+  <a :href="props.href" target="_blank">
+    <div class="testimonial">
+      <div class="quote">
+        <p>
+          "<slot name="quote" />"
+        </p>
       </div>
-      <div class="role">
-        <slot name="role" />
+      <a :href="props.href" target="_blank">
+        <div class="author">
+          - <slot name="author" />
+        </div>
+        <div class="role">
+          <slot name="role" />
+        </div>
+      </a>
+      <div class="connection">
+        <slot name="connection" />
       </div>
-    </a>
-    <div class="connection">
-      <slot name="connection" />
     </div>
-  </div>
+  </a>
 </template>
 
 <style scoped>

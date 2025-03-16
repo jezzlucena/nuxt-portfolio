@@ -8,8 +8,8 @@
 
     <div class="header relative">
       <div class="text">
-        <span>Jezz Lucena</span>
-        <span class="title">Full Stack Engineer</span>
+        <span>{{ $t("common.jezzLucena") }}</span>
+        <span class="title">{{ $t("common.fullStackEngineer") }}</span>
       </div>
     </div>
 

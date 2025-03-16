@@ -1,4 +1,21 @@
 <script setup lang="ts">
+import type { Language } from '~/types/Language';
+import { LANGUAGES } from '~/utils/constants';
+
+const localePath = useLocalePath();
+const { locale, availableLocales } = useI18n();
+const { setLocale } = useI18n();
+
+const currentLang = ref(locale);
+
+async function changeLocale() {
+  setLocale(locale.value);
+  currentLang.value = locale.value;
+
+  // Change URL to correct language, ex: '/home' to '/fr/home'
+  await navigateTo(localePath(useRoute().path));
+}
+
 const { isScrolled } = useScroll();
 const isNavOpen = ref(false);
 
@@ -10,10 +27,10 @@ const toggleNavOpen = () => {
 <template>
   <div class="topBar" :class="{ scrolled: isScrolled, navOpen: isNavOpen }">
     <div class="flex w-[100%] max-w-[1024px] mx-auto px-[50px]">
-      <NuxtLink to="/" class="logo">
+      <NuxtLink :to="$localePath('/')" class="logo">
         <img src="~/assets/img/logo.png" class="inline mr-3" width="40"/>
-        <span class="name pr-2">Jezz Lucena</span>
-        <span class="title pl-3">Full Stack Engineer</span>
+        <span class="name pr-2">{{ $t("common.jezzLucena") }}</span>
+        <span class="title pl-3">{{ $t("common.fullStackEngineer") }}</span>
       </NuxtLink>
       <div class="grow"></div>
       <div class="hamburger" @click="toggleNavOpen">
@@ -22,10 +39,19 @@ const toggleNavOpen = () => {
         <div class="line"></div>
       </div>
       <div class="links">
-        <NuxtLink to="/about">About</NuxtLink>
-        <NuxtLink to="/">Portfolio</NuxtLink>
-        <a href="/files/JezzLucenaResume2025.pdf" target="_blank">Resumé</a>
-        <a href="mailto:jezzlucena@gmail.com" target="_blank">Contact</a>
+        <NuxtLink :to="$localePath('/about')">{{ $t('common.about') }}</NuxtLink>
+        <NuxtLink :to="$localePath('/')">{{ $t("common.portfolio") }}</NuxtLink>
+        <a href="/files/JezzLucenaResume2025.pdf" target="_blank">{{ $t("common.resume") }}</a>
+        <a href="mailto:jezzlucena@gmail.com" target="_blank">{{ $t("common.contact") }}</a>
+        <select v-model="$i18n.locale" id="localeSelector" @change="() => changeLocale()">
+          <option
+            v-for="(locale, index) in availableLocales"
+            :key="index"
+            :value="locale"
+          >
+            {{ LANGUAGES[locale as Language].short }}
+          </option>
+      </select>
       </div>
     </div>
   </div>
@@ -94,10 +120,18 @@ const toggleNavOpen = () => {
   }
 }
 
+select {
+  margin: 0 10px;
+  font-family: NotoColorEmojiLimited;
+
+  option {
+    background-color: black;
+  }
+}
+
 a {
   position: relative;
   line-height: 60px;
-  margin-right: -6px;
   letter-spacing: 2px;
 
   &:not(.logo) {
