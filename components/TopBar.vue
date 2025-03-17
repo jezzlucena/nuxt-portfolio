@@ -42,7 +42,7 @@ const toggleNavOpen = () => {
         <NuxtLink :to="$localePath('/about')">{{ $t('common.about') }}</NuxtLink>
         <NuxtLink :to="$localePath('/')">{{ $t("common.portfolio") }}</NuxtLink>
         <a href="/files/JezzLucenaResume2025.pdf" target="_blank">{{ $t("common.resume") }}</a>
-        <a href="mailto:jezzlucena@gmail.com" target="_blank">{{ $t("common.contact") }}</a>
+        <a href="https://rznlvjsm.formester.com/f/2_rn9_199YR-" target="_blank">{{ $t("common.contact") }}</a>
         <select v-model="$i18n.locale" id="localeSelector" @change="() => changeLocale()">
           <option
             v-for="(locale, index) in availableLocales"
