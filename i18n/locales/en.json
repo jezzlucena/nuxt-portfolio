@@ -44,7 +44,7 @@
       }
     }
   },
-  "project": {
+  "projects": {
     "project": "Project",
     "company": "Company",
     "shipped": "Shipped in",
@@ -55,7 +55,90 @@
     "tryLiveDemo": "Try Live Demo",
     "watchVideo": "Watch Full Video",
     "onBehance": "View on Behance",
-    "onGitHub": "View on GitHub"
+    "onGitHub": "View on GitHub",
+    "roles": {
+      "designerAi": "Designer / AI Engineer",
+      "frontEnd": "Front End Engineer",
+      "fullStack": "Full Stack Engineer",
+      "fullStackAi": "Full Stack / AI Engineer",
+      "independentCollaborator": "Independent Collaborator",
+      "leadEngineerGameDesigner": "Lead Engineer and Game Designer",
+      "seniorFullStack": "Senior Full Stack Engineer",
+      "softwareEngineer": "Software Engineer"
+    },
+    "companies": {
+      "celestialBodies": "Celestial Bodies Camp",
+      "independentProject": "Independent Project",
+      "hxd": "HXD Smart Solutions",
+      "kaon": "Kaon Interactive",
+      "wpi": "Worcester Polytechnic Institute"
+    },
+    "items": {
+      "multiverse": {
+        "name": "Burning Man: Multiverse",
+        "description": "A socialy distanced and virtual 2020 simulation of what would happen on Playa"
+      },
+      "chatbot": {
+        "name": "AI Chatbot",
+        "description": "A chatbot powered by the Large Language Model Qwen 2.5, by Alibaba Cloud"
+      },
+      "climatempo": {
+        "name": "Climatempo Forecast",
+        "description": "The leading weather forecast cross-platform app in Brazil"
+      },
+      "dell": {
+        "name": "Dell OME Training Game",
+        "description": "Dell's gamified experience to showcase their cutting-edge corporate server deployment application"
+      },
+      "thermofisher": {
+        "name": "Thermo Fisher Precision Medicine",
+        "description": "Thermo Fisher Scientific's Precision Medicine technology showcase app"
+      },
+      "abbott": {
+        "name": "Abbott Transformation",
+        "description": "B2B sales showcase for Abbott Diagnostics' Transformation laboratory solutions"
+      },
+      "strikeapose": {
+        "name": "Strike A Pose",
+        "description": "A dystopian rhythm action-adventure video game, but make it fashion"
+      },
+      "kaon": {
+        "name": "Kaon.com",
+        "description": "Kaon creates advanced software technology and platforms to enable global companies to simplify their complex stories at every customer touch-point"
+      },
+      "dxma": {
+        "name": "DxMA Awards 2016 Catalog",
+        "description": "The digital catalog for DxMA's best B2B apps award ceremony"
+      },
+      "f5": {
+        "name": "F5 Hybrid Cloud",
+        "description": "A showcase app for F5 Networks' best practices on cloud computing and security"
+      },
+      "hyundai": {
+        "name": "Hyundai HB20s Launch",
+        "description": "Hyundai's marketing app for the launch of HB20 and HB20s new models in Brazil"
+      },
+      "photobooth": {
+        "name": "Photobooth",
+        "description": "A web application that snaps a picture when you smile. Machine Learning, AI, and Material Design included"
+      },
+      "haystack": {
+        "name": "In a Haystack",
+        "description": "A graduate thesis proof-of-concept video game project implementation"
+      },
+      "cocacola": {
+        "name": "Coca-Cola FM",
+        "description": "Coca-Cola FM's official Smart TV app in Latin America"
+      },
+      "pong4x": {
+        "name": "Pong! 4X",
+        "description": "Proof-of-concept computer game that takes the classic Pong to a whole new hectic multiplayer experience"
+      },
+      "bandip": {
+        "name": "Band IP",
+        "description": "Band TV's leading video-on-demand multiplatform app in Brazil"
+      }
+    }
   },
   "footer": {
     "linkedIn": "LinkedIn",
@@ -64,5 +147,9 @@
     "creativeCommons": "Creative Commons Attribution-ShareAlike License",
     "lastUpdated": "Last updated in",
     "someRightsReserved": "Some Rights Reserved"
+  },
+  "error": {
+    "error": "Error",
+    "goBack": "Go back home"
   }
 }

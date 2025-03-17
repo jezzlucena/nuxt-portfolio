@@ -23,28 +23,28 @@
       "title": "Depoimentos",
       "chris": {
         "link": "https://www.linkedin.com/in/chrisebennett/",
-        "quote": "Working with Jezz was a pleasure. His creative, detail oriented approach was very valuable in the product creation process at Wonderschool. I found it rare and rewarding to work with engineer who could think about the full stack of development while also empathizing with the customers needs.",
+        "quote": "Trabalhar com Jezz foi um prazer. Sua abordagem criativa e detalhista foi muito valiosa no processo de criação de produtos na Wonderschool. Achei raro e gratificante trabalhar com um engenheiro que conseguia pensar em toda a pilha de desenvolvimento e, ao mesmo tempo, ter empatia pelas necessidades dos clientes.",
         "author": "Chris Bennet",
         "role": "CEO na Wonderschool, Inc.",
         "connection": "Chris foi sênior de Jezz na Wonderschool"
       },
       "klew": {
         "link": "https://www.linkedin.com/in/klewwilliams/",
-        "quote": "Jezz and I studied together at Worcester Polytechnic Institute for our MS in Interactive Media and Game Development where we worked together on projects. Jezz is a phenomenal worker and a phenomenal personality to work with. He has a broad base of talents, particularly engineering, writing, design, and criticism, and is a truly deep thinker who is easy to collaborate on and passionate about positivity, authenticity, and morality in the work place. The best thing about Jezz as a worker is that he has true, raw talent that he's honed with practice and that he is deeply focused on making positive changes in his community and his industry with that talent and practice. He seeks to learn about others, to understand the theory behind his work, and to act beyond himself. This reflects WPI's motto, \"Theory and Practice\" which Jezz has truly exemplified in his academic and personal projects.",
+        "quote": "Jezz e eu estudamos juntos no Worcester Polytechnic Institute para nosso mestrado em Mídia Interativa e Desenvolvimento de Jogos, onde trabalhamos juntos em projetos. Jezz é um trabalhador fenomenal e uma personalidade fenomenal para se trabalhar. Ele tem uma ampla base de talentos, particularmente engenharia, escrita, design e crítica, e é um pensador verdadeiramente profundo, fácil de colaborar e apaixonado por positividade, autenticidade e moralidade no local de trabalho. A melhor coisa sobre Jezz como trabalhador é que ele tem um talento verdadeiro e bruto que ele aprimorou com a prática e que ele está profundamente focado em fazer mudanças positivas em sua comunidade e sua indústria com esse talento e prática. Ele busca aprender sobre os outros, entender a teoria por trás de seu trabalho e agir além de si mesmo. Isso reflete o lema do WPI, \"Teoria e Prática\", que Jezz realmente exemplificou em seus projetos acadêmicos e pessoais.",
         "author": "Klew Williams",
         "role": "Designer de UX na Finalize, Inc.",
         "connection": "Jezz e Klew foram estudantes de mestrado juntos no Worcester Polytechnic Institute"
       },
       "chaima": {
         "link": "https://www.linkedin.com/in/chaima-jemmali-732a7655/",
-        "quote": "Jezz is not only an excellent programmer with technical skills covering multiple languages, platforms and engines, he is also a creative thinker and designer always looking for new ideas and projects. As an active learner, he is continuously taking on new challenges to harness his skills and acquire new ones.",
+        "quote": "Jezz não é apenas um excelente programador com habilidades técnicas cobrindo múltiplas linguagens, plataformas e engines, ele também é um pensador criativo e designer sempre buscando novas ideias e projetos. Como um aprendiz ativo, ele está continuamente assumindo novos desafios para aproveitar suas habilidades e adquirir outras novas.",
         "author": "Chaima Jemmali",
         "role": "Candidata / Pesquisadora de PhD na Northeastern University",
         "connection": "Jezz e Chaima foram estudantes de mestrado juntos no Worcester Polytechnic Institute"
       }
     }
   },
-  "project": {
+  "projects": {
     "project": "Projeto",
     "company": "Empresa",
     "shipped": "Entregue em",
@@ -55,14 +55,85 @@
     "tryLiveDemo": "Ver Demo",
     "watchVideo": "Assista ao Video",
     "onBehance": "Ver no Behance",
-    "onGitHub": "Ver no GitHub"
+    "onGitHub": "Ver no GitHub",
+    "roles": {
+      "designerAi": "Designer / Desenvolvedor IA",
+      "frontEnd": "Desenvolvedor Front End",
+      "fullStack": "Desenvolvedor Full Stack",
+      "fullStackAi": "Desenvolvedor Full Stack / IA",
+      "independentCollaborator": "Colaborador Independente",
+      "leadEngineerGameDesigner": "Desenvolvedor Líder e Game Designer",
+      "seniorFullStack": "Desenvolvedor Full Stack Sênior",
+      "softwareEngineer": "Engenheiro de Software"
+    },
+    "companies": {
+      "celestialBodies": "Acampamento Celestial Bodies",
+      "independentProject": "Projeto Independente"
+    },
+    "items": {
+      "multiverse": {
+        "name": "Burning Man: Multiverso",
+        "description": "Uma simulação, de 2020, virtual e socialmente distanciada de tudo o que aconteceria na Playa"
+      },
+      "chatbot": {
+        "name": "Chatbot IA",
+        "description": "Um assistente desenvolvido utilizando o Modelo de linguagem de grande escala Qwen 2.5, da Alibaba Cloud"
+      },
+      "climatempo": {
+        "name": "Climatempo Previsão",
+        "description": "O aplicativo multi-plataforma líder em previsão do tempo no Brasil"
+      },
+      "dell": {
+        "name": "Dell OME Game Educativo",
+        "description": "A experiência gamificada da Dell para educar sobre seu aplicativo de implantação de servidores de ponta"
+      },
+      "thermofisher": {
+        "description": "O aplicativo vitrine da tecnologia de Medicina de Precisão da Thermo Fisher Scientific"
+      },
+      "abbott": {
+        "description": "Vitrine de vendas B2B das soluções de laboratório Transformation, da Abbott Diagnostics"
+      },
+      "strikeapose": {
+        "description": "Um game distópico de rítmo, ação-aventura; porém fashion"
+      },
+      "kaon": {
+        "description": "A Kaon cria tecnologia de ponta e plataformas que empoderam companhias globais a simplificar suas complexas histórias; ao toque de todo consumidor"
+      },
+      "dxma": {
+        "name": "Prêmios DxMA 2016: Catálogo",
+        "description": "O catálogo digital da cerimônia de prêmios DxMA de melhores aplicativos B2B"
+      },
+      "f5": {
+        "description": "Um aplicativo vitrine das melhores práticas em cyber-segurança e computação na núvem da F5 Networks"
+      },
+      "hyundai": {
+        "description": "O aplicativo de marketing da Hyundai para o lançamento de sua linha HB20 e HB20s no Brasil"
+      },
+      "photobooth": {
+        "description": "Uma aplicação web que tira uma foto quando você sorri; Aprendizado de Máquina, IA, e Design Material incluídos"
+      },
+      "haystack": {
+        "description": "Implementação de um game-projeto de tese de mestrado, prova de conceito"
+      },
+      "cocacola": {
+        "description": "O aplicativo oficial da Coca-Cola FM para SmarTVs na América Latina"
+      },
+      "pong4x": {
+        "description": "Game prova-de-conceito que eleva o clássico Pong a um inovador e frenético novo patamar de experiência multiplayer"
+      },
+      "bandip": {
+        "description": "O aplicativo líder da TV Bandeirantes para transmissão de video-em-demanda OTT multiplataforma no Brasil"
+      }
+    }
   },
   "footer": {
-    "linkedIn": "LinkedIn",
     "resume": "Currículo (pdf)",
     "orDirectly": "...ou mande email para",
-    "creativeCommons": "Creative Commons Attribution-ShareAlike License",
     "lastUpdated": "Atualizado em",
     "someRightsReserved": "Alguns direitos reservados"
+  },
+  "error": {
+    "error": "Erro",
+    "goBack": "Voltar"
   }
 }

@@ -12,10 +12,10 @@ const props = defineProps({
 
     <div class="bg-white">
       <div class="w-[100%] max-w-[1024px] mx-auto p-[50px]">
-        <h1>Error {{ error?.statusCode }}</h1>
+        <h1>{{ $t('error.error') }} {{ error?.statusCode }}</h1>
         <div>{{ error?.statusMessage }}</div>
         <br/>
-        <NuxtLink to="/"><Button>Go back home</Button></NuxtLink>
+        <NuxtLink :to="$localePath('/')"><Button>{{ $t('error.goBack') }}</Button></NuxtLink>
       </div>
     </div>
 

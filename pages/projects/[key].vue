@@ -17,7 +17,7 @@ if (!project) {
   <div class="content bg-white relative">
     <div id="project" class="section project w-[100%] max-w-[1280px] mx-auto p-[50px]">
 				<div class="textContainer">
-          <div class="title">{{ project.name }}</div>
+          <div class="title">{{ $t(project.i18nKeys.name) }}</div>
 
           <div v-if="project.thumbVideoUrl" class="projectPicture">
             <video class="profileVideoBackground" :src="project.thumbVideoUrl" autoplay muted playsinline loop></video>
@@ -27,60 +27,60 @@ if (!project) {
 					
 					<div class="description">
 						<div class="projectName">
-							<span class="label">{{ $t("project.project") }}</span>
-							{{ project.name }}						
+							<span class="label">{{ $t("projects.project") }}</span>
+							{{ $t(project.i18nKeys.description) }}
             </div>
 						<div class="projectCompany">
-							<span class="label">{{ $t("project.company") }}</span>
-							{{ project.company }}
+							<span class="label">{{ $t("projects.company") }}</span>
+							{{ $t(project.i18nKeys.company) }}
             </div>
 						<div class="projectYear">
-							<span class="label">{{ $t("project.shipped") }}</span>
+							<span class="label">{{ $t("projects.shipped") }}</span>
 							{{ project.year }}
             </div>
 						<div class="projectRole">
-							<span class="label">{{ $t("project.role") }}</span>
-							{{ project.role }}
+							<span class="label">{{ $t("projects.role") }}</span>
+							{{ $t(project.i18nKeys.role) }}
             </div>
 
 						<br>
 
-						<Keywords :label="$t('project.stack')" :keywords="project.stack.split(',')" />
+						<Keywords :label="$t('projects.stack')" :keywords="project.stack.split(',')" />
 						<br>
 
-						<Keywords :label="$t('project.platforms')" :keywords="project.platforms.split(',')" />
+						<Keywords :label="$t('projects.platforms')" :keywords="project.platforms.split(',')" />
 						<br>
 
 						<div class="projectButtons">
-							<span class="label">{{ $t("project.related") }}</span>
+							<span class="label">{{ $t("projects.related") }}</span>
 							<Button
                 v-if="project.liveDemoUrl"
                 :href="project.liveDemoUrl" 
                 target="_blank"
                 class="button" 
                 external
-              >Try Live Demo</Button>
+              >{{ $t("projects.tryLiveDemo") }}</Button>
 							<Button
                 v-if="project.videoUrl"
                 :href="project.videoUrl" 
                 target="_blank"
                 class="button" 
                 external
-              >Watch Full Video</Button>
+              >{{ $t("projects.watchVideo") }}</Button>
               <Button
                 v-if="project.behanceUrl"
                 :href="project.behanceUrl" 
                 target="_blank"
                 class="button" 
                 external
-              >View on Behance</Button>
+              >{{ $t("projects.onBehance") }}</Button>
               <Button
                 v-if="project.githubUrl"
                 :href="project.githubUrl" 
                 target="_blank"
                 class="button" 
                 external
-              >View on GitHub</Button>
+              >{{ $t("projects.onGitHub") }}</Button>
             </div>
 					</div>
 				</div>

@@ -121,7 +121,9 @@ const toggleNavOpen = () => {
 }
 
 select {
-  margin: 0 10px;
+  padding: 15px 0;
+  margin: 0 20px;
+  font-size: 18px;
   font-family: NotoColorEmojiLimited;
 
   option {

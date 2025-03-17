@@ -118,22 +118,28 @@ onUnmounted(() => {
       </div>
       <div class="gallery" :class="{ [galleryMode]: true, show: isShowingGallery }">
         <div v-for="projects of columns" class="column">
-          <a v-for="key of projects" :href="`/projects/${key}`" class="item trigger" :class="{ noVideo: !PROJECTS[key].thumbVideoUrl }">
+          <NuxtLink
+            v-for="key of projects"
+            :to="$localePath(`/projects/${key}`)" 
+            class="item trigger"
+            :class="{ noVideo: !PROJECTS[key].thumbVideoUrl && !PROJECTS[key].thumbGifUrl }"
+          >
             <div class="thumbContainer loadingGradient" :style="{ paddingBottom: `${(PROJECTS[key].thumbAspectRatio || 0.56) * 100}%` }">
-              <video class="thumbVideo" autoplay muted playsinline loop :src="PROJECTS[key].thumbVideoUrl || undefined"></video>
+              <video v-if="PROJECTS[key].thumbVideoUrl" class="thumbVideo" autoplay muted playsinline loop :src="PROJECTS[key].thumbVideoUrl"></video>
+              <img v-else-if="PROJECTS[key].thumbGifUrl" class="thumbVideo" :src="PROJECTS[key].thumbGifUrl">
               <img class="thumb" :src="PROJECTS[key].thumbImgUrl">
             </div>
 
             <div class="detailsContainer">
-              <div class="name">{{ PROJECTS[key].name }}</div>
-              <div class="subtitle">
-                <span class="role">{{ PROJECTS[key].role }}</span>
-                <span class="company">{{ PROJECTS[key].company }}</span>
+              <div class="name loadingGradient">{{ $t(PROJECTS[key].i18nKeys.name) }}</div>
+              <div class="subtitle loadingGradient">
+                <span class="role">{{ $t(PROJECTS[key].i18nKeys.role) }}</span>
+                <span class="company">{{ $t(PROJECTS[key].i18nKeys.company) }}</span>
                 <span class="year">{{ PROJECTS[key].year }}</span>
               </div>
-              <div class="description">{{ PROJECTS[key].description }}</div>
+              <div class="description loadingGradient">{{ $t(PROJECTS[key].i18nKeys.description) }}</div>
             </div>
-          </a>
+          </NuxtLink>
         </div>
       </div>
     </div>
@@ -233,7 +239,6 @@ onUnmounted(() => {
     position: relative;
     display: flex;
     border: 1px solid black;
-    padding: 20px;
     break-inside: avoid-column;
     margin-bottom: 20px;
     opacity: 0;
@@ -264,12 +269,11 @@ onUnmounted(() => {
       padding-bottom: 56%;
       margin-right: 16px;
       overflow: hidden;
-      border: 1px solid black;
+      border-bottom: 1px solid black;
     }
 
     &.columns .thumbContainer {
       margin-right: 0;
-      margin-bottom: 10px;
       width: 100%;
     }
 
@@ -315,8 +319,17 @@ onUnmounted(() => {
     .detailsContainer {
       position: relative;
       flex-grow: 1;
-      margin-right: 16px;
+      padding: 16px 20px;
       letter-spacing: 0;
+
+      .name, .subtitle, .description {
+        color: black;
+        transition: 0.5s color ease;
+
+        &.loadingGradient {
+          color: transparent;
+        }
+      }
 
       .name {
         font-size: 18px;
@@ -346,7 +359,6 @@ onUnmounted(() => {
       .description {
         font-size: 12px;
         opacity: 1;
-        margin-bottom: 10px;
       }
     }
 
@@ -355,8 +367,9 @@ onUnmounted(() => {
               font-size: 14px;
               line-height: 14px;
               font-weight: bold;
-              margin-bottom: 6px;
+              margin-bottom: 10px;
               padding-right: 0;
+              text-decoration: underline;
             }
 
             .subtitle {
