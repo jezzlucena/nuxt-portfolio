@@ -3,73 +3,20 @@ import $ from 'jquery'
 
 let animationInterval: NodeJS.Timeout | undefined;
 
-const onLoad = () => {
-	$('.header.relative').addClass('loaded');
-
-	$('.navIcon, .navCover').click(function(){
-		$('body').toggleClass('nav');
-	});
-
-	$('.readMoreContainer').click(function(){
-		$(this).closest('.textContainer').toggleClass('collapsed');
-	});
-
-	if ($('body').attr('data-page') == 'project') {
-		$('.projectButtons .button').each(function() {
-			if (!$(this).attr('href')) {
-				$(this).remove();
-				$('.projectButtons').append(this);
-			}
-		});
-	}
-
-	nextTick(animateSVG);
-};
-
-function getRandomLightColor() {
-	const lowComponent = 255 - Math.round(Math.random() * 150);
-	const midComponent = 255 - Math.round(Math.random() * 150);
-	const highComponent = Math.round(Math.random() * 255);
-
-	const components = [
-		{ value: lowComponent.toString(16).padStart(2, '0'), order: Math.random() },
-		{ value: midComponent.toString(16).padStart(2, '0'), order: Math.random() },
-		{ value: highComponent.toString(16).padStart(2, '0'), order: Math.random() }
-	];
-
-	components.sort((a, b) => a.order - b.order);
-
-	
-
-  return `#${components[0].value}${components[1].value}${components[2].value}`;
-}
-
 function animateSVG () {
-	let delayAcc = 0;
-
-	$('svg use').each(function() {
-		delayAcc += 0.005;
-
-		$(this)
-			// .css('transition-duration', (Math.random() * 2).toFixed(2) + "s")
-			.css('transition-delay', (Math.random()/2 + delayAcc).toFixed(1) + "s")
-			.attr('data-color', getRandomLightColor());
-	});
-
 	$('svg').css('opacity', 1);
-
+	
 	let cycle = 0;
-
 	animationInterval = setInterval(() => {
 		$('svg use').each(function() {
 			if (cycle == 0) {
-				const color = $(this).attr("data-color") as string;
-
-				$(this).css('fill', color)
-					.css('stroke', color)
+				$(this).css('fill', "")
+					.css('stroke', "")
 					.css('opacity', 1);
 			} else if (cycle == 1) {
-				$(this).css('opacity', 0);
+				$(this).css('fill', 'white')
+					.css('stroke', 'black')
+					.css('opacity', 0);
 			} else if (cycle == 2) {
 				$(this).css('fill', 'white')
 					.css('stroke', 'black')
@@ -81,7 +28,7 @@ function animateSVG () {
 	}, 4000);
 }
 
-onMounted(() => onLoad());
+onMounted(() => animateSVG());
 onUnmounted(() => clearInterval(animationInterval));
 </script>
 
@@ -99,7 +46,9 @@ onUnmounted(() => clearInterval(animationInterval));
 	</svg>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+@use "sass:math";
+
 svg {
   height: 65%;
   position: absolute;
@@ -116,5 +65,34 @@ svg {
     stroke: black;
     stroke-width: 1px;
   }
+}
+
+@media (max-width: 900px) {
+	svg {
+		height: 55%;
+	}
+}
+
+@media (max-width: 480px) {
+	svg {
+		height: 45%;
+	}
+}
+
+@media (max-width: 300px) {
+	svg {
+		height: 35%;
+	}
+}
+
+@for $i from 1 to 464 {
+	$delay: math.div(math.round((($i * 0.005) + math.div(math.random(), 2)) * 100), 100);
+	$randomColor: rgb(math.random(255), math.random(255), math.random(255));
+
+	use:nth-child(#{$i}) {
+		transition-delay: #{$delay}s, #{$delay}s, #{$delay}s, 0s;
+		stroke: $randomColor;
+		fill: $randomColor;
+	}
 }
 </style>

@@ -86,4 +86,10 @@ const props = defineProps<{
     opacity: 1;
   }
 }
+
+@media (max-width: 600px) {
+  .testimonial {
+    padding: 30px;
+  }
+}
 </style>

@@ -21,6 +21,7 @@
     "vue-router": "latest"
   },
   "devDependencies": {
-    "@types/jquery": "^3.5.32"
+    "@types/jquery": "^3.5.32",
+    "sass": "^1.86.0"
   }
 }

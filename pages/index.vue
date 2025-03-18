@@ -354,11 +354,13 @@ onUnmounted(() => {
         margin-left: 0;
         padding-right: 30px;
         opacity: 0.7;
+        animation-delay: 0.1s;
       }
 
       .description {
         font-size: 12px;
         opacity: 1;
+        animation-delay: 0.2s;
       }
     }
 

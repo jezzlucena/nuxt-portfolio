@@ -150,7 +150,7 @@ const isCollapsed = ref(true);
   .textContainer {
     max-height: 2000px;
     transition: 1s max-height ease;
-    padding-bottom: 10px;
+    padding-bottom: 30px;
 
     &.collapsed {
       max-height: 100px;
