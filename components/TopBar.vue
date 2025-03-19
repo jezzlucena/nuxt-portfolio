@@ -3,17 +3,11 @@ import type { Language } from '~/types/Language';
 import { LANGUAGES } from '~/utils/constants';
 
 const localePath = useLocalePath();
-const { locale, availableLocales } = useI18n();
-const { setLocale } = useI18n();
-
-const currentLang = ref(locale);
+const { availableLocales } = useI18n();
 
 async function changeLocale() {
-  setLocale(locale.value);
-  currentLang.value = locale.value;
-
-  // Change URL to correct language, ex: '/home' to '/fr/home'
-  await window.history.replaceState({}, document.title, localePath(useRoute().path));
+  // Change URL to correct language, ex: '/about' to '/pt/about'
+  await window.history.pushState({}, document.title, localePath(useRoute().path));
 }
 
 const { isScrolled } = useScroll();

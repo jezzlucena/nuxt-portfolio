@@ -18,47 +18,9 @@ const toggleGalleryMode = () => {
       galleryMode.value = 'columns';
     }
     isShowingGallery.value = true;
+    nextTick(triggerScrollClasses);
   }, 700);
 }
-
-const onLoad = () => {
-  window.addEventListener('scroll', triggerScrollClasses);
-  window.addEventListener('resize', handleWindowResize);
-
-  handleWindowResize();
-
-  nextTick(() => {
-    const galleryItems = document.querySelectorAll(".gallery .item");
-    galleryItems.forEach(item => {
-      const video = item.querySelector('video') as HTMLVideoElement;
-
-      item.addEventListener("mouseover", () => {
-        video.play();
-      });
-
-      item.addEventListener("mouseleave", () => {
-        video.pause();
-      });
-    });
-  });
-}
-
-const triggerScrollClasses = () => {
-	const scrollTop = window.scrollY;
-
-  document.body.classList.toggle('scrolled', scrollTop > 0);
-  document.querySelectorAll('.trigger:not(.triggered)').forEach(triggerElement => {
-    if (isOnScreen(triggerElement)) {
-      triggerElement.classList.add('triggered');
-      
-      setTimeout(() => {
-			  triggerElement.querySelectorAll('.loadingGradient').forEach(loadingElement => {
-          loadingElement.classList.remove('loadingGradient');
-        });
-      }, 2000);
-    }
-  });
-};
 
 const handleWindowResize = () => {
   if (!import.meta.browser) return;
@@ -84,6 +46,21 @@ const handleWindowResize = () => {
   nextTick(triggerScrollClasses);
 };
 
+const triggerScrollClasses = () => {
+  const galleryItems = document.querySelectorAll('.trigger:not(.triggered)');
+  galleryItems.forEach(item => {
+    if (isOnScreen(item)) {
+      item.classList.add('triggered');
+      
+      setTimeout(() => {
+        item.querySelectorAll('.loadingGradient').forEach(loadingElement => {
+          loadingElement.classList.remove('loadingGradient');
+        });
+      }, 2000);
+    }
+  })
+};
+
 const isOnScreen = (element: Element) => {
   if (!window) return false;
 
@@ -104,10 +81,15 @@ const isOnScreen = (element: Element) => {
   );
 }
 
-onMounted(() => onLoad());
+onMounted(() => {
+  window.addEventListener('resize', handleWindowResize);
+  window.addEventListener('scroll', triggerScrollClasses);
+  handleWindowResize();
+});
+
 onUnmounted(() => {
-  window.removeEventListener('scroll', triggerScrollClasses);
   window.removeEventListener('resize', handleWindowResize);
+  window.removeEventListener('scroll', triggerScrollClasses);
 });
 </script>
 
@@ -123,29 +105,14 @@ onUnmounted(() => {
         </div>
       </div>
       <div class="gallery" :class="{ [galleryMode]: true, show: isShowingGallery }">
-        <div v-for="projects of columns" class="column">
-          <NuxtLink
-            v-for="key of projects"
-            :to="$localePath(`/projects/${key}`)" 
-            class="item trigger"
-            :class="{ noVideo: !PROJECTS[key].thumbVideoUrl && !PROJECTS[key].thumbGifUrl }"
-          >
-            <div class="thumbContainer loadingGradient" :style="{ paddingBottom: `${(PROJECTS[key].thumbAspectRatio || 0.56) * 100}%` }">
-              <video v-if="PROJECTS[key].thumbVideoUrl" class="thumbVideo" preload="none" :poster="PROJECTS[key].thumbImgUrl" muted playsinline loop :src="PROJECTS[key].thumbVideoUrl"></video>
-              <img v-else-if="PROJECTS[key].thumbGifUrl" class="thumbVideo" :src="PROJECTS[key].thumbGifUrl">
-              <img class="thumb" :src="PROJECTS[key].thumbImgUrl">
-            </div>
-
-            <div class="detailsContainer">
-              <div class="name loadingGradient">{{ $t(PROJECTS[key].i18nKeys.name) }}</div>
-              <div class="subtitle loadingGradient">
-                <span class="role">{{ $t(PROJECTS[key].i18nKeys.role) }}</span>
-                <span class="company">{{ $t(PROJECTS[key].i18nKeys.company) }}</span>
-                <span class="year">{{ PROJECTS[key].year }}</span>
-              </div>
-              <div class="description loadingGradient">{{ $t(PROJECTS[key].i18nKeys.description) }}</div>
-            </div>
-          </NuxtLink>
+        <div v-for="projectKeys of columns" class="column">
+          <GalleryItem
+            v-for="key of projectKeys"
+            :project="PROJECTS[key]"
+            :key="key"
+            :projectKey="key"
+            :galleryMode="galleryMode"
+          />
         </div>
       </div>
     </div>
@@ -239,190 +206,6 @@ onUnmounted(() => {
     .thumbContainer {
       padding-bottom: 0 !important;
     }
-  }
-
-  .item {
-    position: relative;
-    display: flex;
-    border: 1px solid black;
-    break-inside: avoid-column;
-    margin-bottom: 20px;
-    opacity: 0;
-    transition: 0.5s opacity ease, 0.5s transform ease;
-
-    &.triggered {
-      opacity: 1;
-      transition-delay: 0.3s, 0s;
-    }
-  }
-
-  &.columns .item {
-    flex-direction: column;
-    margin: 0 auto 20px;
-    cursor: pointer;
-  }
-
-    @media(max-width: 600px) {
-      &:not(.columns) .item {
-        padding: 10px;
-      }
-    }
-
-    .thumbContainer {
-      flex: none;
-      position: relative;
-      width: 246px;
-      padding-bottom: 56%;
-      margin-right: 16px;
-      overflow: hidden;
-    }
-
-    &.columns .thumbContainer {
-      margin-right: 0;
-      width: 100%;
-      border-bottom: 1px solid black;
-    }
-
-    @media(max-width: 600px) {
-      &:not(.columns) .thumbContainer {
-        width: 136px;
-        height: 195px;
-        margin-right: 10px;
-      }
-    }
-
-      .thumbContainer .thumb,
-      .thumbContainer .thumbVideo {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-        object-position: top;
-        opacity: 0;
-        transition: 0.5s opacity ease;
-      }
-
-        .item.triggered {
-          .thumb {
-            opacity: 1;
-            transition-delay: 1s;
-          }
-
-          .thumbVideo {
-            opacity: 1;
-            transition-delay: 1.5s;
-          }
-
-          &:not(.noVideo):hover .thumbContainer .thumb,
-          &:not(.noVideo).touched .thumbContainer .thumb {
-            opacity: 0;
-            transition-delay: 0s;
-          }
-        }
-
-    .detailsContainer {
-      position: relative;
-      flex-grow: 1;
-      padding: 16px 20px;
-      letter-spacing: 0;
-
-      .name, .subtitle, .description {
-        color: black;
-        transition: 0.5s color ease;
-
-        &.loadingGradient {
-          color: transparent;
-        }
-      }
-
-      .name {
-        font-size: 18px;
-        padding-right: 30px;
-        letter-spacing: 0;
-        margin-bottom: 10px;
-      }
-
-      @media(max-width: 600px) {
-        .name {
-          font-size: 14px;
-          line-height: 16px;
-          font-weight: bold;
-          padding-right: 0;
-        }
-      }
-
-      .subtitle {
-        font-size: 13px;
-        line-height: 18px;
-        margin-bottom: 10px;
-        margin-left: 0;
-        padding-right: 30px;
-        opacity: 0.7;
-        animation-delay: 0.1s;
-      }
-
-      .description {
-        font-size: 12px;
-        opacity: 1;
-        animation-delay: 0.2s;
-      }
-    }
-
-          &.columns .detailsContainer {
-            .name {
-              font-size: 14px;
-              line-height: 14px;
-              font-weight: bold;
-              margin-bottom: 10px;
-              padding-right: 0;
-              text-decoration: underline;
-            }
-
-            .subtitle {
-              font-size: 12px;
-              line-height: 15px;
-              margin-bottom: 8px;
-              padding-right: 0;
-
-              span {
-                white-space: nowrap;
-              }
-
-              .role {
-                display: block;
-              }
-
-              .company::after {
-                content: ' \2022  ';
-              }
-            }
-          }
-
-          &.list span {
-            display: block;
-          }
-
-  .loadingGradient {
-    animation-duration: 1.8s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: infinite;
-    animation-name: placeHolderShimmer;
-    animation-timing-function: linear;
-    background: #f6f7f8;
-    background: linear-gradient(to right, #f4f4f4 8%, #ddd 38%, #f4f4f4 54%);
-    background-size: 1000px 640px;
-    position: relative;
-  }
-}
-
-@keyframes placeHolderShimmer{
-  0%{
-    background-position: -150% 0;
-  }
-  100%{
-    background-position: 100% 0;
   }
 }
 
