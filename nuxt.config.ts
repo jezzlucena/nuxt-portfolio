@@ -19,10 +19,7 @@ export default defineNuxtConfig({
 
   vite: {
     plugins: [
-      tailwindcss(),
-      // VueI18nPlugin.vite({
-      //   include: [path.resolve(__dirname, './i18n/locales/**')]
-      // })
+      tailwindcss()
     ],
   },
 
@@ -30,10 +27,6 @@ export default defineNuxtConfig({
     host: '0.0.0.0',
     port: 8080
   },
-
-  plugins: [
-    { src: '~/plugins/jquery.client.js', mode: 'client' }
-  ],
 
   modules: ['@nuxtjs/i18n'],
   i18n: {

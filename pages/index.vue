@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import $ from 'jquery'
 import PROJECTS from '~/assets/json/projects';
 
 const galleryMode = ref<'columns' | 'list'>('columns');
@@ -26,25 +25,39 @@ const onLoad = () => {
   window.addEventListener('scroll', triggerScrollClasses);
   window.addEventListener('resize', handleWindowResize);
 
-  nextTick(handleWindowResize);
+  handleWindowResize();
+
+  nextTick(() => {
+    const galleryItems = document.querySelectorAll(".gallery .item");
+    galleryItems.forEach(item => {
+      const video = item.querySelector('video') as HTMLVideoElement;
+
+      item.addEventListener("mouseover", () => {
+        video.play();
+      });
+
+      item.addEventListener("mouseleave", () => {
+        video.pause();
+      });
+    });
+  });
 }
 
 const triggerScrollClasses = () => {
-	let scrollTop = $(window).scrollTop() || 0;
-	let windowHeight = window.innerHeight;
+	const scrollTop = window.scrollY;
 
-	$('body').toggleClass('scrolled', (scrollTop > 0));
-	$('body').toggleClass('foldPassed', (scrollTop > windowHeight/3));
-
-	$('.trigger:not(.triggered)').each(function(index){
-		if(isOnScreen($(this))){
-			$(this).addClass('triggered');
-
+  document.body.classList.toggle('scrolled', scrollTop > 0);
+  document.querySelectorAll('.trigger:not(.triggered)').forEach(triggerElement => {
+    if (isOnScreen(triggerElement)) {
+      triggerElement.classList.add('triggered');
+      
       setTimeout(() => {
-			  $(this).find(".loadingGradient").removeClass('loadingGradient');
+			  triggerElement.querySelectorAll('.loadingGradient').forEach(loadingElement => {
+          loadingElement.classList.remove('loadingGradient');
+        });
       }, 2000);
-		}
-	});
+    }
+  });
 };
 
 const handleWindowResize = () => {
@@ -71,31 +84,24 @@ const handleWindowResize = () => {
   nextTick(triggerScrollClasses);
 };
 
-const isOnScreen = function(element: JQuery<HTMLElement>){
-    const win = $(window);
+const isOnScreen = (element: Element) => {
+  if (!window) return false;
 
-    const viewport = {
-        top: win.scrollTop() || 0,
-        left: win.scrollLeft() || 0,
-        right: (win.scrollLeft() || 0) + (win.width() || 0),
-        bottom: (win.scrollTop() || 0) + (win.height() || 0)
-    };
+  const viewport = {
+    top: window.scrollY,
+    left: window.scrollX,
+    right: window.scrollX + window.innerWidth,
+    bottom: window.scrollY + window.innerHeight
+  };
 
-    const offset = element.offset();
+  const bounds = element.getBoundingClientRect();
 
-    const bounds = {
-        top: offset?.top || 0,
-        left: offset?.left || 0,
-        right: (offset?.left || 0) + (element.outerWidth() || 0),
-        bottom: (offset?.top || 0) + (element.outerHeight() || 0)
-    };
-
-    return (!(
-      viewport.right < bounds.left ||
-      viewport.left > bounds.right ||
-      viewport.bottom < bounds.top ||
-      viewport.top > bounds.bottom)
-    );
+  return (!(
+    viewport.right < bounds.left ||
+    viewport.left > bounds.right ||
+    viewport.bottom < bounds.top ||
+    viewport.top > bounds.bottom)
+  );
 }
 
 onMounted(() => onLoad());
@@ -125,7 +131,7 @@ onUnmounted(() => {
             :class="{ noVideo: !PROJECTS[key].thumbVideoUrl && !PROJECTS[key].thumbGifUrl }"
           >
             <div class="thumbContainer loadingGradient" :style="{ paddingBottom: `${(PROJECTS[key].thumbAspectRatio || 0.56) * 100}%` }">
-              <video v-if="PROJECTS[key].thumbVideoUrl" class="thumbVideo" autoplay muted playsinline loop :src="PROJECTS[key].thumbVideoUrl"></video>
+              <video v-if="PROJECTS[key].thumbVideoUrl" class="thumbVideo" preload="none" :poster="PROJECTS[key].thumbImgUrl" muted playsinline loop :src="PROJECTS[key].thumbVideoUrl"></video>
               <img v-else-if="PROJECTS[key].thumbGifUrl" class="thumbVideo" :src="PROJECTS[key].thumbGifUrl">
               <img class="thumb" :src="PROJECTS[key].thumbImgUrl">
             </div>
@@ -242,11 +248,11 @@ onUnmounted(() => {
     break-inside: avoid-column;
     margin-bottom: 20px;
     opacity: 0;
-    transition: 0.5s opacity ease;
+    transition: 0.5s opacity ease, 0.5s transform ease;
 
     &.triggered {
       opacity: 1;
-      transition-delay: 0.3s;
+      transition-delay: 0.3s, 0s;
     }
   }
 
@@ -269,12 +275,12 @@ onUnmounted(() => {
       padding-bottom: 56%;
       margin-right: 16px;
       overflow: hidden;
-      border-bottom: 1px solid black;
     }
 
     &.columns .thumbContainer {
       margin-right: 0;
       width: 100%;
+      border-bottom: 1px solid black;
     }
 
     @media(max-width: 600px) {

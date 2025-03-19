@@ -32,9 +32,7 @@ const isCollapsed = ref(true);
               <Keywords label="Keywords" :keywords="KEYWORDS" />
 
               <div class="profileButtons">
-                <a href="resource/JezzLucenaResume2025.pdf" target="_blank" class="button">
-                  <Button external>{{ $t("about.downloadResume") }}</Button>
-                </a>
+                <Button href="resource/JezzLucenaResume2025.pdf">{{ $t("about.downloadResume") }}</Button>
               </div>
             </div>
           </div>
@@ -148,7 +146,7 @@ const isCollapsed = ref(true);
   }
 
   .textContainer {
-    max-height: 2000px;
+    max-height: 1000px;
     transition: 1s max-height ease;
     padding-bottom: 30px;
 
@@ -164,6 +162,10 @@ const isCollapsed = ref(true);
     p {
       margin-bottom: 20px;
       line-height: 28px;
+
+      &:first-child {
+        text-indent: 40px;
+      }
     }
 
     .readMoreContainer {
@@ -178,6 +180,16 @@ const isCollapsed = ref(true);
         position: absolute;
         bottom: 10px;
         right: 20px;
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    .textContainer {
+      max-height: 1000px;
+
+      &.collapsed {
+        max-height: 300px;
       }
     }
   }

@@ -13,7 +13,7 @@ async function changeLocale() {
   currentLang.value = locale.value;
 
   // Change URL to correct language, ex: '/home' to '/fr/home'
-  await navigateTo(localePath(useRoute().path));
+  await window.history.replaceState({}, document.title, localePath(useRoute().path));
 }
 
 const { isScrolled } = useScroll();
@@ -124,7 +124,6 @@ select {
   padding: 15px 0;
   margin: 0 20px;
   font-size: 18px;
-  font-family: NotoColorEmojiLimited;
 
   option {
     background-color: black;
@@ -201,7 +200,7 @@ a {
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 900px) {
   .links {
     position: absolute;
     top: 100%;

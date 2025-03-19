@@ -12,14 +12,14 @@ export const LANGUAGES: {
 } = {
   "en": {
     long: 'English 🇺🇸',
-    short: '🇺🇸',
+    short: 'Eng. 🇺🇸',
   },
   "es": {
     long: 'Español 🇪🇸',
-    short: '🇪🇸',
+    short: 'Esp. 🇪🇸',
   },
   "pt": {
     long: 'Português 🇧🇷',
-    short: '🇧🇷',
+    short: 'Por. 🇧🇷',
   }
 }

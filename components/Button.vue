@@ -1,8 +1,7 @@
 <script setup lang="ts">
 const props = defineProps<{
   theme?: 'light' | 'dark',
-  href?: string,
-  external?: boolean
+  href?: string
 }>();
 </script>
 
@@ -14,7 +13,6 @@ const props = defineProps<{
     :href="props.href"
   >
     <slot />
-    {{ props.external ? '  &#x2197;' : null }}
   </a>
 </template>
 
@@ -32,7 +30,7 @@ const props = defineProps<{
 	color: white;
 	background-color: black;
 	border: 1px solid white;
-	text-decoration: none !important;
+	text-decoration: underline;
   white-space: nowrap;
 	cursor: pointer;
 	transition: all 0.2s linear;

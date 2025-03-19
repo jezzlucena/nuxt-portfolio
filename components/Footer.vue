@@ -2,10 +2,10 @@
   <div class="footer">
     <div class="buttonAreaWrapper">
       <div class="buttonArea">
-        <Button theme="light" href="http://linkedin.com/in/jezzlucena" external>{{ $t("footer.linkedIn") }}</Button>
-        <Button theme="light" href="/files/JezzLucenaResume2025.pdf" external>{{ $t("footer.resume") }}</Button>
+        <Button theme="light" href="http://linkedin.com/in/jezzlucena">{{ $t("footer.linkedIn") }}</Button>
+        <Button theme="light" href="/files/JezzLucenaResume2025.pdf">{{ $t("footer.resume") }}</Button>
         <br/>
-        <Button theme="light" href="https://rznlvjsm.formester.com/f/2_rn9_199YR-" external>{{ $t("common.contact") }}</Button>
+        <Button theme="light" href="https://rznlvjsm.formester.com/f/2_rn9_199YR-">{{ $t("common.contact") }}</Button>
         <br/>
         <br/>
         <div class="emailText">{{ $t("footer.orDirectly") }} <b>jezzlucena@gmail.com</b></div>
