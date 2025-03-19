@@ -5,7 +5,7 @@ function animateSVG () {
 	if (!document) return;
 	document.querySelector('svg')?.setAttribute('style', 'opacity: 1;');
 	
-	let cycle = 1;
+	let cycle = 0;
 	animationInterval = setInterval(() => {
 		const triangles = document.querySelectorAll('svg use');
 		if (cycle == 0) {
@@ -14,11 +14,11 @@ function animateSVG () {
 			});
 		} else if (cycle == 1) {
 			triangles.forEach(triangle => {
-				triangle.setAttribute('style', 'opacity: 0; fill: white; stroke: black;');
+				triangle.setAttribute('style', 'opacity: 1; fill: white; stroke: black;');
 			});
 		} else if (cycle == 2) {
 			triangles.forEach(triangle => {
-				triangle.setAttribute('style', 'opacity: 1; fill: white; stroke: black;');
+				triangle.setAttribute('style', 'opacity: 0;');
 			});
 		}
 
@@ -52,6 +52,7 @@ svg {
     transition: 0.5s fill ease, 0.5s stroke ease, 0.5s opacity ease;
     stroke: black;
     stroke-width: 1px;
+		opacity: 0;
   }
 }
 
