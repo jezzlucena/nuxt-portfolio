@@ -15,4 +15,5 @@ export default defineI18nConfig(() => ({
   ],
   silentFallbackWarn: true,
   silentTranslationWarn: true,
+  fallbackWarn: false
 }))

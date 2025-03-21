@@ -6,24 +6,21 @@ function animateSVG () {
 	document.querySelector('svg')?.setAttribute('style', 'opacity: 1;');
 	
 	let cycle = 0;
-	animationInterval = setInterval(() => {
+	const runCycle = () => {
 		const triangles = document.querySelectorAll('svg use');
 		if (cycle == 0) {
-			triangles.forEach(triangle => {
-				triangle.setAttribute('style', 'opacity: 1;');
-			});
+			for (const elm of triangles) elm.setAttribute('style', 'opacity: 1;');
 		} else if (cycle == 1) {
-			triangles.forEach(triangle => {
-				triangle.setAttribute('style', 'opacity: 1; fill: white; stroke: black;');
-			});
+			for (const elm of triangles) elm.setAttribute('style', 'opacity: 1; fill: white; stroke: black;');
 		} else if (cycle == 2) {
-			triangles.forEach(triangle => {
-				triangle.setAttribute('style', 'opacity: 0;');
-			});
+			for (const elm of triangles) elm.setAttribute('style', 'opacity: 0;');
 		}
 
 		cycle = (cycle + 1) % 3;
-	}, 4000);
+	};
+
+	animationInterval = setInterval(runCycle, 8000);
+	setTimeout(runCycle, 1000);
 }
 
 onMounted(() => animateSVG());
@@ -49,7 +46,7 @@ svg {
   use {
     fill: white;
     opacity: 1;
-    transition: 0.5s fill ease, 0.5s stroke ease, 0.5s opacity ease;
+    transition: 2s fill ease, 2s stroke ease, 2s opacity ease;
     stroke: black;
     stroke-width: 1px;
 		opacity: 0;

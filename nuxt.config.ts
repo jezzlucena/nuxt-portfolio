@@ -1,12 +1,9 @@
 import tailwindcss from '@tailwindcss/vite'
-// import VueI18nPlugin from '@intlify/unplugin-vue-i18n'
-// import path from 'path'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  ssr: false,
   css: ['~/assets/css/main.css'],
 
   app: {
@@ -28,7 +25,7 @@ export default defineNuxtConfig({
     port: 8080
   },
 
-  modules: ['@nuxtjs/i18n'],
+  modules: ['@nuxtjs/i18n', '@vueuse/nuxt'],
   i18n: {
     defaultLocale: 'en',
     locales: [ 'en', 'es', 'pt' ],

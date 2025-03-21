@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useElementVisibility } from '@vueuse/core'
+
 import type { Project } from '~/types/Project';
 
 const { project, projectKey, galleryMode } = defineProps<{
@@ -7,7 +9,14 @@ const { project, projectKey, galleryMode } = defineProps<{
   galleryMode: 'list' | 'columns',
 }>();
 
+const item = useTemplateRef('item');
 const video = useTemplateRef('video');
+const isVisible = useElementVisibility(item);
+const isTriggered = ref(false);
+
+watch(isVisible, () => {
+  isTriggered.value = isTriggered.value || isVisible.value;
+});
 
 const playVideo = () => {
   video.value?.play();
@@ -21,7 +30,7 @@ const pauseVideo = () => {
 <template>
   <div
     class="item trigger"
-    :class="{ [galleryMode]: true, noVideo: !project.thumbVideoUrl && !project.thumbGifUrl }"
+    :class="{ [galleryMode]: true, triggered: isTriggered, noVideo: !project.thumbVideoUrl && !project.thumbGifUrl }"
     ref="item"
     @mouseenter="playVideo"
     @mouseleave="pauseVideo"
@@ -145,15 +154,6 @@ const pauseVideo = () => {
       padding: 16px 20px;
       letter-spacing: 0;
 
-      .name, .subtitle, .description {
-        color: black;
-        transition: 0.5s color ease;
-
-        &.loadingGradient {
-          color: transparent;
-        }
-      }
-
       .name {
         font-size: 18px;
         padding-right: 30px;
@@ -231,15 +231,39 @@ const pauseVideo = () => {
 }
 
 .loadingGradient {
-  animation-duration: 1.8s;
-  animation-fill-mode: forwards;
-  animation-iteration-count: infinite;
-  animation-name: placeHolderShimmer;
-  animation-timing-function: linear;
-  background: #f6f7f8;
-  background: linear-gradient(to right, #f4f4f4 8%, #ddd 38%, #f4f4f4 54%);
-  background-size: 1000px 640px;
   position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    animation: 1.8s placeHolderShimmer infinite;
+    background: linear-gradient(to right, #f4f4f4 8%, #ddd 38%, #f4f4f4 54%);
+    background-size: 1000px 640px;
+    transition: 0.5s opacity ease, 0s visibility ease;
+    transition-delay: 2s, 2.5s;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &.name, &.subtitle, &.description {
+    color: transparent;
+    text-decoration-color: transparent;
+    transition: 0.5s color ease, 0.5s text-decoration-color ease;
+    transition-delay: 2s, 2s;
+  }
+}
+
+.triggered .loadingGradient {
+  &::before {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &.name, &.subtitle, &.description {
+    color: black;
+    text-decoration-color: black;
+  }
 }
 
 @keyframes placeHolderShimmer{

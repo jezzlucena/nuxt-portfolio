@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import { useDebounceFn, useEventListener } from '@vueuse/core'
+
 import PROJECTS from '~/assets/json/projects';
 
 const galleryMode = ref<'columns' | 'list'>('columns');
 const isShowingGallery = ref(true);
 let galleryTimeout: NodeJS.Timeout;
 
-const columns = ref<string[][]>([]);
+const columns = ref<string[][]>([Object.keys(PROJECTS)]);
 
 const toggleGalleryMode = () => {
   isShowingGallery.value = false;
@@ -18,16 +20,13 @@ const toggleGalleryMode = () => {
       galleryMode.value = 'columns';
     }
     isShowingGallery.value = true;
-    nextTick(triggerScrollClasses);
   }, 700);
 }
 
-const handleWindowResize = () => {
-  if (!import.meta.browser) return;
-
+const handleWindowResize = useDebounceFn(() => {
   let numColumns: number;
 
-  if (window.innerWidth <= 670) {
+  if (!import.meta.client || window.innerWidth <= 670) {
     numColumns = 1;
   } else if (window.innerWidth <= 940) {
     numColumns = 2;
@@ -42,54 +41,12 @@ const handleWindowResize = () => {
     columns.value[columnIndex].push(key);
     columnIndex = (columnIndex + 1) % numColumns;
   }
+}, 500);
 
-  nextTick(triggerScrollClasses);
-};
-
-const triggerScrollClasses = () => {
-  const galleryItems = document.querySelectorAll('.trigger:not(.triggered)');
-  galleryItems.forEach(item => {
-    if (isOnScreen(item)) {
-      item.classList.add('triggered');
-      
-      setTimeout(() => {
-        item.querySelectorAll('.loadingGradient').forEach(loadingElement => {
-          loadingElement.classList.remove('loadingGradient');
-        });
-      }, 2000);
-    }
-  })
-};
-
-const isOnScreen = (element: Element) => {
-  if (!window) return false;
-
-  const viewport = {
-    top: window.scrollY,
-    left: window.scrollX,
-    right: window.scrollX + window.innerWidth,
-    bottom: window.scrollY + window.innerHeight
-  };
-
-  const bounds = element.getBoundingClientRect();
-
-  return (!(
-    viewport.right < bounds.left ||
-    viewport.left > bounds.right ||
-    viewport.bottom < bounds.top ||
-    viewport.top > bounds.bottom)
-  );
-}
+useEventListener('resize', handleWindowResize);
 
 onMounted(() => {
-  window.addEventListener('resize', handleWindowResize);
-  window.addEventListener('scroll', triggerScrollClasses);
   handleWindowResize();
-});
-
-onUnmounted(() => {
-  window.removeEventListener('resize', handleWindowResize);
-  window.removeEventListener('scroll', triggerScrollClasses);
 });
 </script>
 
