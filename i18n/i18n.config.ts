@@ -13,7 +13,7 @@ export default defineI18nConfig(() => ({
     { code: 'pt', iso: 'pt', file: 'pt.json' },
     { code: 'es', iso: 'es', file: 'es.json' }
   ],
-  silentFallbackWarn: true,
-  silentTranslationWarn: true,
+  silentFallbackWarn: true, // For legacy mode only
+  missingWarn: false,
   fallbackWarn: false
 }))

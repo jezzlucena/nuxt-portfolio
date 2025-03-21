@@ -4,14 +4,13 @@ import { LANGUAGES } from '~/utils/constants';
 
 const localePath = useLocalePath();
 const { availableLocales } = useI18n();
+const { isScrolled } = useScroll();
+const isNavOpen = ref(false);
 
 async function changeLocale() {
   // Change URL to correct language, ex: '/about' to '/pt/about'
   await window.history.pushState({}, document.title, localePath(useRoute().path));
 }
-
-const { isScrolled } = useScroll();
-const isNavOpen = ref(false);
 
 const toggleNavOpen = () => {
   isNavOpen.value = !isNavOpen.value;

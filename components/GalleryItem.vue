@@ -11,6 +11,7 @@ const { project, projectKey, galleryMode } = defineProps<{
 
 const item = useTemplateRef('item');
 const video = useTemplateRef('video');
+const playPromise = ref<Promise<void>>();
 const isVisible = useElementVisibility(item);
 const isTriggered = ref(false);
 
@@ -19,11 +20,13 @@ watch(isVisible, () => {
 });
 
 const playVideo = () => {
-  video.value?.play();
+  playPromise.value = video.value?.play();
 }
 
 const pauseVideo = () => {
-  video.value?.pause();
+  playPromise.value?.then(() => {
+    video.value?.pause();
+  });
 }
 </script>
 
