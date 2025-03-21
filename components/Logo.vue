@@ -12,7 +12,6 @@ function animateSVG () {
 	svg.value.setAttribute('style', 'opacity: 1;');
 	
 	const runCycle = () => {
-		console.log(scrollY.value, pageHidden.value, svg.value && svg.value.getBoundingClientRect().height);
 		if (!svg.value // SVG element not rendered or ref not instantiated properly
 		|| scrollY.value >= svg.value.getBoundingClientRect().height // Page scrolled, logo hidden
 		|| pageHidden.value) // Page is on the background
