@@ -72,10 +72,12 @@
 
 @media (max-width: 480px) {
   .header {
-    height: 75vh;
+    height: 65vh;
     
     .title {
       display: block;
+      padding-left: 0;
+      margin-left: 0;
 
       &::after {
         display: none;

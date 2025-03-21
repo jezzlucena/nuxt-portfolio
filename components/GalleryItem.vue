@@ -28,6 +28,10 @@ const pauseVideo = () => {
     video.value?.pause();
   });
 }
+
+onMounted(() => {
+  isTriggered.value = false;
+})
 </script>
 
 <template>
@@ -63,9 +67,8 @@ const pauseVideo = () => {
   position: relative;
   border: 1px solid black;
   margin-bottom: 20px;
-  opacity: 0;
-  transition: 0.5s opacity ease, 0.5s transform ease;
   cursor: pointer;
+  width: 100%;
 
   .wrapper {
     display: flex;
@@ -83,11 +86,6 @@ const pauseVideo = () => {
     .wrapper {
       flex-direction: row;
     }
-  }
-
-  &.triggered {
-    opacity: 1;
-    transition-delay: 0.3s, 0s;
   }
 
   .thumbContainer {
@@ -158,7 +156,8 @@ const pauseVideo = () => {
       letter-spacing: 0;
 
       .name {
-        font-size: 18px;
+        font-size: 16px;
+        font-weight: bold;
         padding-right: 30px;
         letter-spacing: 0;
         margin-bottom: 10px;
@@ -166,51 +165,12 @@ const pauseVideo = () => {
       }
 
       .subtitle {
-        font-size: 13px;
+        font-size: 12px;
         line-height: 18px;
-        margin-bottom: 10px;
         margin-left: 0;
         padding-right: 30px;
         opacity: 0.7;
         animation-delay: 0.1s;
-      }
-
-      .description {
-        font-size: 12px;
-        opacity: 1;
-        animation-delay: 0.2s;
-      }
-
-      @media(max-width: 600px) {
-        .name {
-          font-size: 14px;
-          line-height: 16px;
-          font-weight: bold;
-          padding-right: 0;
-        }
-
-        .subtitle {
-          font-size: 11px;
-        }
-
-        .description {
-          font-size: 10px;
-        }
-      }
-    }
-    
-    &.columns .detailsContainer {
-      .name {
-        font-size: 14px;
-        line-height: 14px;
-        font-weight: bold;
-        margin-bottom: 10px;
-        padding-right: 0;
-      }
-
-      .subtitle {
-        font-size: 12px;
-        line-height: 15px;
         margin-bottom: 8px;
         padding-right: 0;
 
@@ -226,10 +186,35 @@ const pauseVideo = () => {
           content: ' \2022  ';
         }
       }
-    }
 
-    &.list span {
-      display: block;
+      .description {
+        font-size: 12px;
+        opacity: 1;
+        animation-delay: 0.2s;
+      }
+
+      @media(max-width: 900px) {
+        .name {
+          font-size: 13px;
+          line-height: 16px;
+          padding-right: 0;
+        }
+
+        .subtitle {
+          font-size: 11px;
+        }
+
+        .description {
+          font-size: 10px;
+        }
+      }
+    }
+    
+    &.columns .detailsContainer {
+      .name {
+        margin-bottom: 10px;
+        padding-right: 0;
+      }
     }
 }
 

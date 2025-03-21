@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const { scrollY } = useScroll();
+const pageHidden = ref(false);
 const animationInterval = ref<NodeJS.Timeout>();
 const svg = useTemplateRef('svg');
 
@@ -11,7 +12,11 @@ function animateSVG () {
 	svg.value.setAttribute('style', 'opacity: 1;');
 	
 	const runCycle = () => {
-		if (!svg.value || scrollY.value >= svg.value.getBoundingClientRect().height) return;
+		console.log(scrollY.value, pageHidden.value, svg.value && svg.value.getBoundingClientRect().height);
+		if (!svg.value // SVG element not rendered or ref not instantiated properly
+		|| scrollY.value >= svg.value.getBoundingClientRect().height // Page scrolled, logo hidden
+		|| pageHidden.value) // Page is on the background
+			return; 
 
 		switch (cycle) {
 			case 0:
@@ -34,8 +39,46 @@ function animateSVG () {
 	setTimeout(runCycle, 1000);
 }
 
-onMounted(animateSVG);
-onUnmounted(() => clearInterval(animationInterval.value));
+function onVisible() {
+  pageHidden.value = false;
+}
+
+function onHidden() {
+  pageHidden.value = true;
+}
+
+function handleVisibilityChange() {
+  if(document.hidden) onHidden();
+  else onVisible();
+}
+
+onMounted(() => {
+	document.addEventListener('visibilitychange', handleVisibilityChange);
+
+	// extra event listeners for better behaviour
+	document.addEventListener('focus', onVisible);
+	document.addEventListener('blur', onHidden);
+
+	window.addEventListener('focus', onVisible);
+	window.addEventListener('blur', onHidden);
+
+	window.focus();
+
+	handleVisibilityChange();
+	animateSVG();
+});
+
+onUnmounted(() => {
+	document.removeEventListener('visibilitychange', handleVisibilityChange);
+
+	document.removeEventListener('focus', onVisible);
+	document.removeEventListener('blur', onHidden);
+
+	window.removeEventListener('focus', onVisible);
+	window.removeEventListener('blur', onHidden);
+
+	clearInterval(animationInterval.value);
+});
 </script>
 
 <template>

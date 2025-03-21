@@ -7,7 +7,19 @@ const galleryMode = ref<'columns' | 'list'>('columns');
 const isShowingGallery = ref(true);
 let galleryTimeout: NodeJS.Timeout;
 
-const columns = ref<string[][]>([Object.keys(PROJECTS)]);
+const getColumns = (numColumns: number) => {
+  const colArrays: string[][] = Array.from({ length: numColumns }, () => []);
+  let columnIndex = 0;
+
+  for (const key in PROJECTS) {
+    colArrays[columnIndex].push(key);
+    columnIndex = (columnIndex + 1) % numColumns;
+  }
+
+  return colArrays;
+}
+
+const columns = ref<string[][]>(getColumns(3));
 
 const toggleGalleryMode = () => {
   isShowingGallery.value = false;
@@ -26,24 +38,19 @@ const toggleGalleryMode = () => {
 const handleWindowResize = useDebounceFn(() => {
   let numColumns: number;
 
-  if (!import.meta.client || window.innerWidth <= 670) {
-    numColumns = 1;
-  } else if (window.innerWidth <= 940) {
+  if (!import.meta.client || window.innerWidth > 940) {
+    numColumns = 3;
+  } else if (window.innerWidth > 670) {
     numColumns = 2;
   } else {
-    numColumns = 3;
+    numColumns = 1;
   }
 
-  columns.value = Array.from({ length: numColumns }, () => []);
-  let columnIndex = 0;
-
-  for (const key in PROJECTS) {
-    columns.value[columnIndex].push(key);
-    columnIndex = (columnIndex + 1) % numColumns;
-  }
+  columns.value = getColumns(numColumns);
 }, 500);
 
 useEventListener('resize', handleWindowResize);
+handleWindowResize();
 
 onMounted(() => {
   handleWindowResize();
@@ -151,6 +158,8 @@ onMounted(() => {
   display: flex;
   flex-direction: row;
   gap: 20px;
+  width: 100%;
+  overflow-x: auto;
 
   &.show {
     opacity: 1;
@@ -163,6 +172,10 @@ onMounted(() => {
     .thumbContainer {
       padding-bottom: 0 !important;
     }
+  }
+
+  .column {
+    flex-grow: 1;
   }
 }
 

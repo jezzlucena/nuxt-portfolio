@@ -11,6 +11,7 @@ export default function useScroll() {
 
   onMounted(() => {
     window.addEventListener('scroll', handleScroll)
+    handleScroll();
   });
 
   onUnmounted(() => {
