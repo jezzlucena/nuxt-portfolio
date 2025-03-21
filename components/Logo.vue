@@ -4,10 +4,17 @@ const pageHidden = ref(false);
 const animationInterval = ref<NodeJS.Timeout>();
 const svg = useTemplateRef('svg');
 
+const SVG_STYLE_CYCLES = [
+	'opacity: 1;',
+	'opacity: 1; fill: white; stroke: black;',
+	'opacity: 1; fill: black;',
+	'opacity: 0;'
+];
+
 function animateSVG () {
 	if (!svg.value) return;
 	const triangles = svg.value.querySelectorAll('use');
-	let cycle = 0;
+	let cycleIndex = 0;
 
 	svg.value.setAttribute('style', 'opacity: 1;');
 	
@@ -17,21 +24,13 @@ function animateSVG () {
 		|| pageHidden.value) // Page is on the background
 			return; 
 
-		switch (cycle) {
-			case 0:
-				for (const elm of triangles) elm.setAttribute('style', 'opacity: 1;');
-				break;
-			case 1:
-				for (const elm of triangles) elm.setAttribute('style', 'opacity: 1; fill: white; stroke: black;');
-				break;
-			case 2:
-				for (const elm of triangles) elm.setAttribute('style', 'opacity: 0;');
-				break;
-			case 3:
-				for (const elm of triangles) elm.setAttribute('style', 'opacity: 1; fill: black;');
-		}
+		const style = SVG_STYLE_CYCLES[cycleIndex];
 
-		cycle = (cycle + 1) % 4;
+		for (const elm of triangles) {
+			elm.setAttribute('style', style)
+		};
+
+		cycleIndex = (cycleIndex + 1) % SVG_STYLE_CYCLES.length;
 	};
 
 	animationInterval.value = setInterval(runCycle, 8000);
@@ -103,6 +102,15 @@ svg {
     stroke: black;
     stroke-width: 2px;
 		opacity: 0;
+
+		&:hover {
+			opacity: 1 !important;
+			fill: white !important;
+			stroke: white !important;
+			z-index: 99;
+			transition-delay: 0s, 0s, 0s;
+			transition-duration: 0s, 0s, 0s;
+		}
   }
 }
 
