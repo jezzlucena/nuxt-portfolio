@@ -3,8 +3,10 @@ import { useDebounceFn, useEventListener } from '@vueuse/core'
 
 import PROJECTS from '~/assets/json/projects';
 
+const { scrollY } = useScroll();
 const galleryMode = ref<'columns' | 'list'>('columns');
 const isShowingGallery = ref(true);
+const isMasonryActive = ref(false);
 let galleryTimeout: NodeJS.Timeout;
 
 const getColumns = (numColumns: number) => {
@@ -32,13 +34,28 @@ const toggleGalleryMode = () => {
       galleryMode.value = 'columns';
     }
     isShowingGallery.value = true;
+    nextTick(handleWindowResize);
   }, 700);
+}
+
+const handleMasonryLayout = () => {
+  if (!import.meta.browser) return;
+
+  const galleryBox = document.querySelector('.gallery')?.getBoundingClientRect();
+  document.querySelectorAll('.column .item').forEach(item => {
+    const masonryItem = document.querySelector(`.masonryItem[data-key=${item.getAttribute('data-key')}]`);
+    const itemBox = item.getBoundingClientRect();
+    masonryItem?.setAttribute('style', `height: ${itemBox.height}px; width: ${itemBox.width}px; transform: translate(${itemBox.x - (galleryBox?.left || 0)}px, ${itemBox.y - (galleryBox?.top || 0 + scrollY.value)}px)`)
+  });
+  isMasonryActive.value = true;
 }
 
 const handleWindowResize = useDebounceFn(() => {
   let numColumns: number;
 
-  if (!import.meta.client || window.innerWidth > 940) {
+  if (galleryMode.value === 'list') {
+    numColumns = 1;
+  } else if (!import.meta.client || window.innerWidth > 940) {
     numColumns = 3;
   } else if (window.innerWidth > 670) {
     numColumns = 2;
@@ -47,7 +64,9 @@ const handleWindowResize = useDebounceFn(() => {
   }
 
   columns.value = getColumns(numColumns);
-}, 500);
+
+  nextTick(handleMasonryLayout);
+}, 100);
 
 useEventListener('resize', handleWindowResize);
 handleWindowResize();
@@ -68,10 +87,25 @@ onMounted(() => {
           <div class="icon list"><div class="symbol"></div></div>
         </div>
       </div>
-      <div class="gallery" :class="{ [galleryMode]: true, show: isShowingGallery }">
+      <div class="gallery relative" :class="{ [galleryMode]: true, show: isShowingGallery, masonryActive: isMasonryActive }">
         <div v-for="projectKeys of columns" class="column">
+          <div class="layoutItem">
+            <GalleryItem
+              v-for="key of projectKeys"
+              :project="PROJECTS[key]"
+              :key="key"
+              :data-key="key"
+              :projectKey="key"
+              :galleryMode="galleryMode"
+            />
+          </div>
+        </div>
+        <div
+          class="absolute top-0 left-0 masonryItem"
+          v-for="key of Object.keys(PROJECTS)"
+          :data-key="key"
+        >
           <GalleryItem
-            v-for="key of projectKeys"
             :project="PROJECTS[key]"
             :key="key"
             :projectKey="key"
@@ -159,7 +193,7 @@ onMounted(() => {
   flex-direction: row;
   gap: 20px;
   width: 100%;
-  overflow-x: auto;
+  overflow: hidden;
 
   &.show {
     opacity: 1;
@@ -176,6 +210,24 @@ onMounted(() => {
 
   .column {
     flex-grow: 1;
+  }
+}
+
+.masonryItem {
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s transform ease;
+}
+
+.masonryActive {
+  .masonryItem {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .layoutItem {
+    opacity: 0 !important;
+    pointer-events: none;
   }
 }
 

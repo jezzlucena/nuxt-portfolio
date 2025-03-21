@@ -35,7 +35,7 @@ const props = defineProps<{
 	cursor: pointer;
 	transition: all 0.2s linear;
 
-  &:hover {
+  &:hover, &.hovered {
 		box-shadow: 7px 7px 0 -1px rgba(0, 0, 0, 1);
 	}
 
@@ -50,7 +50,7 @@ const props = defineProps<{
     background-color: white;
     border: 1px solid black;
 
-    &:hover {
+    &, &.hovered {
       box-shadow: 7px 7px 0 -1px rgba(255, 255, 255, 1);
     }
 

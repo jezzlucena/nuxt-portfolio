@@ -66,6 +66,7 @@ onMounted(() => {
 .item {
   position: relative;
   border: 1px solid black;
+  background-color: white;
   margin-bottom: 20px;
   cursor: pointer;
   width: 100%;
@@ -143,7 +144,7 @@ onMounted(() => {
       }
 
       &:not(.noVideo):hover .thumbContainer .thumb,
-      &:not(.noVideo).touched .thumbContainer .thumb {
+      &:not(.noVideo).hovered .thumbContainer .thumb {
         opacity: 0;
         transition-delay: 0s;
       }

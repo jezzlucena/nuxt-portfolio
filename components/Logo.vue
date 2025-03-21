@@ -11,7 +11,7 @@ const SVG_STYLE_CYCLES = [
 	'opacity: 0;'
 ];
 
-function animateSVG () {
+const animateSVG = () => {
 	if (!svg.value) return;
 	const triangles = svg.value.querySelectorAll('use');
 	let cycleIndex = 0;
@@ -37,30 +37,41 @@ function animateSVG () {
 	setTimeout(runCycle, 1000);
 }
 
-function onVisible() {
+const onVisible = () => {
   pageHidden.value = false;
 }
 
-function onHidden() {
+const onHidden = () => {
   pageHidden.value = true;
 }
 
-function handleVisibilityChange() {
+const handleVisibilityChange = () => {
   if(document.hidden) onHidden();
   else onVisible();
 }
 
+const handleTouch = (event: TouchEvent) => {
+	const touch = event.touches[0];
+	const target = document.elementFromPoint(touch.clientX, touch.clientY);
+
+	if (target) target.classList.add('hovered');
+}
+
+const handleTouchEnd = () => {
+	document.querySelectorAll('.hovered').forEach(elm => elm.classList.remove('hovered'));
+}
+
 onMounted(() => {
 	document.addEventListener('visibilitychange', handleVisibilityChange);
-
-	// extra event listeners for better behaviour
 	document.addEventListener('focus', onVisible);
 	document.addEventListener('blur', onHidden);
-
 	window.addEventListener('focus', onVisible);
 	window.addEventListener('blur', onHidden);
-
 	window.focus();
+
+	document.addEventListener('touchstart', handleTouch);
+	document.addEventListener('touchmove', handleTouch);
+	document.addEventListener('touchend', handleTouchEnd);
 
 	handleVisibilityChange();
 	animateSVG();
@@ -68,12 +79,14 @@ onMounted(() => {
 
 onUnmounted(() => {
 	document.removeEventListener('visibilitychange', handleVisibilityChange);
-
 	document.removeEventListener('focus', onVisible);
 	document.removeEventListener('blur', onHidden);
-
 	window.removeEventListener('focus', onVisible);
 	window.removeEventListener('blur', onHidden);
+
+	document.removeEventListener('touchstart', handleTouch);
+	document.removeEventListener('touchmove', handleTouch);
+	document.removeEventListener('touchend', handleTouchEnd);
 
 	clearInterval(animationInterval.value);
 });
@@ -103,7 +116,7 @@ svg {
     stroke-width: 2px;
 		opacity: 0;
 
-		&:hover {
+		&:hover, &.hovered {
 			opacity: 1 !important;
 			fill: white !important;
 			stroke: white !important;

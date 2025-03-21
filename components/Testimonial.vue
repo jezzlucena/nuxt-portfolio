@@ -82,7 +82,8 @@ const props = defineProps<{
     opacity: 0.5;
   }
 
-  &:hover .connection {
+  &:hover .connection,
+  &.hovered .connection {
     opacity: 1;
   }
 }
