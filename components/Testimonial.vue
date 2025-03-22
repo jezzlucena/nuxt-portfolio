@@ -81,7 +81,7 @@ const props = defineProps<{
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .testimonial {
     padding: 30px;
   }

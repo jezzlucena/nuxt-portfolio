@@ -82,7 +82,7 @@ onMounted(() => {
       vertical-align: bottom;
 		}
 
-			@media(max-width: 1024px) {
+			@media(max-width: 768px) {
 				.buttonArea .button {
 					display: block;
           max-width: 200px;

@@ -64,13 +64,13 @@ const handleWindowResize = useDebounceFn(() => {
 
   if (galleryMode.value === 'list') {
     numColumns = 1;
-  } else if (!import.meta.client || window.innerWidth >= 1600) {
+  } else if (!import.meta.client || window.innerWidth >= 1280) {
     numColumns = 5;
-  } else if (window.innerWidth >= 1280) {
-    numColumns = 4;
   } else if (window.innerWidth >= 1024) {
-    numColumns = 3;
+    numColumns = 4;
   } else if (window.innerWidth >= 768) {
+    numColumns = 3;
+  } else if (window.innerWidth >= 640) {
     numColumns = 2;
   } else {
     numColumns = 1;

@@ -14,7 +14,7 @@ watch(locale, () => {
 
 <template>
   <div class="content relative bg-white" id="content">
-    <div class="relative w-[100%] max-w-[1024px] mx-auto py-[70px] px-[50px]">
+    <div class="relative w-[100%] max-w-[768px] mx-auto py-[70px] px-[50px]">
       <Heading>
         <span>{{ $t("common.contact") }}</span>
       </Heading>

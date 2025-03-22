@@ -132,7 +132,7 @@ watch(locale, () => {
       margin: 0 auto 30px;
       width: 100%;
       height: auto;
-      max-height: 768px;
+      max-height: 640px;
       box-sizing: border-box;
       border: 2px solid black;
 
@@ -140,14 +140,14 @@ watch(locale, () => {
         position: relative;
         width: 100%;
         height: auto;
-        max-height: 768px;
+        max-height: 640px;
       }
 
       .profileVideoBackground {
         position: absolute;
         width: 100%;
         height: auto;
-        max-height: 768px;
+        max-height: 640px;
         object-fit: cover;
         object-position: 50% 50%;
         filter: blur(5px);
@@ -160,7 +160,7 @@ watch(locale, () => {
   }
 }
 
-@media(max-width: 1024px) {
+@media(max-width: 768px) {
   .content .projectButtons {
     margin: 20px auto 0;
     text-align: center;

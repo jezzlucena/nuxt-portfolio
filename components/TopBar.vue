@@ -18,7 +18,7 @@ const toggleNavOpen = () => {
 }
 
 const handleWindowResize = useDebounceFn(() => {
-  if (!import.meta.client || window.innerWidth > 1024) {
+  if (!import.meta.client || window.innerWidth > 768) {
     isNavOpen.value = false;
   }
 }, 500);
@@ -253,7 +253,7 @@ a {
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .links {
     position: absolute;
     top: 100%;

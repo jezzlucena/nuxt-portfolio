@@ -116,7 +116,7 @@ onMounted(() => {
     border-bottom: 2px solid black;
   }
 
-  @media(max-width: 768px) {
+  @media(max-width: 640px) {
     &.list .thumbContainer {
       width: 136px;
     }
@@ -203,7 +203,7 @@ onMounted(() => {
         animation-delay: 0.2s;
       }
 
-      @media(max-width: 1024px) {
+      @media(max-width: 768px) {
         .name {
           font-size: 13px;
           line-height: 16px;

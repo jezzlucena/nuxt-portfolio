@@ -110,7 +110,7 @@ watch(locale, () => {
       }
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 768px) {
       .profilePicture {
         height: 140px;
         width: 140px;
@@ -118,7 +118,7 @@ watch(locale, () => {
       }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 640px) {
       .profilePicture {
         height: 100px;
         width: 100px;
@@ -143,7 +143,7 @@ watch(locale, () => {
       letter-spacing: 1px;
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 768px) {
       .profileName {
         margin-bottom: 5px;
         font-size: 18px;
@@ -155,7 +155,7 @@ watch(locale, () => {
       }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 640px) {
       .profileName {
         font-size: 18px;
         padding-top: 10px;
@@ -209,7 +209,7 @@ watch(locale, () => {
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 640px) {
     .textContainer {
       max-height: 1000px;
 
@@ -219,7 +219,7 @@ watch(locale, () => {
     }
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 768px) {
     .textContainer {
       max-height: 1000px;
 
