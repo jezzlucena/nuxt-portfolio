@@ -1,5 +1,16 @@
 <script setup lang="ts">
 const isTextCollapsed = ref(true);
+const { t, locale } = useI18n();
+
+useHead({
+  title: `${t('common.about')} - ${t('common.jezzLucena')}`
+});
+
+watch(locale, () => {
+  useHead({
+    title: `${t('common.about')} - ${t('common.jezzLucena')}`
+  });
+});
 </script>
 
 <template>
@@ -15,18 +26,22 @@ const isTextCollapsed = ref(true);
               </NuxtLink>
               
               <Keywords label="Keywords" :keywords="PROFILE_KEYWORDS" />
-
-              <div class="profileButtons">
-                <Button href="resource/JezzLucenaResume2025.pdf">{{ $t("about.downloadResume") }}</Button>
-              </div>
             </div>
           </div>
           <div class="textContainer relative" :class="{ collapsed: isTextCollapsed }">
             <p v-for="paragraph of $tm('about.blurb')">{{ $rt(paragraph) }}</p>
 
             <div class="readMoreContainer">
-              <Button v-if="isTextCollapsed" class="button" @click="() => { isTextCollapsed = false }">{{ $t("about.readMore") }}</Button>
-              <Button v-else class="button" @click="() => { isTextCollapsed = true }">{{ $t("about.collapse") }}</Button>
+              <Button
+                v-if="isTextCollapsed"
+                class="button"
+                @click="() => isTextCollapsed = false"
+              >{{ $t("about.readMore") }}</Button>
+              <Button
+                v-else
+                class="button"
+                @click="() => isTextCollapsed = true"
+              >{{ $t("about.collapse") }}</Button>
             </div>
           </div>
           <div style="clear: both;"></div>
@@ -150,10 +165,6 @@ const isTextCollapsed = ref(true);
         margin-bottom: 10px;
         font-size: 14px;
       }
-    }
-
-    .profileButtons {
-      margin: 10px 0;
     }
   }
 

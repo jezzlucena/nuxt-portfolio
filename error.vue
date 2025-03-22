@@ -15,7 +15,9 @@ const props = defineProps({
         <h1>{{ $t('error.error') }} {{ error?.statusCode }}</h1>
         <div>{{ error?.statusMessage }}</div>
         <br/>
-        <NuxtLink :to="$localePath('/')"><Button>{{ $t('error.goBack') }}</Button></NuxtLink>
+        <NuxtLink :to="$localePath('/')">
+          <Button>{{ $t('error.goBack') }}</Button>
+        </NuxtLink>
       </div>
     </div>
 

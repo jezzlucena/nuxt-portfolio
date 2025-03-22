@@ -13,7 +13,6 @@
   "about": {
     "readMore": "Ler Mais",
     "collapse": "Ler Menos",
-    "downloadResume": "Baixar Currículo (pdf)",
     "blurb": [
       "Desenvolver experiências mágicas para o usuário final é a minha verdadeira paixão. Eu busco novas tecnologias constantemente, e me mantenho atualizado nos últimos frameworks, línguas, e tendências.",
       "Graduado em Engenharia de Computação e tendo um Mestrado em Desenvolvimento de Games e Mídia Interativa, a educação superior me permitiu permanecer na crista da ondae entregar trabalhos excepcionais para cada um de meus empregadores - tanto como full-time formal e como contratado.",
@@ -122,7 +121,6 @@
     }
   },
   "footer": {
-    "resume": "Currículo (pdf)",
     "orDirectly": "...ou mande email para",
     "lastUpdated": "Atualizado em",
     "someRightsReserved": "Alguns direitos reservados"

@@ -13,7 +13,6 @@
   "about": {
     "readMore": "Leer Más",
     "collapse": "Leer Menos",
-    "downloadResume": "Descargar Currículum (pdf)",
     "blurb": [
       "Desarrollar experiencias mágicas para el usuario final es mi verdadera pasión. Busco constantemente nuevas tecnologías y me mantengo actualizado sobre los últimos marcos, lenguajes y tendencias.",
       "Con un título en Ingeniería Informática y una maestría en Desarrollo de Juegos y Medios Interactivos, la educación superior me ha permitido mantenerme en la cima de mi juego y realizar un trabajo excepcional para cada uno de mis empleadores, tanto como empleado de tiempo completo como por contrato.",
@@ -128,7 +127,6 @@
     }
   },
   "footer": {
-    "resume": "Currículum (pdf)",
     "orDirectly": "...o envia email para",
     "lastUpdated": "Actualizado en",
     "someRightsReserved": "Algunos derechos reservados"

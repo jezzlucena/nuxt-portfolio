@@ -4,6 +4,7 @@ import type { Project } from '~/types/Project';
 
 const route = useRoute();
 const project: Project = PROJECTS[route.params.key as keyof typeof PROJECTS];
+const { t, locale } = useI18n();
 
 if (!project) {
   throw createError({
@@ -11,6 +12,16 @@ if (!project) {
     statusMessage: 'Project Not Found'
   });
 }
+
+useHead({
+  title: `${t(project.i18nKeys.name)} - ${t('common.jezzLucena')}`
+});
+
+watch(locale, () => {
+  useHead({
+    title: `${t(project.i18nKeys.name)} - ${t('common.jezzLucena')}`
+  });
+});
 </script>
 
 <template>
@@ -53,38 +64,37 @@ if (!project) {
 
 						<div class="projectButtons">
 							<span class="label">{{ $t("projects.related") }}</span>
-							<Button
+              <NuxtLink
                 v-if="project.liveDemoUrl"
-                :href="project.liveDemoUrl" 
+                :to="project.liveDemoUrl" 
                 target="_blank"
-                class="button" 
-                external
-              >{{ $t("projects.tryLiveDemo") }}</Button>
-							<Button
+              >
+                <Button class="button">{{ $t("projects.tryLiveDemo") }}</Button>
+              </NuxtLink>
+              <NuxtLink
                 v-if="project.videoUrl"
-                :href="project.videoUrl" 
+                :to="project.videoUrl" 
                 target="_blank"
-                class="button" 
-                external
-              >{{ $t("projects.watchVideo") }}</Button>
-              <Button
+              >
+                <Button class="button">{{ $t("projects.watchVideo") }}</Button>
+              </NuxtLink>
+              <NuxtLink
                 v-if="project.behanceUrl"
-                :href="project.behanceUrl" 
+                :to="project.behanceUrl" 
                 target="_blank"
-                class="button" 
-                external
-              >{{ $t("projects.onBehance") }}</Button>
-              <Button
+              >
+                <Button class="button">{{ $t("projects.onBehance") }}</Button>
+              </NuxtLink>
+              <NuxtLink
                 v-if="project.githubUrl"
-                :href="project.githubUrl" 
+                :to="project.githubUrl" 
                 target="_blank"
-                class="button" 
-                external
-              >{{ $t("projects.onGitHub") }}</Button>
+              >
+                <Button class="button">{{ $t("projects.onGitHub") }}</Button>
+              </NuxtLink>
             </div>
 					</div>
 				</div>
-				<div style="clear: both;"></div>
 			</div>
   </div>
 </template>

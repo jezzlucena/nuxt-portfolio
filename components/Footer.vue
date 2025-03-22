@@ -11,22 +11,18 @@ onMounted(() => {
   <div class="footer">
     <div class="buttonAreaWrapper">
       <div class="buttonArea">
-        <Button
-          theme="light"
-          href="http://linkedin.com/in/jezzlucena"
-        >{{ $t("footer.linkedIn") }}</Button>
-        <Button
-          theme="light"
-          href="http://github.com/jezzlucena"
-        >{{ $t("footer.gitHub") }}</Button>
-        <Button
-          theme="light"
-          href="/files/JezzLucenaResume2025.pdf"
-        >{{ $t("footer.resume") }}</Button>
-        <Button
-          theme="light"
-          href="https://rznlvjsm.formester.com/f/2_rn9_199YR-"
-        >{{ $t("common.contact") }}</Button>
+        <NuxtLink to="https://linkedin.com/in/jezzlucena" target="_blank">
+          <Button theme="light">{{ $t("footer.linkedIn") }}</Button>
+        </NuxtLink>
+        <NuxtLink to="https://github.com/jezzlucena" target="_blank">
+          <Button theme="light">{{ $t("footer.gitHub") }}</Button>
+        </NuxtLink>
+        <NuxtLink :to="$localePath('/resume') + '#content'">
+          <Button theme="light">{{ $t("common.resume") }}</Button>
+        </NuxtLink>
+        <NuxtLink :to="$localePath('/contact') + '#content'">
+          <Button theme="light">{{ $t("common.contact") }}</Button>
+        </NuxtLink>
 
         <br/>
         <br/>

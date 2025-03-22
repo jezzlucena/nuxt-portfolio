@@ -1,19 +1,16 @@
 <script setup lang="ts">
 const props = defineProps<{
   theme?: 'light' | 'dark',
-  href?: string
 }>();
 </script>
 
 <template>
-  <a
+  <span
     class="button"
     :class="{ light: props.theme === 'light' }"
-    target="_blank"
-    :href="props.href"
   >
     <slot />
-  </a>
+</span>
 </template>
 
 <style scoped>

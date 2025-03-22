@@ -6,6 +6,17 @@ const galleryMode = ref<'columns' | 'list'>('columns');
 const isShowingGallery = ref(true);
 const isMasonryActive = ref(false);
 let galleryTimeout: NodeJS.Timeout;
+const { t, locale } = useI18n();
+
+useHead({
+  title: `${t('common.portfolio')} - ${t('common.jezzLucena')}`
+});
+
+watch(locale, () => {
+  useHead({
+    title: `${t('common.portfolio')} - ${t('common.jezzLucena')}`
+  });
+});
 
 const getColumns = (numColumns: number) => {
   const colArrays: string[][] = Array.from({ length: numColumns }, () => []);

@@ -6,6 +6,7 @@ const localePath = useLocalePath();
 const { availableLocales } = useI18n();
 const { isScrolled } = useScroll();
 const isNavOpen = ref(false);
+const route = useRoute();
 
 async function changeLocale() {
   // Change URL to correct language, ex: '/about' to '/pt/about'
@@ -57,20 +58,22 @@ useEventListener('resize', handleWindowResize);
       <div class="links">
         <NuxtLink 
           :to="$localePath('/about') + '#content'"
+          :class="{ 'router-link-active': (route.name as string).startsWith('about') }"
           @click="isNavOpen = false"
         >{{ $t('common.about') }}</NuxtLink>
         <NuxtLink 
-          :to="$localePath('/')" 
+          :to="$localePath('/')"
+          :class="{ 'router-link-active': (route.name as string).startsWith('projects-key') || (route.name as string).startsWith('index') }"
           @click="isNavOpen = false"
         >{{ $t("common.portfolio") }}</NuxtLink>
-        <a
-          href="/files/JezzLucenaResume2025.pdf"
-          target="_blank"
-          @click="isNavOpen = false"
-        >{{ $t("common.resume") }}</a>
         <NuxtLink
-          to="https://rznlvjsm.formester.com/f/2_rn9_199YR-"
-          target="_blank"
+          :to="$localePath('/resume') + '#content'"
+          :class="{ 'router-link-active': (route.name as string).startsWith('resume') }"
+          @click="isNavOpen = false"
+        >{{ $t("common.resume") }}</NuxtLink>
+        <NuxtLink
+          :to="$localePath('/contact') + '#content'"
+          :class="{ 'router-link-active': (route.name as string).startsWith('contact') }"
           @click="isNavOpen = false"
         >{{ $t("common.contact") }}</NuxtLink>
 
