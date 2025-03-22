@@ -155,7 +155,7 @@ onMounted(() => {
     border: 2px solid black;
     margin: 0;
     margin-right: -2px;
-    background-color: white;
+    background-color: #aaa;
     transition: 0.6s background-color ease;
     
     .symbol {
@@ -167,30 +167,51 @@ onMounted(() => {
       transform: translate(-50%, -50%);
     }
 
-    .symbol::before {
+    .symbol::before,
+    .symbol::after {
       content: '';
       position: absolute;
-      left: 0;
       background: black;
+    }
+
+    &.columns .symbol::before,
+    &.columns .symbol:after {
+      left: 0.5px;
+      width: 5.5px;
     }
 
     &.columns .symbol::before {
       top: 0;
-      width: 9px;
-      height: 9px;
-      box-shadow: 0 12px 0 0 black, 12px 12px 0 0 black, 12px 0 0 0 black;
+      height: 7px;
+      box-shadow: 7.5px 13.5px 0 0 black, 15px 0 0 0 black;
+    }
+
+    &.columns .symbol::after {
+      bottom: 0;
+      height: 11px;
+      box-shadow: 7.5px -9.5px 0 0 black, 15px 0 0 0 black;
+    }
+
+    &.list .symbol::before,
+    &.list .symbol::after {
+      height: 4.5px;
+      box-shadow: 0 8px 0 0 black, 0 16px 0 0 black;
     }
 
     &.list .symbol::before {
-      width: 100%;
-      height: 5px;
-      box-shadow: 0 8px 0 0 black, 0 16px 0 0 black;
+      left: 0;
+      width: 4px;
+    }
+
+    &.list .symbol::after {
+      right: 0;
+      width: calc(100% - 6px);
     }
   }
 
   &.show {
     &.list .icon.list, &.columns .icon.columns {
-      background-color: #ccc;
+      background-color: white;
     }
   }
 }
