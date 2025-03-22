@@ -159,7 +159,7 @@ if (!project) {
   }
 }
 
-@media(max-width: 800px) {
+@media(max-width: 940px) {
   .content .projectButtons {
     margin: 20px auto 0;
     text-align: center;

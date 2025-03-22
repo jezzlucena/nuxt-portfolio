@@ -9,10 +9,10 @@ const { project, projectKey, galleryMode } = defineProps<{
   galleryMode: 'list' | 'columns',
 }>();
 
-const item = useTemplateRef('item');
+const wrapper = useTemplateRef('wrapper');
 const video = useTemplateRef('video');
 const playPromise = ref<Promise<void>>();
-const isVisible = useElementVisibility(item);
+const isVisible = useElementVisibility(wrapper);
 const isTriggered = ref(false);
 
 watch(isVisible, () => {
@@ -35,14 +35,17 @@ onMounted(() => {
 </script>
 
 <template>
-  <div
+  <NuxtLink
+    :to="$localePath(`/projects/${projectKey}`)"
     class="item trigger"
     :class="{ [galleryMode]: true, triggered: isTriggered, noVideo: !project.thumbVideoUrl && !project.thumbGifUrl }"
-    ref="item"
     @mouseenter="playVideo"
     @mouseleave="pauseVideo"
+    @touchstart="playVideo"
+    @touchmove="playVideo"
+    @touchend="pauseVideo"
   >
-    <NuxtLink :to="$localePath(`/projects/${projectKey}`)" class="wrapper">
+    <div class="wrapper" ref="wrapper">
       <div class="thumbContainer loadingGradient" :style="{ paddingBottom: `${(project.thumbAspectRatio || 0.56) * 100}%` }">
         <video v-if="project.thumbVideoUrl" ref="video" class="thumbVideo" preload="none" :poster="project.thumbImgUrl" muted playsinline loop :src="project.thumbVideoUrl"></video>
         <img v-else-if="project.thumbGifUrl" class="thumbVideo" :src="project.thumbGifUrl">
@@ -58,14 +61,15 @@ onMounted(() => {
         </div>
         <div class="description loadingGradient">{{ $t(project.i18nKeys.description) }}</div>
       </div>
-    </NuxtLink>
-  </div>
+    </div>
+  </NuxtLink>
 </template>
 
 <style scoped>
 .item {
   position: relative;
   border: 1px solid black;
+  display: block;
   background-color: white;
   margin-bottom: 20px;
   cursor: pointer;
@@ -73,6 +77,7 @@ onMounted(() => {
 
   .wrapper {
     display: flex;
+    pointer-events: none;
   }
 
   &.columns {
@@ -113,7 +118,7 @@ onMounted(() => {
     }
   }
 
-  @media(max-width: 460px) {
+  @media(max-width: 480px) {
     &.list .thumbContainer {
       width: 100px;
     }
@@ -194,7 +199,7 @@ onMounted(() => {
         animation-delay: 0.2s;
       }
 
-      @media(max-width: 900px) {
+      @media(max-width: 940px) {
         .name {
           font-size: 13px;
           line-height: 16px;

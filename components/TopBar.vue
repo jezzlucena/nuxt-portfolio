@@ -15,6 +15,14 @@ async function changeLocale() {
 const toggleNavOpen = () => {
   isNavOpen.value = !isNavOpen.value;
 }
+
+const handleWindowResize = useDebounceFn(() => {
+  if (!import.meta.client || window.innerWidth > 940) {
+    isNavOpen.value = false;
+  }
+}, 100);
+
+useEventListener('resize', handleWindowResize);
 </script>
 
 <template>
@@ -193,7 +201,7 @@ a {
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 940px) {
   .links {
     position: absolute;
     top: 100%;

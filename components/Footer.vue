@@ -63,7 +63,7 @@
       vertical-align: bottom;
 		}
 
-			@media(max-width: 800px) {
+			@media(max-width: 940px) {
 				.buttonArea .button {
 					display: block;
 					margin: 10px auto;

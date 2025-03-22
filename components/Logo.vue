@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import useVisibility from '~/composables/useVisibility';
+
 const { scrollY } = useScroll();
-const pageHidden = ref(false);
+const { pageHidden } = useVisibility();
 const animationInterval = ref<NodeJS.Timeout>();
 const svg = useTemplateRef('svg');
 
@@ -37,59 +39,8 @@ const animateSVG = () => {
 	setTimeout(runCycle, 1000);
 }
 
-const onVisible = () => {
-  pageHidden.value = false;
-}
-
-const onHidden = () => {
-  pageHidden.value = true;
-}
-
-const handleVisibilityChange = () => {
-  if(document.hidden) onHidden();
-  else onVisible();
-}
-
-const handleTouch = (event: TouchEvent) => {
-	const touch = event.touches[0];
-	const target = document.elementFromPoint(touch.clientX, touch.clientY);
-
-	if (target) target.classList.add('hovered');
-}
-
-const handleTouchEnd = () => {
-	document.querySelectorAll('.hovered').forEach(elm => elm.classList.remove('hovered'));
-}
-
-onMounted(() => {
-	document.addEventListener('visibilitychange', handleVisibilityChange);
-	document.addEventListener('focus', onVisible);
-	document.addEventListener('blur', onHidden);
-	window.addEventListener('focus', onVisible);
-	window.addEventListener('blur', onHidden);
-	window.focus();
-
-	document.addEventListener('touchstart', handleTouch);
-	document.addEventListener('touchmove', handleTouch);
-	document.addEventListener('touchend', handleTouchEnd);
-
-	handleVisibilityChange();
-	animateSVG();
-});
-
-onUnmounted(() => {
-	document.removeEventListener('visibilitychange', handleVisibilityChange);
-	document.removeEventListener('focus', onVisible);
-	document.removeEventListener('blur', onHidden);
-	window.removeEventListener('focus', onVisible);
-	window.removeEventListener('blur', onHidden);
-
-	document.removeEventListener('touchstart', handleTouch);
-	document.removeEventListener('touchmove', handleTouch);
-	document.removeEventListener('touchend', handleTouchEnd);
-
-	clearInterval(animationInterval.value);
-});
+onMounted(animateSVG);
+onUnmounted(() => clearInterval(animationInterval.value));
 </script>
 
 <template>
@@ -130,18 +81,6 @@ svg {
 @media (max-width: 900px) {
 	svg {
 		height: 55%;
-	}
-}
-
-@media (max-width: 480px) {
-	svg {
-		height: 45%;
-	}
-}
-
-@media (max-width: 300px) {
-	svg {
-		height: 35%;
 	}
 }
 
