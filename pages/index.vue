@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useDebounceFn, useEventListener } from '@vueuse/core'
-
 import PROJECTS from '~/assets/json/projects';
 
 const { scrollY } = useScroll();
@@ -55,9 +53,13 @@ const handleWindowResize = useDebounceFn(() => {
 
   if (galleryMode.value === 'list') {
     numColumns = 1;
-  } else if (!import.meta.client || window.innerWidth > 940) {
+  } else if (!import.meta.client || window.innerWidth >= 1600) {
+    numColumns = 5;
+  } else if (window.innerWidth >= 1280) {
+    numColumns = 4;
+  } else if (window.innerWidth >= 1024) {
     numColumns = 3;
-  } else if (window.innerWidth > 670) {
+  } else if (window.innerWidth >= 768) {
     numColumns = 2;
   } else {
     numColumns = 1;
@@ -68,26 +70,28 @@ const handleWindowResize = useDebounceFn(() => {
   nextTick(handleMasonryLayout);
 }, 100);
 
-useEventListener('resize', handleWindowResize);
-handleWindowResize();
-
 onMounted(() => {
+  useEventListener('resize', handleWindowResize);
   handleWindowResize();
 });
 </script>
 
 <template>
   <div class="content relative bg-white">
-    <div class="w-[100%] max-w-[1024px] mx-auto p-[50px]">
-      <div class="title">
+    <div class="w-[100%] mx-auto p-[50px]">
+      <Heading>
         <span>{{ $t("home.myWork") }}</span>
 
         <div class="toggle" :class="{ [galleryMode]: true, show: isShowingGallery }" @click="toggleGalleryMode">
           <div class="icon columns"><div class="symbol"></div></div>
           <div class="icon list"><div class="symbol"></div></div>
         </div>
-      </div>
-      <div class="gallery relative" :class="{ [galleryMode]: true, show: isShowingGallery, masonryActive: isMasonryActive }">
+      </Heading>
+
+      <div
+        class="gallery relative"
+        :class="{ [galleryMode]: true, show: isShowingGallery, masonryActive: isMasonryActive }"
+      >
         <div v-for="projectKeys of columns" class="column">
           <div class="layoutItem">
             <GalleryItem
@@ -118,71 +122,65 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.content .title {
-  position: relative;
-  font-family: myriad-boldcond;
-  letter-spacing: 2px;
-  text-align: center;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  line-height: 70px;
-  font-size: 22px;
-  margin-bottom: 20px;
-  text-transform: uppercase;
+.toggle {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform-origin: right center;
+  transform: translateY(-50%);
+  display: flex;
+  cursor: pointer;
+  transition: 0.2s box-shadow ease, 0.2s transform ease;
 
-  .toggle {
-    position: absolute;
-    top: 47%;
-    right: 10px;
-    transform-origin: right center;
-    transform: translateY(-50%) scale(1.2);
-    display: flex;
-    cursor: pointer;
+  &:hover, &.hovered {
+    box-shadow: 7px 7px 0 -1px rgba(0, 0, 0, 1);
+    transform: translate(-3px, -55%);
+  }
 
-    .icon {
-      position: relative;
-      height: 30px;
-      width: 30px;
-      border: 1px solid black;
-      margin: 0;
-      margin-right: -1px;
-      background-color: white;
-      transition: 0.6s background-color ease;
-      
-      .symbol {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        height: 50%;
-        width: 50%;
-        transform: translate(-50%, -50%);
-      }
+  .icon {
+    position: relative;
+    height: 45px;
+    width: 45px;
+    border: 2px solid black;
+    margin: 0;
+    margin-right: -2px;
+    background-color: white;
+    transition: 0.6s background-color ease;
+    
+    .symbol {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      height: 50%;
+      width: 50%;
+      transform: translate(-50%, -50%);
+    }
 
-      .symbol::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        background: black;
-      }
+    .symbol::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      background: black;
+    }
 
-      &.columns .symbol::before {
-        top: 0;
-        width: 6px;
-        height: 6px;
-        box-shadow: 0 8px 0 0 black, 8px 8px 0 0 black, 8px 0 0 0 black;
-      }
+    &.columns .symbol::before {
+      top: 0;
+      width: 9px;
+      height: 9px;
+      box-shadow: 0 12px 0 0 black, 12px 12px 0 0 black, 12px 0 0 0 black;
+    }
 
-      &.list .symbol::before {
-        width: 100%;
-        margin-top: 1px;
-        height: 3px;
-        box-shadow: 0 5px 0 0 black, 0 10px 0 0 black;
-      }
+    &.list .symbol::before {
+      width: 100%;
+      height: 5px;
+      box-shadow: 0 8px 0 0 black, 0 16px 0 0 black;
     }
   }
 
-  .toggle.show.list .icon.list, .toggle.show.columns .icon.columns {
-    background-color: #ccc;
+  &.show {
+    &.list .icon.list, &.columns .icon.columns {
+      background-color: #ccc;
+    }
   }
 }
 
@@ -193,7 +191,7 @@ onMounted(() => {
   flex-direction: row;
   gap: 20px;
   width: 100%;
-  overflow: hidden;
+  overflow: visible;
 
   &.show {
     opacity: 1;
@@ -216,13 +214,13 @@ onMounted(() => {
 .masonryItem {
   opacity: 0;
   pointer-events: none;
-  transition: 0.5s transform ease;
 }
 
 .masonryActive {
   .masonryItem {
     opacity: 1;
     pointer-events: auto;
+    transition: 0.5s transform ease;
   }
 
   .layoutItem {

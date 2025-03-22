@@ -9,7 +9,9 @@ export default defineNuxtPlugin(nuxtApp => {
   }
   
   const handleTouchEnd = () => {
-    document.querySelectorAll('.hovered').forEach(elm => elm.classList.remove('hovered'));
+    nextTick(() => {
+      document.querySelectorAll('.hovered').forEach(elm => elm.classList.remove('hovered'));
+    });
   }
   
   nuxtApp.hook('page:loading:end', () => {

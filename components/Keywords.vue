@@ -38,10 +38,10 @@ const props = defineProps<{
   .keyword {
     display: inline-block;
     white-space: nowrap;
-    letter-spacing: 1px;
+    letter-spacing: 0;
     margin-bottom: 6px;
     margin-right: 6px;
-    border: 1px solid black;
+    border: 2px solid black;
     padding: 2px 10px;
 
     &:not(:last-child)::after {

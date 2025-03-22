@@ -30,7 +30,9 @@
       },
       "klew": {
         "link": "https://www.linkedin.com/in/klewwilliams/",
-        "quote": "Jezz and I studied together at Worcester Polytechnic Institute for our MS in Interactive Media and Game Development where we worked together on projects. Jezz is a phenomenal worker and a phenomenal personality to work with. He has a broad base of talents, particularly engineering, writing, design, and criticism, and is a truly deep thinker who is easy to collaborate on and passionate about positivity, authenticity, and morality in the work place. The best thing about Jezz as a worker is that he has true, raw talent that he's honed with practice and that he is deeply focused on making positive changes in his community and his industry with that talent and practice. He seeks to learn about others, to understand the theory behind his work, and to act beyond himself. This reflects WPI's motto, \"Theory and Practice\" which Jezz has truly exemplified in his academic and personal projects.",
+        "quote1": "Jezz and I studied together at Worcester Polytechnic Institute for our MS in Interactive Media and Game Development where we worked together on projects.",
+        "quote2": "Jezz is a phenomenal worker and a phenomenal personality to work with. He has a broad base of talents, particularly engineering, writing, design, and criticism, and is a truly deep thinker who is easy to collaborate on and passionate about positivity, authenticity, and morality in the work place.",
+        "quote3": "The best thing about Jezz as a worker is that he has true, raw talent that he's honed with practice and that he is deeply focused on making positive changes in his community and his industry with that talent and practice. He seeks to learn about others, to understand the theory behind his work, and to act beyond himself. This reflects WPI's motto, \"Theory and Practice\" which Jezz has truly exemplified in his academic and personal projects.",
         "author": "Klew Williams",
         "role": "UX Designer at Finalize, Inc.",
         "connection": "Jezz and Klew were grad students together at Worcester Polytechnic Institute"
@@ -49,7 +51,7 @@
     "company": "Company",
     "shipped": "Shipped in",
     "role": "Role on this project",
-    "stack": "Stack",
+    "stack": "Tech Stack",
     "platforms": "Platforms",
     "related": "Related Links",
     "tryLiveDemo": "Try Live Demo",
@@ -142,6 +144,7 @@
   },
   "footer": {
     "linkedIn": "LinkedIn",
+    "gitHub": "GitHub",
     "resume": "Resumé (pdf)",
     "orDirectly": "...or reach out directly at",
     "creativeCommons": "Creative Commons Attribution-ShareAlike License",

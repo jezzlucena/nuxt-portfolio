@@ -8,9 +8,7 @@ const props = defineProps<{
   <a :href="props.href" target="_blank">
     <div class="testimonial">
       <div class="quote">
-        <p>
-          "<slot name="quote" />"
-        </p>
+        <slot name="quote" />
       </div>
       <a :href="props.href" target="_blank">
         <div class="author">
@@ -32,6 +30,7 @@ const props = defineProps<{
   position: relative;
   padding: 80px 60px;
   margin: 40px 0 80px;
+  letter-spacing: 0;
 
   &::before, &::after {
     position: absolute;
@@ -45,20 +44,15 @@ const props = defineProps<{
   &::before {
     top: 0;
     left: 0;
-    border-top: 1px solid black;
-    border-left: 1px solid black;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
   }
 
   &::after {
     bottom: 0;
     right: 0;
-    border-bottom: 1px solid black;
-    border-right: 1px solid black;
-  }
-
-  .quote p {
-    text-indent: 60px;
-    margin-bottom: 20px;
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
   }
 
   .author {
@@ -66,7 +60,6 @@ const props = defineProps<{
     margin-bottom: -5px;
     text-align: right;
     font-size: 18px;
-    letter-spacing: 3px;
     font-family: myriad-boldcond;
   }
 
@@ -88,7 +81,7 @@ const props = defineProps<{
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .testimonial {
     padding: 30px;
   }

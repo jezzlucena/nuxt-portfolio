@@ -21,7 +21,7 @@ const props = defineProps<{
 	display: inline-block;
 	font-family: opensans;
 	text-transform: none;
-	height: 30px;
+	height: 34px;
 	line-height: 30px;
 	padding: 0 30px;
 	margin-right: 5px;
@@ -29,14 +29,15 @@ const props = defineProps<{
 	letter-spacing: 1px;
 	color: white;
 	background-color: black;
-	border: 1px solid white;
+	border: 2px solid white;
 	text-decoration: underline;
   white-space: nowrap;
 	cursor: pointer;
-	transition: all 0.2s linear;
+	transition: 0.2s box-shadow ease, 0.2s transform ease;
 
   &:hover, &.hovered {
 		box-shadow: 7px 7px 0 -1px rgba(0, 0, 0, 1);
+    transform: translate(-3px, -3px);
 	}
 
   &:active {
@@ -48,9 +49,9 @@ const props = defineProps<{
   &.light {
     color: black;
     background-color: white;
-    border: 1px solid black;
+    border: 2px solid black;
 
-    &, &.hovered {
+    &:hover, &.hovered {
       box-shadow: 7px 7px 0 -1px rgba(255, 255, 255, 1);
     }
 

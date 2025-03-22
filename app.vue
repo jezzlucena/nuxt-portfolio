@@ -62,7 +62,7 @@
           top: 50%;
           left: 0;
           height: 40px;
-          border-right: 1px solid white;
+          border-right: 2px solid white;
           transform: translateY(-50%);
         }
       }

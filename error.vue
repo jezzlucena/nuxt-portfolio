@@ -11,7 +11,7 @@ const props = defineProps({
     <TopBar />
 
     <div class="bg-white">
-      <div class="w-[100%] max-w-[1024px] mx-auto p-[50px]">
+      <div class="w-[100%] mx-auto p-[50px]">
         <h1>{{ $t('error.error') }} {{ error?.statusCode }}</h1>
         <div>{{ error?.statusMessage }}</div>
         <br/>

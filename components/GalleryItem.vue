@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useElementVisibility } from '@vueuse/core'
-
 import type { Project } from '~/types/Project';
 
 const { project, projectKey, galleryMode } = defineProps<{
@@ -36,7 +34,7 @@ onMounted(() => {
 
 <template>
   <NuxtLink
-    :to="$localePath(`/projects/${projectKey}`)"
+    :to="$localePath(`/projects/${projectKey}`) + '#content'"
     class="item trigger"
     :class="{ [galleryMode]: true, triggered: isTriggered, noVideo: !project.thumbVideoUrl && !project.thumbGifUrl }"
     @mouseenter="playVideo"
@@ -68,12 +66,18 @@ onMounted(() => {
 <style scoped>
 .item {
   position: relative;
-  border: 1px solid black;
+  border: 2px solid black;
   display: block;
   background-color: white;
   margin-bottom: 20px;
   cursor: pointer;
   width: 100%;
+	transition: 0.2s box-shadow ease, 0.2s transform ease;
+
+  &:hover, &.hovered {
+    box-shadow: 7px 7px 0 -1px rgba(0, 0, 0, 1);
+    transform: translate(-3px, -3px);
+  }
 
   .wrapper {
     display: flex;
@@ -104,15 +108,15 @@ onMounted(() => {
 
   &.list .thumbContainer {
     padding-bottom: 0 !important;
-    border-right: 1px solid black;
+    border-right: 2px solid black;
   }
 
   &.columns .thumbContainer {
     width: 100%;
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid black;
   }
 
-  @media(max-width: 600px) {
+  @media(max-width: 768px) {
     &.list .thumbContainer {
       width: 136px;
     }
@@ -199,7 +203,7 @@ onMounted(() => {
         animation-delay: 0.2s;
       }
 
-      @media(max-width: 940px) {
+      @media(max-width: 1024px) {
         .name {
           font-size: 13px;
           line-height: 16px;
@@ -218,7 +222,10 @@ onMounted(() => {
     
     &.columns .detailsContainer {
       .name {
-        margin-bottom: 10px;
+        font-family: myriad-boldcond;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 5px;
         padding-right: 0;
       }
     }

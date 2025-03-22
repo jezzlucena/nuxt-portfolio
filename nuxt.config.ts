@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     head: {
       title: "Portfolio - Jezz Lucena",
       charset: 'utf-8',
-      viewport: 'width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no'
+      viewport: 'width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, viewport-fit=cover'
     }
   },
 
@@ -25,11 +25,14 @@ export default defineNuxtConfig({
     port: 8080
   },
 
-  modules: ['@nuxtjs/i18n', '@vueuse/nuxt'],
+  modules: ['@nuxtjs/i18n', '@vueuse/nuxt', 'nuxt-gtag'],
   i18n: {
     defaultLocale: 'en',
     locales: [ 'en', 'es', 'pt' ],
     detectBrowserLanguage: false,
     vueI18n: './i18n.config.ts'
+  },
+  gtag: {
+    id: 'G-BDHVX4N3YQ'
   }
 })

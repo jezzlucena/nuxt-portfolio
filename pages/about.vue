@@ -1,72 +1,65 @@
 <script setup lang="ts">
-const KEYWORDS = [
-  "JavaScript",
-  "TypeScript",
-  "React",
-  "NextJS",
-  "NuxtJS",
-  "Python",
-  "Django",
-  "ES6",
-  "HTML5",
-  "CSS3",
-  "Ruby on Rails",
-  "Agile Software Development",
-  "UX/UI Design",
-  "RESTful APIs",
-  "i18n"
-];
-const isCollapsed = ref(true);
+const isTextCollapsed = ref(true);
 </script>
 
 <template>
-    <div class="content relative bg-white">
-      <div class="w-[100%] max-w-[1024px] mx-auto p-[50px]">
+    <div class="content relative bg-white" id="content">
+      <div class="w-[100%] mx-auto py-[70px] px-[50px]">
         <div id="about" class="section about">
           <div class="aboutContainer">
             <div class="description">
-              <a class="profilePicture Jezz" target="_blank" href="http://linkedin.com/in/jezzlucena"></a>
-              <div class="profileName">{{ $t("common.jezzLucena") }}</div>
-              <div class="profileTitle">{{ $t("common.fullStackEngineer") }}</div>
+              <NuxtLink class="profilePicture Jezz" target="_blank" to="http://linkedin.com/in/jezzlucena"></NuxtLink>
+              <NuxtLink target="_blank" to="http://linkedin.com/in/jezzlucena">
+                <div class="profileName">{{ $t("common.jezzLucena") }}</div>
+                <div class="profileTitle">{{ $t("common.fullStackEngineer") }}</div>
+              </NuxtLink>
               
-              <Keywords label="Keywords" :keywords="KEYWORDS" />
+              <Keywords label="Keywords" :keywords="PROFILE_KEYWORDS" />
 
               <div class="profileButtons">
                 <Button href="resource/JezzLucenaResume2025.pdf">{{ $t("about.downloadResume") }}</Button>
               </div>
             </div>
           </div>
-          <div class="textContainer relative" :class="{ collapsed: isCollapsed }">
+          <div class="textContainer relative" :class="{ collapsed: isTextCollapsed }">
             <p v-for="paragraph of $tm('about.blurb')">{{ $rt(paragraph) }}</p>
 
             <div class="readMoreContainer">
-              <Button v-if="isCollapsed" class="button" @click="() => { isCollapsed = false }">{{ $t("about.readMore") }}</Button>
-              <Button v-else class="button" @click="() => { isCollapsed = true }">{{ $t("about.collapse") }}</Button>
+              <Button v-if="isTextCollapsed" class="button" @click="() => { isTextCollapsed = false }">{{ $t("about.readMore") }}</Button>
+              <Button v-else class="button" @click="() => { isTextCollapsed = true }">{{ $t("about.collapse") }}</Button>
             </div>
           </div>
           <div style="clear: both;"></div>
         </div>
 
         <div class="testimonials">
-          <div class="title">{{ $t("about.testimonials.title") }}</div>
+          <Heading>{{ $t("about.testimonials.title") }}</Heading>
 
           <div class="container">
             <Testimonial :href="$t('about.testimonials.chris.link')">
-              <template #quote>{{ $t("about.testimonials.chris.quote") }}</template>
+              <template #quote>
+                <p>"{{ $t("about.testimonials.chris.quote") }}"</p>
+              </template>
               <template #author>{{ $t("about.testimonials.chris.author") }}</template>
               <template #role>{{ $t("about.testimonials.chris.role") }}</template>
               <template #connection>{{ $t("about.testimonials.chris.connection") }}</template>
             </Testimonial>
 
             <Testimonial :href="$t('about.testimonials.klew.link')">
-              <template #quote>{{ $t("about.testimonials.klew.quote") }}</template>
+              <template #quote>
+                <p>"{{ $t("about.testimonials.klew.quote1") }}</p>
+                <p>{{ $t("about.testimonials.klew.quote2") }}</p>
+                <p>{{ $t("about.testimonials.klew.quote3") }}"</p>
+              </template>
               <template #author>{{ $t("about.testimonials.klew.author") }}</template>
               <template #role>{{ $t("about.testimonials.klew.role") }}</template>
               <template #connection>{{ $t("about.testimonials.klew.connection") }}</template>
             </Testimonial>
 
             <Testimonial :href="$t('about.testimonials.chaima.link')">
-              <template #quote>{{ $t("about.testimonials.chaima.quote") }}</template>
+              <template #quote>
+                <p>"{{ $t("about.testimonials.chaima.quote") }}"</p>
+              </template>
               <template #author>{{ $t("about.testimonials.chaima.author") }}</template>
               <template #role>{{ $t("about.testimonials.chaima.role") }}</template>
               <template #connection>{{ $t("about.testimonials.chaima.connection") }}</template>
@@ -81,7 +74,7 @@ const isCollapsed = ref(true);
 .content {
   width: 100%;
   color: black;
-  border-top: 1px solid white;
+  border-top: 2px solid white;
 
   .aboutContainer {
     .profilePicture {
@@ -93,8 +86,29 @@ const isCollapsed = ref(true);
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      border: 1px solid black;
-      border-radius: 10px;
+      border: 2px solid black;
+      transition: 0.2s box-shadow ease, 0.2s transform ease;
+
+      &:hover, &.hovered {
+        box-shadow: 7px 7px 0 -1px rgba(0, 0, 0, 1);
+        transform: translate(-3px, -3px);
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .profilePicture {
+        height: 140px;
+        width: 140px;
+        margin: 10px 20px 10px 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .profilePicture {
+        height: 100px;
+        width: 100px;
+        margin: 10px 20px 10px 0;
+      }
     }
 
     .profileName {
@@ -103,60 +117,60 @@ const isCollapsed = ref(true);
       line-height: 24px;
       padding-top: 25px;
       margin-bottom: 10px;
-      letter-spacing: 3px;
+      letter-spacing: 1px;
+      text-decoration: underline;
     }
     
     .profileTitle {
       font-size: 16px;
       line-height: 16px;
       margin-bottom: 20px;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 1024px) {
+      .profileName {
+        margin-bottom: 5px;
+        font-size: 18px;
+        padding-top: 10px;
+      }
+
+      .profileTitle {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .profileName {
+        font-size: 18px;
+        padding-top: 10px;
+      }
+
+      .profileTitle {
+        margin-bottom: 10px;
+        font-size: 14px;
+      }
     }
 
     .profileButtons {
-      margin: 20px;
-    }
-
-    .keywords {
-      font-family: opensans;
-      letter-spacing: 2px;
-      margin-right: 5px;
-      font-size: 0;
-      color: white;
-
-      .label, .keyword {
-        font-size: 14px;
-        color: black;
-      }
-
-      .label {
-        font-weight: bold;
-      }
-
-      .keyword {
-        display: inline-block;
-        white-space: nowrap;
-        letter-spacing: 1px;
-        margin-bottom: 6px;
-        margin-right: 6px;
-        border: 1px solid black;
-        padding: 2px 10px;
-      }
+      margin: 10px 0;
     }
   }
 
   .textContainer {
+    margin-top: 30px;
     max-height: 1000px;
     transition: 1s max-height ease;
-    padding-bottom: 30px;
+    padding-bottom: 40px;
+    overflow: hidden;
+
+    .readMoreContainer {
+      background-image: linear-gradient(to bottom, transparent, white);
+    }
 
     &.collapsed {
       max-height: 100px;
       overflow: hidden;
-
-      .readMoreContainer {
-        background-image: linear-gradient(to bottom, transparent, white);
-      }
     }
 
     p {
@@ -173,7 +187,7 @@ const isCollapsed = ref(true);
       position: absolute;
       bottom: 0;
       left: 0;
-      height: 100px;
+      height: 80px;
       width: 100%;
 
       .button {
@@ -184,7 +198,7 @@ const isCollapsed = ref(true);
     }
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
     .textContainer {
       max-height: 1000px;
 
@@ -193,26 +207,30 @@ const isCollapsed = ref(true);
       }
     }
   }
+
+  @media (max-width: 1024px) {
+    .textContainer {
+      max-height: 1000px;
+
+      &.collapsed {
+        max-height: 200px;
+      }
+    }
+  }
 }
 
 .testimonials {
+  background-color: white;
   margin: 50px auto;
-  
-  .title {
-    font-family: myriad-boldcond;
-    letter-spacing: 2px;
-    text-align: center;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    line-height: 70px;
-    font-size: 22px;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-  }
 
   .container {
     max-width: 700px;
     margin: 0 auto;
+  }
+  
+  p {
+    text-indent: 60px;
+    margin-bottom: 20px;
   }
 }
 </style>

@@ -30,7 +30,9 @@
       },
       "klew": {
         "link": "https://www.linkedin.com/in/klewwilliams/",
-        "quote": "Jezz y yo estudiamos juntos en el Instituto Politécnico de Worcester para nuestra maestría en Medios Interactivos y Desarrollo de Videojuegos, donde colaboramos en proyectos. Jezz es un trabajador excepcional y una persona excepcional. Posee una amplia gama de talentos, en particular ingeniería, escritura, diseño y crítica, y es un pensador profundo con quien es fácil colaborar y le apasiona la positividad, la autenticidad y la moralidad en el trabajo. Lo mejor de Jezz como trabajador es su talento innato, que ha perfeccionado con la práctica, y su profundo enfoque en generar cambios positivos en su comunidad y su sector con ese talento y esa práctica. Busca aprender de los demás, comprender la teoría que sustenta su trabajo y superarse a sí mismo. Esto refleja el lema de WPI: \"Teoría y Práctica\", que Jezz ha ejemplificado fielmente en sus proyectos académicos y personales.",
+        "quote1": "Jezz y yo estudiamos juntos en el Instituto Politécnico de Worcester para nuestra maestría en Medios Interactivos y Desarrollo de Videojuegos, donde colaboramos en proyectos.",
+        "quote2": "Jezz es un trabajador excepcional y una persona excepcional. Posee una amplia gama de talentos, en particular ingeniería, escritura, diseño y crítica, y es un pensador profundo con quien es fácil colaborar y le apasiona la positividad, la autenticidad y la moralidad en el trabajo.",
+        "quote3": "Lo mejor de Jezz como trabajador es su talento innato, que ha perfeccionado con la práctica, y su profundo enfoque en generar cambios positivos en su comunidad y su sector con ese talento y esa práctica. Busca aprender de los demás, comprender la teoría que sustenta su trabajo y superarse a sí mismo. Esto refleja el lema de WPI: \"Teoría y Práctica\", que Jezz ha ejemplificado fielmente en sus proyectos académicos y personales.",
         "author": "Klew Williams",
         "role": "Designer de UX en Finalize, Inc.",
         "connection": "Jezz y Klew fueron estudiantes de maestria juntos en Worcester Polytechnic Institute"
@@ -49,7 +51,6 @@
     "company": "Empresa",
     "shipped": "Entregado en",
     "role": "Papel desempeñado",
-    "stack": "Tech Stack",
     "platforms": "Plataformas",
     "related": "Links Relacionados",
     "tryLiveDemo": "Ver Demo",

@@ -22,23 +22,19 @@
     "testimonials": {
       "title": "Depoimentos",
       "chris": {
-        "link": "https://www.linkedin.com/in/chrisebennett/",
         "quote": "Trabalhar com Jezz foi um prazer. Sua abordagem criativa e detalhista foi muito valiosa no processo de criação de produtos na Wonderschool. Achei raro e gratificante trabalhar com um engenheiro que conseguia pensar em toda a pilha de desenvolvimento e, ao mesmo tempo, ter empatia pelas necessidades dos clientes.",
-        "author": "Chris Bennet",
         "role": "CEO na Wonderschool, Inc.",
         "connection": "Chris foi sênior de Jezz na Wonderschool"
       },
       "klew": {
-        "link": "https://www.linkedin.com/in/klewwilliams/",
-        "quote": "Jezz e eu estudamos juntos no Worcester Polytechnic Institute para nosso mestrado em Mídia Interativa e Desenvolvimento de Jogos, onde trabalhamos juntos em projetos. Jezz é um trabalhador fenomenal e uma personalidade fenomenal para se trabalhar. Ele tem uma ampla base de talentos, particularmente engenharia, escrita, design e crítica, e é um pensador verdadeiramente profundo, fácil de colaborar e apaixonado por positividade, autenticidade e moralidade no local de trabalho. A melhor coisa sobre Jezz como trabalhador é que ele tem um talento verdadeiro e bruto que ele aprimorou com a prática e que ele está profundamente focado em fazer mudanças positivas em sua comunidade e sua indústria com esse talento e prática. Ele busca aprender sobre os outros, entender a teoria por trás de seu trabalho e agir além de si mesmo. Isso reflete o lema do WPI, \"Teoria e Prática\", que Jezz realmente exemplificou em seus projetos acadêmicos e pessoais.",
-        "author": "Klew Williams",
+        "quote1": "Jezz e eu estudamos juntos no Worcester Polytechnic Institute para nosso mestrado em Mídia Interativa e Desenvolvimento de Jogos, onde trabalhamos juntos em projetos.",
+        "quote2": "Jezz é um trabalhador fenomenal e uma personalidade fenomenal para se trabalhar. Ele tem uma ampla base de talentos, particularmente engenharia, escrita, design e crítica, e é um pensador verdadeiramente profundo, fácil de colaborar e apaixonado por positividade, autenticidade e moralidade no local de trabalho.",
+        "quote3": "A melhor coisa sobre Jezz como trabalhador é que ele tem um talento verdadeiro e bruto que ele aprimorou com a prática e que ele está profundamente focado em fazer mudanças positivas em sua comunidade e sua indústria com esse talento e prática. Ele busca aprender sobre os outros, entender a teoria por trás de seu trabalho e agir além de si mesmo. Isso reflete o lema do WPI, \"Teoria e Prática\", que Jezz realmente exemplificou em seus projetos acadêmicos e pessoais.",
         "role": "Designer de UX na Finalize, Inc.",
         "connection": "Jezz e Klew foram estudantes de mestrado juntos no Worcester Polytechnic Institute"
       },
       "chaima": {
-        "link": "https://www.linkedin.com/in/chaima-jemmali-732a7655/",
         "quote": "Jezz não é apenas um excelente programador com habilidades técnicas cobrindo múltiplas linguagens, plataformas e engines, ele também é um pensador criativo e designer sempre buscando novas ideias e projetos. Como um aprendiz ativo, ele está continuamente assumindo novos desafios para aproveitar suas habilidades e adquirir outras novas.",
-        "author": "Chaima Jemmali",
         "role": "Candidata / Pesquisadora de PhD na Northeastern University",
         "connection": "Jezz e Chaima foram estudantes de mestrado juntos no Worcester Polytechnic Institute"
       }
@@ -49,7 +45,6 @@
     "company": "Empresa",
     "shipped": "Entregue em",
     "role": "Papel desempenhado",
-    "stack": "Tech Stack",
     "platforms": "Plataformas",
     "related": "Links Relacionados",
     "tryLiveDemo": "Ver Demo",

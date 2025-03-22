@@ -14,18 +14,18 @@ if (!project) {
 </script>
 
 <template>
-  <div class="content bg-white relative">
-    <div id="project" class="section project w-[100%] max-w-[1280px] mx-auto p-[50px]">
+  <div class="content bg-white relative" id="content">
+    <div id="project" class="section project w-[100%] mx-auto py-[70px] px-[50px]">
 				<div class="textContainer">
-          <div class="title">{{ $t(project.i18nKeys.name) }}</div>
+          <Heading>{{ $t(project.i18nKeys.name) }}</Heading>
 
-          <div v-if="project.thumbVideoUrl" class="projectPicture">
+          <div v-if="project.thumbVideoUrl" class="projectPicture max-w-[900px] mx-auto">
             <video class="profileVideoBackground" :src="project.thumbVideoUrl" autoplay muted playsinline loop></video>
             <video class="profileVideo" :src="project.thumbVideoUrl" autoplay muted playsinline loop></video>
           </div>
-          <img :src="project.thumbImgUrl" v-else class="projectPicture" />
+          <img :src="project.thumbImgUrl" v-else class="projectPicture max-w-[900px] mx-auto"/>
 					
-					<div class="description">
+					<div class="description max-w-[900px] mx-auto">
 						<div class="projectName">
 							<span class="label">{{ $t("projects.project") }}</span>
 							{{ $t(project.i18nKeys.description) }}
@@ -92,27 +92,14 @@ if (!project) {
 <style scoped>
 .content {
   .project {
-    .title {
-      position: relative;
-      font-family: myriad-boldcond;
-      letter-spacing: 2px;
-      text-align: center;
-      border-top: 1px solid black;
-      border-bottom: 1px solid black;
-      line-height: 70px;
-      font-size: 22px;
-      margin-bottom: 20px;
-      text-transform: uppercase;
-    }
-
     .label {
       font-family: myriad-boldcond;
       font-weight: normal;
       display: block;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
       margin-top: 15px;
       margin-right: 0;
-      font-size: 14px;
+      font-size: 16px;
       text-transform: uppercase;
     }
 
@@ -135,31 +122,35 @@ if (!project) {
       margin: 0 auto 30px;
       width: 100%;
       height: auto;
-      max-height: 600px;
+      max-height: 768px;
       box-sizing: border-box;
-      border: 1px solid black;
+      border: 2px solid black;
 
       .profileVideo {
         position: relative;
         width: 100%;
         height: auto;
-        max-height: 600px;
+        max-height: 768px;
       }
 
       .profileVideoBackground {
         position: absolute;
         width: 100%;
         height: auto;
-        max-height: 600px;
+        max-height: 768px;
         object-fit: cover;
         object-position: 50% 50%;
         filter: blur(5px);
       }
     }
+
+    .description {
+      letter-spacing: 0;
+    }
   }
 }
 
-@media(max-width: 940px) {
+@media(max-width: 1024px) {
   .content .projectButtons {
     margin: 20px auto 0;
     text-align: center;

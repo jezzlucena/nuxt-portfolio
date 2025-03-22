@@ -17,48 +17,95 @@ const toggleNavOpen = () => {
 }
 
 const handleWindowResize = useDebounceFn(() => {
-  if (!import.meta.client || window.innerWidth > 940) {
+  if (!import.meta.client || window.innerWidth > 1024) {
     isNavOpen.value = false;
   }
-}, 100);
+}, 500);
 
 useEventListener('resize', handleWindowResize);
 </script>
 
 <template>
-  <div class="topBar" :class="{ scrolled: isScrolled, navOpen: isNavOpen }">
-    <div class="flex w-[100%] max-w-[1024px] mx-auto px-[50px]">
-      <NuxtLink :to="$localePath('/')" class="logo">
+  <div
+    class="topBarBg"
+    :class="{ navOpen: isNavOpen }"
+    @click="toggleNavOpen"
+  ></div>
+  <div
+    class="topBar"
+    :class="{ scrolled: isScrolled, navOpen: isNavOpen }"
+  >
+    <div class="flex w-[100%] mx-auto lg:px-[50px] px-[10px]">
+      <NuxtLink
+        :to="$localePath('/')" 
+        class="logo"
+        @click="isNavOpen = false"
+      >
         <img src="~/assets/img/logo.png" class="inline mr-3" width="40"/>
         <span class="name pr-2">{{ $t("common.jezzLucena") }}</span>
         <span class="title pl-3">{{ $t("common.fullStackEngineer") }}</span>
       </NuxtLink>
+
       <div class="grow"></div>
+
       <div class="hamburger" @click="toggleNavOpen">
         <div class="line"></div>
         <div class="line"></div>
         <div class="line"></div>
       </div>
+
       <div class="links">
-        <NuxtLink :to="$localePath('/about')">{{ $t('common.about') }}</NuxtLink>
-        <NuxtLink :to="$localePath('/')">{{ $t("common.portfolio") }}</NuxtLink>
-        <a href="/files/JezzLucenaResume2025.pdf" target="_blank">{{ $t("common.resume") }}</a>
-        <a href="https://rznlvjsm.formester.com/f/2_rn9_199YR-" target="_blank">{{ $t("common.contact") }}</a>
-        <select v-model="$i18n.locale" id="localeSelector" @change="() => changeLocale()">
+        <NuxtLink 
+          :to="$localePath('/about') + '#content'"
+          @click="isNavOpen = false"
+        >{{ $t('common.about') }}</NuxtLink>
+        <NuxtLink 
+          :to="$localePath('/')" 
+          @click="isNavOpen = false"
+        >{{ $t("common.portfolio") }}</NuxtLink>
+        <a
+          href="/files/JezzLucenaResume2025.pdf"
+          target="_blank"
+          @click="isNavOpen = false"
+        >{{ $t("common.resume") }}</a>
+        <NuxtLink
+          to="https://rznlvjsm.formester.com/f/2_rn9_199YR-"
+          target="_blank"
+          @click="isNavOpen = false"
+        >{{ $t("common.contact") }}</NuxtLink>
+
+        <select
+          v-model="$i18n.locale"
+          @change="() => changeLocale()"
+        >
           <option
             v-for="(locale, index) in availableLocales"
             :key="index"
             :value="locale"
-          >
-            {{ LANGUAGES[locale as Language].short }}
-          </option>
-      </select>
+          >{{ LANGUAGES[locale as Language].long }}</option>
+        </select>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+.topBarBg {
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s opacity ease;
+  z-index: 1;
+
+  &.navOpen {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
 .topBar {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -68,11 +115,11 @@ useEventListener('resize', handleWindowResize);
   line-height: 18px;
   text-transform: uppercase;
   font-size: 18px;
-  border-bottom: 1px solid transparent;
+  border-bottom: 2px solid transparent;
   background-color: black;
   transition: 1s border-bottom-color ease;
   color: white;
-  z-index: 1;
+  z-index: 2;
 }
 
 .logo {
@@ -93,13 +140,13 @@ useEventListener('resize', handleWindowResize);
       top: 50%;
       left: 0;
       height: 30px;
-      border-right: 1px solid white;
+      border-right: 2px solid white;
       transform: translateY(-50%);
     }
   }
 }
 
-.topBar.scrolled {
+.topBar.scrolled, .topBar.navOpen {
   border-bottom-color: white;
 
   .logo {
@@ -123,8 +170,11 @@ useEventListener('resize', handleWindowResize);
 
 select {
   padding: 15px 0;
-  margin: 0 20px;
-  font-size: 18px;
+  margin-left: 20px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  font-weight: bold;
+  text-transform: uppercase;
 
   option {
     background-color: black;
@@ -146,8 +196,8 @@ a {
       position: absolute;
       left: 20px;
       right: 20px;
-      bottom: -5px;
-      height: 3px;
+      bottom: -7px;
+      height: 2px;
       background-color: white;
     }
 
@@ -155,9 +205,9 @@ a {
       content: '';
       position: absolute;
       top: 50%;
-      right: 0;
+      right: -1px;
       height: 30px;
-      border-right: 1px solid white;
+      border-right: 2px solid white;
       transform: translateY(-50%);
     }
   }
@@ -170,7 +220,6 @@ a {
 .hamburger {
   display: none;
   padding-top: 17px;
-  margin-right: -30px;
   cursor: pointer;
   
   .line {
@@ -201,33 +250,40 @@ a {
   }
 }
 
-@media (max-width: 940px) {
+@media (max-width: 1024px) {
   .links {
     position: absolute;
     top: 100%;
     left: 100%;
     background-color: black;
-    border: 1px solid black;
+    border: 2px solid black;
     text-align: center;
 
     a {
       display: block;
       margin: 0 40px;
       padding: 5px 20px;
+      line-height: 40px;
 
       &.router-link-active::before {
-        bottom: 20px;
+        bottom: 10px;
       }
 
       &::after {
         display: none;
       }
     }
+
+    select {
+      padding: 10px 0 20px;
+    }
   }
 
-  .topBar.scrolled .links {
-    border-bottom: 1px white solid;
-    border-left: 1px white solid;
+  .topBar.navOpen, .topBar.scrolled {
+    .links {
+      border-bottom: 2px white solid;
+      border-left: 2px white solid;
+    }
   }
 
   .hamburger {
