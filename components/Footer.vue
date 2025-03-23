@@ -51,7 +51,7 @@ onMounted(() => {
   background-color: white;
   color: black;
   text-align: center;
-  padding: 10px 0;
+  padding: 30px 10px;
   font-size: 14px;
 }
 
@@ -82,7 +82,7 @@ onMounted(() => {
       vertical-align: bottom;
 		}
 
-			@media(max-width: 768px) {
+			@media(max-width: 1024px) {
 				.buttonArea .button {
 					display: block;
           max-width: 200px;

@@ -11,6 +11,9 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@capacitor/android": "^7.1.0",
+    "@capacitor/core": "^7.1.0",
+    "@capacitor/ios": "^7.1.0",
     "@intlify/unplugin-vue-i18n": "^6.0.3",
     "@nuxtjs/i18n": "^9.3.1",
     "@tailwindcss/vite": "^4.0.3",
@@ -22,6 +25,7 @@
     "vue-router": "latest"
   },
   "devDependencies": {
+    "@capacitor/cli": "^7.1.0",
     "@types/jquery": "^3.5.32",
     "sass": "^1.86.0"
   }

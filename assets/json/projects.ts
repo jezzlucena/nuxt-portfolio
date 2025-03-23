@@ -70,7 +70,7 @@ const PROJECTS: { [key: string]: Project } = {
     "i18nKeys": {
       "name": "projects.items.thermofisher.name",
       "description": "projects.items.thermofisher.description",
-      "company": "projects.companies.kaon",
+      "company": "projects.companies.thermoFisher",
       "role": "projects.roles.fullStack",
     },
     "year": 2018,

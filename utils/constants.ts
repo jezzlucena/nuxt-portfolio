@@ -37,7 +37,7 @@ export const PROFILE_KEYWORDS = [
   "HTML5",
   "CSS3",
   "Ruby on Rails",
-  "Agile Software Development",
+  "Agile Development",
   "UX/UI Design",
   "RESTful APIs",
   "i18n"

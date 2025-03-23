@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">nuxt-portfolio</string>
+    <string name="title_activity_main">nuxt-portfolio</string>
+    <string name="package_name">com.portfolio.nuxt</string>
+    <string name="custom_url_scheme">com.portfolio.nuxt</string>
+</resources>

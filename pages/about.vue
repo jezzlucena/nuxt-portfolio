@@ -110,7 +110,7 @@ watch(locale, () => {
       }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
       .profilePicture {
         height: 140px;
         width: 140px;
@@ -127,43 +127,44 @@ watch(locale, () => {
     }
 
     .profileName {
-      font-size: 24px;
+      font-size: 30px;
       font-weight: bold;
-      line-height: 24px;
-      padding-top: 25px;
+      line-height: 30px;
+      padding-top: 24px;
       margin-bottom: 10px;
-      letter-spacing: 1px;
       text-decoration: underline;
+      font-family: myriad-boldcond;
     }
     
     .profileTitle {
-      font-size: 16px;
-      line-height: 16px;
-      margin-bottom: 20px;
+      font-size: 18px;
+      line-height: 18px;
+      margin-bottom: 10px;
       letter-spacing: 1px;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
       .profileName {
         margin-bottom: 5px;
-        font-size: 18px;
+        font-size: 26px;
         padding-top: 10px;
       }
 
       .profileTitle {
         font-size: 14px;
+        line-height: 14px;
       }
     }
 
     @media (max-width: 640px) {
       .profileName {
-        font-size: 18px;
-        padding-top: 10px;
+        font-size: 22px;
       }
 
       .profileTitle {
         margin-bottom: 10px;
         font-size: 14px;
+        line-height: 14px;
       }
     }
   }
@@ -219,7 +220,7 @@ watch(locale, () => {
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     .textContainer {
       max-height: 1000px;
 

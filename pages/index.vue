@@ -54,7 +54,13 @@ const handleMasonryLayout = () => {
   document.querySelectorAll('.column .item').forEach(item => {
     const masonryItem = document.querySelector(`.masonryItem[data-key=${item.getAttribute('data-key')}]`);
     const itemBox = item.getBoundingClientRect();
-    masonryItem?.setAttribute('style', `height: ${itemBox.height}px; width: ${itemBox.width}px; transform: translate(${itemBox.x - (galleryBox?.left || 0)}px, ${itemBox.y - (galleryBox?.top || 0 + scrollY.value)}px)`)
+    const roundedBox = {
+      height: Math.round(itemBox.height * 10) / 10,
+      width: Math.round(itemBox.width * 10) / 10,
+      x: Math.round((itemBox.x - (galleryBox?.left || 0)) * 10) / 10,
+      y: Math.round((itemBox.y - (galleryBox?.top || 0 + scrollY.value)) * 10) / 10,
+    }
+    masonryItem?.setAttribute('style', `height: ${roundedBox.height}px; width: ${roundedBox.width}px; transform: translate(${roundedBox.x}px, ${roundedBox.y}px)`);
   });
   isMasonryActive.value = true;
 }
@@ -64,13 +70,13 @@ const handleWindowResize = useDebounceFn(() => {
 
   if (galleryMode.value === 'list') {
     numColumns = 1;
-  } else if (!import.meta.client || window.innerWidth >= 1280) {
+  } else if (!import.meta.client || window.innerWidth >= 1024) { // lg
     numColumns = 5;
-  } else if (window.innerWidth >= 1024) {
+  } else if (window.innerWidth >= 768) { // md
     numColumns = 4;
-  } else if (window.innerWidth >= 768) {
+  } else if (window.innerWidth >= 640) { // sm
     numColumns = 3;
-  } else if (window.innerWidth >= 640) {
+  } else if (window.innerWidth >= 393) { // iPhone 14 Pro viewport dimensions
     numColumns = 2;
   } else {
     numColumns = 1;
@@ -89,13 +95,16 @@ onMounted(() => {
 
 <template>
   <div class="content relative bg-white">
-    <div class="w-[100%] mx-auto p-[50px]">
+    <div class="w-[100%] mx-auto py-[50px] px-[10px] md:px-[30px] lg:px-[50px]">
       <Heading>
         <span>{{ $t("home.myWork") }}</span>
 
         <div class="toggle" :class="{ [galleryMode]: true, show: isShowingGallery }" @click="toggleGalleryMode">
-          <div class="icon columns"><div class="symbol"></div></div>
-          <div class="icon list"><div class="symbol"></div></div>
+          <div class="icon columns">
+            <div class="symbol"></div>
+          </div>
+          <div class="icon list">
+            <div class="symbol"></div></div>
         </div>
       </Heading>
 
@@ -141,12 +150,6 @@ onMounted(() => {
   transform: translateY(-50%);
   display: flex;
   cursor: pointer;
-  transition: 0.2s box-shadow ease, 0.2s transform ease;
-
-  &:hover, &.hovered {
-    box-shadow: 7px 7px 0 -1px rgba(0, 0, 0, 1);
-    transform: translate(-3px, -55%);
-  }
 
   .icon {
     position: relative;
@@ -156,7 +159,12 @@ onMounted(() => {
     margin: 0;
     margin-right: -2px;
     background-color: #aaa;
-    transition: 0.6s background-color ease;
+    transition: 0.6s background-color ease, 0.2s box-shadow ease, 0.2s transform ease;
+
+    &:hover, &.hovered {
+      box-shadow: 7px 7px 0 -1px rgba(0, 0, 0, 1);
+      transform: translate(-3px, -3px);
+    }
     
     .symbol {
       position: absolute;
@@ -240,6 +248,12 @@ onMounted(() => {
 
   .column {
     flex-grow: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .gallery {
+    gap: 10px;
   }
 }
 

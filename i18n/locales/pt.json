@@ -55,18 +55,17 @@
       "frontEnd": "Desenvolvedor Front End",
       "fullStack": "Desenvolvedor Full Stack",
       "fullStackAi": "Desenvolvedor Full Stack / IA",
-      "independentCollaborator": "Colaborador Independente",
-      "leadEngineerGameDesigner": "Desenvolvedor Líder e Game Designer",
+      "independentCollaborator": "Colaborador",
+      "leadEngineerGameDesigner": "Game Designer e Desenvolvedor",
       "seniorFullStack": "Desenvolvedor Full Stack Sênior",
       "softwareEngineer": "Engenheiro de Software"
     },
     "companies": {
-      "celestialBodies": "Acampamento Celestial Bodies",
       "independentProject": "Projeto Independente"
     },
     "items": {
       "multiverse": {
-        "name": "Burning Man: Multiverso",
+        "name": "Playa: Multiverso",
         "description": "Uma simulação, de 2020, virtual e socialmente distanciada de tudo o que aconteceria na Playa"
       },
       "chatbot": {
@@ -74,11 +73,11 @@
         "description": "Um assistente desenvolvido utilizando o Modelo de linguagem de grande escala Qwen 2.5, da Alibaba Cloud"
       },
       "climatempo": {
-        "name": "Climatempo Previsão",
+        "name": "Climatempo",
         "description": "O aplicativo multi-plataforma líder em previsão do tempo no Brasil"
       },
       "dell": {
-        "name": "Dell OME Game Educativo",
+        "name": "Dell Game Educativo",
         "description": "A experiência gamificada da Dell para educar sobre seu aplicativo de implantação de servidores de ponta"
       },
       "thermofisher": {
@@ -94,7 +93,7 @@
         "description": "A Kaon cria tecnologia de ponta e plataformas que empoderam companhias globais a simplificar suas complexas histórias; ao toque de todo consumidor"
       },
       "dxma": {
-        "name": "Prêmios DxMA 2016: Catálogo",
+        "name": "Prêmios DxMA 2016",
         "description": "O catálogo digital da cerimônia de prêmios DxMA de melhores aplicativos B2B"
       },
       "f5": {

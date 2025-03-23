@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { NuxtImg } from '#components';
+
 const { t } = useI18n();
 
 useHead({
@@ -8,9 +10,14 @@ useHead({
 
 <template>
   <div class="content relative bg-white" id="content">
-    <div class="relative w-[100%] max-w-[768px] mx-auto py-[70px] px-[50px]">
+    <div class="relative w-[100%] max-w-[768px] mx-auto py-[70px] px-[20px]">
       <Heading>
         <span>{{ $t("common.resume") }}</span>
+        <a href="/files/JezzLucenaResume2025.pdf" target="_blank">
+          <Button>
+            <img src="/img/download.svg">
+          </Button>
+        </a>
       </Heading>
 
       <div class="relative w-[100%] pdfContainer">
@@ -26,5 +33,21 @@ useHead({
 <style scoped>
 .pdfContainer {
   padding-bottom: calc(129% + 56px);
+}
+
+.button {
+  position: absolute;
+  padding: 5px 10px;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+
+  &:hover, &.hovered {
+    transform: translate(-3px, calc(-50% - 3px));
+  }
+
+  img {
+    width: 20px;
+  }
 }
 </style>

@@ -72,7 +72,7 @@
     },
     "items": {
       "multiverse": {
-        "name": "Burning Man: Multiverso",
+        "name": "Playa: Multiverso",
         "description": "Una simulación virtual, con distanciamiento social, de todo lo que ocurriría en Playa en 2020"
       },
       "chatbot": {
@@ -80,11 +80,11 @@
         "description": "Un asistente desarrollado con el modelo de lenguaje a gran escala Qwen 2.5 de Alibaba Cloud"
       },
       "climatempo": {
-        "name": "Climatempo Pronóstico",
+        "name": "Climatempo",
         "description": "La aplicación líder de pronóstico del tiempo multiplataforma en Brasil"
       },
       "dell": {
-        "name": "Dell OME Game Educativo",
+        "name": "Dell Game Educativo",
         "description": "Experiencia gamificada de Dell para educar sobre su aplicación de implementación de servidores perimetrales"
       },
       "thermofisher": {
@@ -100,7 +100,7 @@
         "description": "Kaon crea tecnología y plataformas de vanguardia que permiten a las empresas globales simplificar sus complejas historias, al alcance de cada consumidor"
       },
       "dxma": {
-        "name": "Premios DxMA 2016: Catálogo",
+        "name": "Premios DxMA 2016",
         "description": "El catálogo digital de la ceremonia de entrega de premios DxMA a las mejores aplicaciones B2B"
       },
       "f5": {

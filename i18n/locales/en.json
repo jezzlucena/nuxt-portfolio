@@ -62,21 +62,22 @@
       "frontEnd": "Front End Engineer",
       "fullStack": "Full Stack Engineer",
       "fullStackAi": "Full Stack / AI Engineer",
-      "independentCollaborator": "Independent Collaborator",
-      "leadEngineerGameDesigner": "Lead Engineer and Game Designer",
+      "independentCollaborator": "Collaborator",
+      "leadEngineerGameDesigner": "Game Designer and Engineer",
       "seniorFullStack": "Senior Full Stack Engineer",
       "softwareEngineer": "Software Engineer"
     },
     "companies": {
-      "celestialBodies": "Celestial Bodies Camp",
-      "independentProject": "Independent Project",
+      "celestialBodies": "Celestial Bodies",
+      "independentProject": "Personal Project",
       "hxd": "HXD Smart Solutions",
       "kaon": "Kaon Interactive",
-      "wpi": "Worcester Polytechnic Institute"
+      "thermoFisher": "Thermo Fisher",
+      "wpi": "WPI"
     },
     "items": {
       "multiverse": {
-        "name": "Burning Man: Multiverse",
+        "name": "Playa: Multiverse",
         "description": "A socialy distanced and virtual 2020 simulation of what would happen on Playa"
       },
       "chatbot": {
@@ -84,15 +85,15 @@
         "description": "A chatbot powered by the Large Language Model Qwen 2.5, by Alibaba Cloud"
       },
       "climatempo": {
-        "name": "Climatempo Forecast",
+        "name": "Climatempo",
         "description": "The leading weather forecast cross-platform app in Brazil"
       },
       "dell": {
-        "name": "Dell OME Training Game",
+        "name": "Dell Training Game",
         "description": "Dell's gamified experience to showcase their cutting-edge corporate server deployment application"
       },
       "thermofisher": {
-        "name": "Thermo Fisher Precision Medicine",
+        "name": "Precision Medicine",
         "description": "Thermo Fisher Scientific's Precision Medicine technology showcase app"
       },
       "abbott": {
@@ -108,7 +109,7 @@
         "description": "Kaon creates advanced software technology and platforms to enable global companies to simplify their complex stories at every customer touch-point"
       },
       "dxma": {
-        "name": "DxMA Awards 2016 Catalog",
+        "name": "DxMA Awards 2016",
         "description": "The digital catalog for DxMA's best B2B apps award ceremony"
       },
       "f5": {
@@ -116,7 +117,7 @@
         "description": "A showcase app for F5 Networks' best practices on cloud computing and security"
       },
       "hyundai": {
-        "name": "Hyundai HB20s Launch",
+        "name": "Hyundai HB20s",
         "description": "Hyundai's marketing app for the launch of HB20 and HB20s new models in Brazil"
       },
       "photobooth": {

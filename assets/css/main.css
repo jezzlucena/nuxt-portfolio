@@ -2,27 +2,27 @@
 
 @font-face {
 	font-family: "opensans";
-	src: url("~/assets/fonts/OpenSans-Regular.ttf") format("opentype");
+	src: url("/fonts/OpenSans-Regular.ttf") format("truetype");
 }
 
 @font-face {
 	font-family: "opensans-light";
-	src: url("~/assets/fonts/OpenSans-Light.ttf") format("opentype");
+	src: url("/fonts/OpenSans-Light.ttf") format("truetype");
 }
 
 @font-face {
 	font-family: "opensans-bold";
-	src: url("~/assets/fonts/OpenSans-Bold.ttf") format("opentype");
+	src: url("/fonts/OpenSans-Bold.ttf") format("truetype");
 }
 
 @font-face {
 	font-family: "myriad-boldcond";
-	src: url("~/assets/fonts/MyriadPro-BoldCond.otf") format("opentype");
+	src: url("/fonts/MyriadPro-BoldCond.otf") format("opentype");
 }
 
 @font-face {
 	font-family: "myriad-cond";
-	src: url("~/assets/fonts/MyriadPro-Cond.otf") format("opentype");
+	src: url("/fonts/MyriadPro-Cond.otf") format("opentype");
 }
 
 html, body {

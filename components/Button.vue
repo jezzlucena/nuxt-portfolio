@@ -26,7 +26,8 @@ const props = defineProps<{
 	letter-spacing: 1px;
 	color: white;
 	background-color: black;
-	border: 2px solid white;
+  box-shadow: 0px 0px 0 0px rgba(0, 0, 0, 0);
+  border: 2px solid white;
 	text-decoration: underline;
   white-space: nowrap;
 	cursor: pointer;

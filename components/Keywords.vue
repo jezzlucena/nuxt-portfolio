@@ -21,8 +21,17 @@ const props = defineProps<{
   color: white;
 
   .label, .keyword {
-    font-size: 14px;
     color: black;
+  }
+
+  .label, .keyword {
+    font-size: 14px;
+  }
+
+  @media (max-width: 640px) {
+    .label, .keyword {
+      font-size: 12px;
+    }
   }
 
   .label {
@@ -30,7 +39,7 @@ const props = defineProps<{
     display: block;
     margin-bottom: 6px;
     font-family: myriad-boldcond;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     margin-top: 15px;
     text-transform: uppercase;
   }
@@ -42,7 +51,7 @@ const props = defineProps<{
     margin-bottom: 6px;
     margin-right: 6px;
     border: 2px solid black;
-    padding: 2px 10px;
+    padding: 3px 15px;
 
     &:not(:last-child)::after {
       content: ',';

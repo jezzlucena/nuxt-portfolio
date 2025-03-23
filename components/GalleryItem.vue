@@ -35,7 +35,7 @@ onMounted(() => {
 <template>
   <NuxtLink
     :to="$localePath(`/projects/${projectKey}`) + '#content'"
-    class="item trigger"
+    class="item trigger mb-[10px] md:mb-[20px]"
     :class="{ [galleryMode]: true, triggered: isTriggered, noVideo: !project.thumbVideoUrl && !project.thumbGifUrl }"
     @mouseenter="playVideo"
     @mouseleave="pauseVideo"
@@ -69,7 +69,6 @@ onMounted(() => {
   border: 2px solid black;
   display: block;
   background-color: white;
-  margin-bottom: 20px;
   cursor: pointer;
   width: 100%;
 	transition: 0.2s box-shadow ease, 0.2s transform ease;
@@ -85,8 +84,6 @@ onMounted(() => {
   }
 
   &.columns {
-    margin: 0 auto 20px;
-
     .wrapper {
       flex-direction: column;
     }
@@ -166,27 +163,21 @@ onMounted(() => {
       letter-spacing: 0;
 
       .name {
-        font-size: 16px;
+        font-size: 18px;
         font-weight: bold;
-        padding-right: 30px;
         letter-spacing: 0;
         margin-bottom: 10px;
         text-decoration: underline;
       }
 
       .subtitle {
-        font-size: 12px;
+        font-size: 14px;
         line-height: 18px;
         margin-left: 0;
-        padding-right: 30px;
         opacity: 0.7;
         animation-delay: 0.1s;
         margin-bottom: 8px;
         padding-right: 0;
-
-        span {
-          white-space: nowrap;
-        }
 
         .role {
           display: block;
@@ -198,20 +189,43 @@ onMounted(() => {
       }
 
       .description {
-        font-size: 12px;
+        font-size: 10px;
         opacity: 1;
         animation-delay: 0.2s;
       }
 
-      @media(max-width: 768px) {
+      @media(max-width: 1024px) {
         .name {
-          font-size: 13px;
-          line-height: 16px;
+          font-size: 18px;
+          line-height: 18px;
           padding-right: 0;
         }
 
         .subtitle {
-          font-size: 11px;
+          font-size: 14px;
+          line-height: 16px;
+        }
+
+        .description {
+          font-size: 12px;
+        }
+      }
+
+      @media(max-width: 640px) {
+        .name {
+          font-size: 14px;
+          line-height: 18px;
+          margin-bottom: 10px;
+        }
+
+        .subtitle {
+          font-size: 9px;
+          line-height: 12px;
+          margin-bottom: 10px;
+
+          .role {
+            margin-bottom: 3px;
+          }
         }
 
         .description {
@@ -227,6 +241,12 @@ onMounted(() => {
         letter-spacing: 1px;
         margin-bottom: 5px;
         padding-right: 0;
+      }
+    }
+
+    @media(max-width: 640px) {
+      .detailsContainer {
+        padding: 10px 8px;
       }
     }
 }
