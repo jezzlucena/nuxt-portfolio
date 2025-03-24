@@ -1,5 +1,11 @@
+<script setup lang="ts">
+import { Capacitor } from "@capacitor/core";
+
+const isNative = import.meta.client && (window?.matchMedia('(display-mode: standalone)').matches || Capacitor.isNativePlatform());
+</script>
+
 <template>
-  <div class="bg-black pt-[60px]">
+  <div class="bg-black pt-[60px]" :class="{ native: isNative }">
     <TopBar />
 
     <div class="header fixed">
@@ -23,8 +29,8 @@
 <style>
 .header {
 	min-height: 180px;
-  height: 65vh;
-  width: 100%;
+  height: calc(100vh - 147px);
+  left: 0; right: 0;
 
   &.fixed {
     background-color: black;
@@ -44,7 +50,7 @@
       font-family: myriad-cond;
       color: white;
       letter-spacing: 3px;
-      padding: 20px 0 20px;
+      padding: 20px 0;
       background-color: rgba(0, 0, 0, 0.5);
       backdrop-filter: blur(10px);
       text-align: center;
@@ -72,17 +78,34 @@
 
 @media (max-width: 480px) {
   .header {
-    height: 65vh;
+    &.relative {
+      .text {
+        font-size: 18px;
+        line-height: 26px;
     
-    .title {
-      display: block;
-      padding-left: 0;
-      margin-left: 0;
+        .title {
+          display: block;
+          padding-left: 0;
+          margin-left: 0;
 
-      &::after {
-        display: none;
+          &::after {
+            display: none;
+          }
+        }
       }
     }
   }
+}
+
+@media (max-height: 480px) {
+  .header.relative .text {
+    font-size: 14px;
+    line-height: 26px;
+    padding: 10px 0;
+  }
+}
+
+.native .header {
+  height: calc(100vh - 60px - env(safe-area-inset-top));
 }
 </style>

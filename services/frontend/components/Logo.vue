@@ -54,10 +54,10 @@ onUnmounted(() => clearInterval(animationInterval.value));
 @use "sass:math";
 
 svg {
-  height: 65%;
+  height: 50vh;
   position: absolute;
   left: 50%;
-  top: 39%;
+  top: calc(50% - 50px);
   transform: translate(-50%, -50%);
 	background-image: url('~/assets/img/logo.png');
   background-size: contain;
@@ -81,10 +81,18 @@ svg {
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 480px) {
 	svg {
-		top: 35%;
-		height: 55%;
+		height: auto;
+		width: 80vw;
+	}
+}
+
+@media (max-height: 640px) {
+	svg {
+		margin-top: 10px;
+		height: calc(100vh - 174px);
+		width: auto;
 	}
 }
 

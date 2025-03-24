@@ -15,7 +15,8 @@ watch(locale, () => {
 
 <template>
     <div class="content relative bg-white" id="content">
-      <div class="w-[100%] mx-auto py-[70px] px-[50px]">
+      <div class="absolute -top-[50px]" id="content"></div>
+      <div class="w-[100%] mx-auto py-[30px] px-[20px] md:px-[30px] lg:px-[50px]">
         <div id="about" class="section about">
           <div class="aboutContainer">
             <div class="description">
@@ -90,6 +91,11 @@ watch(locale, () => {
   width: 100%;
   color: black;
   border-top: 2px solid white;
+  padding-top: env(safe-area-inset-top);
+
+  .anchor {
+    margin-top: -env(safe-area-inset-top);
+  }
 
   .aboutContainer {
     .profilePicture {

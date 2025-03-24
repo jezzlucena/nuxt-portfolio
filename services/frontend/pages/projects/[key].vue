@@ -101,6 +101,8 @@ watch(locale, () => {
 
 <style scoped>
 .content {
+  padding-top: env(safe-area-inset-top);
+
   .project {
     .label {
       font-family: myriad-boldcond;

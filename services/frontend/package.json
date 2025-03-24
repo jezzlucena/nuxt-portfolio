@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-app",
+  "name": "frontend",
   "private": true,
   "type": "module",
   "scripts": {
@@ -7,6 +7,7 @@
     "start": "NITRO_PORT=8080 node .output/server/index.mjs",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
+    "cap:gen": "nuxt generate --dotenv .env.capacitor",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },

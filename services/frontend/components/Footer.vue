@@ -42,7 +42,7 @@ onMounted(() => {
   position: relative;
   background-color: black;
   color: white;
-  z-index: 99;
+  z-index: 1;
 }
 
 .disclaimer {
@@ -51,7 +51,7 @@ onMounted(() => {
   background-color: white;
   color: black;
   text-align: center;
-  padding: 30px 10px;
+  padding: 20px 10px calc(20px + env(safe-area-inset-bottom));
   font-size: 14px;
 }
 

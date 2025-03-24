@@ -10,7 +10,8 @@ useHead({
 
 <template>
   <div class="content relative bg-white" id="content">
-    <div class="relative w-[100%] max-w-[768px] mx-auto py-[70px] px-[20px]">
+    <div class="anchor absolute -top-[50px]" id="content"></div>
+    <div class="relative w-[100%] max-w-[768px] mx-auto py-[30px] px-[20px] md:px-[30px] lg:px-[50px]">
       <Heading>
         <span>{{ $t("common.resume") }}</span>
         <a href="/files/JezzLucenaResume2025.pdf" target="_blank">
@@ -31,6 +32,14 @@ useHead({
 </template>
 
 <style scoped>
+.content {
+  padding-top: env(safe-area-inset-top);
+
+  .anchor {
+    margin-top: -env(safe-area-inset-top);
+  }
+}
+
 .pdfContainer {
   padding-bottom: calc(129% + 56px);
 }

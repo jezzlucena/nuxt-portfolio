@@ -62,7 +62,7 @@ useEventListener('resize', handleWindowResize);
           @click="isNavOpen = false"
         >{{ $t('common.about') }}</NuxtLink>
         <NuxtLink 
-          :to="$localePath('/')"
+          :to="$localePath('/') + '#content'"
           :class="{ 'router-link-active': (route.name as string).startsWith('projects-key') || (route.name as string).startsWith('index') }"
           @click="isNavOpen = false"
         >{{ $t("common.portfolio") }}</NuxtLink>
@@ -101,7 +101,7 @@ useEventListener('resize', handleWindowResize);
   opacity: 0;
   pointer-events: none;
   transition: 0.5s opacity ease;
-  z-index: 1;
+  z-index: 2;
 
   &.navOpen {
     opacity: 1;
@@ -122,7 +122,8 @@ useEventListener('resize', handleWindowResize);
   background-color: black;
   transition: 1s border-bottom-color ease;
   color: white;
-  z-index: 2;
+  z-index: 3;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left);
 }
 
 .logo {
@@ -253,7 +254,7 @@ a {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .links {
     position: absolute;
     top: 100%;

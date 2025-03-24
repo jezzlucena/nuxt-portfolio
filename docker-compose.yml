@@ -1,8 +1,14 @@
-name: nuxt-portfolio
+name: vue-ai-chatbot
 
 services:
+  backend:
+    build: ./services/backend
+    ports:
+      - 5050:5050
+    restart: always
+
   frontend:
-    build: ./
+    build: ./services/frontend
     ports:
       - 8080:8080
     restart: always

@@ -94,8 +94,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="content relative bg-white">
-    <div class="w-[100%] mx-auto py-[50px] px-[10px] md:px-[30px] lg:px-[50px]">
+  <div class="content relative bg-white" id="content">
+    <div class="anchor absolute -top-[50px]" id="content"></div>
+    <div class="w-[100%] mx-auto py-[30px] px-[10px] md:px-[30px] lg:px-[50px]">
       <Heading>
         <span>{{ $t("home.myWork") }}</span>
 
@@ -142,6 +143,14 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.content {
+  padding-top: env(safe-area-inset-top);
+
+  .anchor {
+    margin-top: -env(safe-area-inset-top);
+  }
+}
+
 .toggle {
   position: absolute;
   top: 50%;

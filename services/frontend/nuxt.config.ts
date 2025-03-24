@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
+  ssr: process.env.NUXT_DISABLE_SSR !== 'true',
 
   app: {
     head: {
@@ -18,6 +19,18 @@ export default defineNuxtConfig({
     plugins: [
       tailwindcss()
     ],
+    build: {
+      rollupOptions: {
+        onLog(level, log, handler) {
+          // Ignore sourcemap warnings
+          if (log.code === 'SOURCEMAP_BROKEN') {
+              return;
+          }
+
+          handler(level, log);
+        }
+      }
+    }
   },
 
   devServer: {
