@@ -119,6 +119,19 @@
       }
     }
   },
+  "contact": {
+    "pleaseWait": "Aguarde, processando...",
+    "generalError": "Encontramos um erro! Por favor, tente novamente.",
+    "thankYou": "Obrigado por entrar em contato!",
+    "firstName": "Nome",
+    "lastName": "Sobrenome",
+    "email": "Email",
+    "phone": "Telefone",
+    "subject": "Assunto",
+    "message": "Mensagem",
+    "required": "Campo Obrigatório",
+    "send": "Enviar"
+  },
   "footer": {
     "orDirectly": "...ou mande email para",
     "lastUpdated": "Atualizado em",

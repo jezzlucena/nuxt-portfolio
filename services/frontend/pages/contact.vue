@@ -16,11 +16,20 @@ useHead({
   title: `${t('common.contact')} - ${t('common.jezzLucena')}`
 });
 
+watch(locale, () => {
+  useHead({
+    title: `${t('common.contact')} - ${t('common.jezzLucena')}`
+  });
+});
+
 const handleSubmit = async () => {
   status.value = undefined;
-  result.value = "Please wait...";
+  result.value = t("contact.pleaseWait");
   try {
-    const response = await $fetch(`${import.meta.env.VITE_BACKEND_URL}/contact`, {
+    const response: {
+      message: string,
+      status: number
+    } = await $fetch(`${import.meta.env.VITE_BACKEND_URL}/contact`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: form.value,
@@ -30,8 +39,10 @@ const handleSubmit = async () => {
 
     if (response.status === 200) {
       status.value = "success";
+      result.value = t("contact.thankYou");
     } else {
       console.log(response); // Log for debugging, can be removed
+      result.value = t("contact.generalError");
       status.value = "error";
     }
 
@@ -45,15 +56,9 @@ const handleSubmit = async () => {
   } catch (error) {
     console.log(error); // Log for debugging, can be removed
     status.value = "error";
-    result.value = "Something went wrong. Please try again.";
+    result.value = t("contact.generalError");
   }
 }
-
-watch(locale, () => {
-  useHead({
-    title: `${t('common.contact')} - ${t('common.jezzLucena')}`
-  });
-});
 </script>
 
 <template>
@@ -67,37 +72,37 @@ watch(locale, () => {
       <form method="POST" @submit.prevent="handleSubmit">
         <div class="flex gap-2">
           <div class="field grow">
-            <label class="required" for="firstName">First Name</label>
+            <label class="required" for="firstName">{{ $t("contact.firstName") }}</label>
             <input type="text" name="firstName" id="firstName" v-model="form.firstName" required/>
           </div>
           <div class="field grow">
-            <label for="lastName">Last Name</label>
+            <label for="lastName">{{ $t("contact.lastName") }}</label>
             <input type="text" name="lastName" id="lastName" v-model="form.lastName"/>
           </div>
         </div>
         <div class="field">
-          <label class="required" for="email">Email</label>
+          <label class="required" for="email">{{ $t("contact.email") }}</label>
           <input type="email" name="email" id="email" v-model="form.email" required/>
         </div>
         <div class="field">
-          <label for="phone">Phone</label>
+          <label for="phone">{{ $t("contact.phone") }}</label>
           <input type="tel" name="phone" id="phone" v-model="form.phone"/>
         </div>
         <div class="field">
-          <label for="subject">Subject</label>
+          <label for="subject">{{ $t("contact.subject") }}</label>
           <input type="text" name="subject" id="subject" v-model="form.subject"/>
         </div>
         <div class="field">
-          <label class="required" for="message">Message</label>
+          <label class="required" for="message">{{ $t("contact.message") }}</label>
           <textarea name="message" id="message" rows="4" v-model="form.message" required/>
         </div>
         <div class="flex">
           <div class="legend grow">
-            <div class="required">Required field</div>
+            <div class="required">{{ $t("contact.required") }}</div>
           </div>
           <div class="buttonArea grow">
             <Button>
-              <input type="submit"></input>
+              <input type="submit" :value="$t('contact.send')"/>
             </Button>
           </div>
         </div>
@@ -105,12 +110,6 @@ watch(locale, () => {
           {{  result }}
         </div>
       </form>
-
-      <embed
-        class="relative w-[100%]"
-        height="940"
-        src="https://rznlvjsm.formester.com/f/2_rn9_199YR-"
-      />
     </div>
   </div>
 </template>

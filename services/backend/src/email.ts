@@ -31,7 +31,7 @@ const send = (req, res) => {
           Jezz Lucena`
   }, function(err){
     if (!err) {
-      res.json(true)
+      res.status(200).json(true)
     } else {
       console.error(err)
     }

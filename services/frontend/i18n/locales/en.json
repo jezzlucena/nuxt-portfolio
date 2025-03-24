@@ -142,6 +142,19 @@
       }
     }
   },
+  "contact": {
+    "pleaseWait": "Please wait...",
+    "generalError": "Something went wrong. Please try again.",
+    "thankYou": "Thank you for reaching out!",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "subject": "Subject",
+    "message": "Message",
+    "required": "Required Field",
+    "send": "Send"
+  },
   "footer": {
     "linkedIn": "LinkedIn",
     "gitHub": "GitHub",
