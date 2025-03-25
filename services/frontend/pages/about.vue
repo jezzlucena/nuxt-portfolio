@@ -2,10 +2,6 @@
 const isTextCollapsed = ref(true);
 const { t, locale } = useI18n();
 
-useHead({
-  title: `${t('common.about')} - ${t('common.jezzLucena')}`
-});
-
 watch(locale, () => {
   useHead({
     title: `${t('common.about')} - ${t('common.jezzLucena')}`
@@ -15,7 +11,7 @@ watch(locale, () => {
 
 <template>
     <div class="content relative bg-white" id="content">
-      <div class="absolute -top-[50px]" id="content"></div>
+      <div class="anchor absolute -top-[60px]" id="content"></div>
       <div class="w-[100%] mx-auto py-[30px] px-[20px] md:px-[30px] lg:px-[50px]">
         <div id="about" class="section about">
           <div class="aboutContainer">

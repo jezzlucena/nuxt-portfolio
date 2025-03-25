@@ -8,10 +8,6 @@ const isMasonryActive = ref(false);
 let galleryTimeout: NodeJS.Timeout;
 const { t, locale } = useI18n();
 
-useHead({
-  title: `${t('common.portfolio')} - ${t('common.jezzLucena')}`
-});
-
 watch(locale, () => {
   useHead({
     title: `${t('common.portfolio')} - ${t('common.jezzLucena')}`
@@ -95,7 +91,7 @@ onMounted(() => {
 
 <template>
   <div class="content relative bg-white" id="content">
-    <div class="anchor absolute -top-[50px]" id="content"></div>
+    <div class="anchor absolute -top-[60px]" id="content"></div>
     <div class="w-[100%] mx-auto py-[30px] px-[10px] md:px-[30px] lg:px-[50px]">
       <Heading>
         <span>{{ $t("home.myWork") }}</span>

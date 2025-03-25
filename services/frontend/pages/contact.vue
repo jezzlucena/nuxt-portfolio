@@ -12,10 +12,6 @@ const form = ref({
   source: import.meta.env.VITE_SOURCE
 });
 
-useHead({
-  title: `${t('common.contact')} - ${t('common.jezzLucena')}`
-});
-
 watch(locale, () => {
   useHead({
     title: `${t('common.contact')} - ${t('common.jezzLucena')}`
@@ -25,20 +21,21 @@ watch(locale, () => {
 const handleSubmit = async () => {
   status.value = undefined;
   result.value = t("contact.pleaseWait");
+  
   try {
-    const response: boolean = await $fetch(`${import.meta.env.VITE_BACKEND_URL}/contact`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: form.value,
-    });
+    const response = await $fetch<boolean>(
+      `${import.meta.env.VITE_BACKEND_URL}/contact`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: form.value,
+      }
+    );
 
     if (response) {
       status.value = "success";
       result.value = t("contact.thankYou");
     } else {
-      console.log('Response error fetching');
-      console.log(`${import.meta.env.VITE_BACKEND_URL}/contact`);
-      console.log(response); // Log for debugging, can be removed
       result.value = t("contact.generalError");
       status.value = "error";
     }
@@ -51,9 +48,6 @@ const handleSubmit = async () => {
     form.value.subject = "";
     form.value.message = "";
   } catch (error) {
-    console.log('Try/catch error fetching');
-    console.log(`${import.meta.env.VITE_BACKEND_URL}/contact`);
-    console.log(error); // Log for debugging, can be removed
     status.value = "error";
     result.value = t("contact.generalError");
   }
@@ -62,7 +56,7 @@ const handleSubmit = async () => {
 
 <template>
   <div class="content relative bg-white">
-    <div class="anchor absolute -top-[50px]" id="content"></div>
+    <div class="anchor absolute -top-[60px]" id="content"></div>
     <div class="relative w-[100%] max-w-[768px] mx-auto py-[30px] px-[20px] md:px-[30px] lg:px-[50px]">
       <Heading>
         <span>{{ $t("common.contact") }}</span>
@@ -152,12 +146,13 @@ const handleSubmit = async () => {
 
   .result {
     margin: 10px 0;
+
     &.success {
-      animation: 3s successToBlack normal forwards;
+      animation: 10s successToBlack normal forwards;
     }
 
     &.error {
-      animation: 3s errorToBlack normal forwards;
+      animation: 10s errorToBlack normal forwards;
     }
   }
 

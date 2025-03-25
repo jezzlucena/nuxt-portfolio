@@ -88,14 +88,6 @@ svg {
 	}
 }
 
-@media (max-height: 640px) {
-	svg {
-		margin-top: 10px;
-		height: calc(100vh - 174px);
-		width: auto;
-	}
-}
-
 @for $i from 1 to 464 {
 	$delay: math.div(math.round((($i * 0.005) + math.div(math.random(), 2)) * 100), 100);
 	$randomColor: rgb(math.random(255), math.random(255), math.random(255));

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { Capacitor } from "@capacitor/core";
 
-const isNative = import.meta.client && (window?.matchMedia('(display-mode: standalone)').matches || Capacitor.isNativePlatform());
+const isNativeOrPWA = import.meta.client && (window?.matchMedia('(display-mode: standalone)').matches || Capacitor.isNativePlatform());
 </script>
 
 <template>
-  <div class="bg-black pt-[60px]" :class="{ native: isNative }">
+  <div class="bg-black pt-[60px]" :class="{ native: isNativeOrPWA }">
     <TopBar />
 
     <div class="header fixed">

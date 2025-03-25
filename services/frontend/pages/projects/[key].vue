@@ -6,26 +6,23 @@ const route = useRoute();
 const project: Project = PROJECTS[route.params.key as keyof typeof PROJECTS];
 const { t, locale } = useI18n();
 
+watch(locale, () => {
+  useHead({
+    title: `${t(project.i18nKeys.name)} - ${t('common.jezzLucena')}`
+  });
+});
+
 if (!project) {
   throw createError({
     statusCode: 404,
     statusMessage: 'Project Not Found'
   });
 }
-
-useHead({
-  title: `${t(project.i18nKeys.name)} - ${t('common.jezzLucena')}`
-});
-
-watch(locale, () => {
-  useHead({
-    title: `${t(project.i18nKeys.name)} - ${t('common.jezzLucena')}`
-  });
-});
 </script>
 
 <template>
   <div class="content bg-white relative" id="content">
+    <div class="anchor absolute -top-[60px]"></div>
     <div id="project" class="section project w-[100%] mx-auto py-[70px] px-[50px]">
 				<div class="textContainer">
           <Heading>{{ $t(project.i18nKeys.name) }}</Heading>
@@ -102,6 +99,10 @@ watch(locale, () => {
 <style scoped>
 .content {
   padding-top: env(safe-area-inset-top);
+
+  .anchor {
+    margin-top: -env(safe-area-inset-top);
+  }
 
   .project {
     .label {
