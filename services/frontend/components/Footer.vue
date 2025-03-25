@@ -51,7 +51,7 @@ onMounted(() => {
   background-color: white;
   color: black;
   text-align: center;
-  padding: 20px 10px calc(20px + env(safe-area-inset-bottom));
+  padding: 20px 10px calc(20px + var(--safe-area-inset-bottom));
   font-size: 14px;
 }
 

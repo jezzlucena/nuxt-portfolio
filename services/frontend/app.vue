@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { Capacitor } from "@capacitor/core";
+import { initialize } from "@capacitor-community/safe-area";
+
+initialize();
 
 const isNativeOrPWA = import.meta.client && (window?.matchMedia('(display-mode: standalone)').matches || Capacitor.isNativePlatform());
 </script>
@@ -106,6 +109,6 @@ const isNativeOrPWA = import.meta.client && (window?.matchMedia('(display-mode: 
 }
 
 .native .header {
-  height: calc(100vh - 60px - env(safe-area-inset-top));
+  height: calc(100vh - 60px - var(--safe-area-inset-top));
 }
 </style>

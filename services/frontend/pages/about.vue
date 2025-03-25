@@ -87,10 +87,10 @@ watch(locale, () => {
   width: 100%;
   color: black;
   border-top: 2px solid white;
-  padding-top: env(safe-area-inset-top);
+  padding-top: var(--safe-area-inset-top);
 
   .anchor {
-    margin-top: -env(safe-area-inset-top);
+    margin-top: -var(--safe-area-inset-top);
   }
 
   .aboutContainer {

@@ -140,10 +140,10 @@ onMounted(() => {
 
 <style scoped>
 .content {
-  padding-top: env(safe-area-inset-top);
+  padding-top: var(--safe-area-inset-top);
 
   .anchor {
-    margin-top: -env(safe-area-inset-top);
+    margin-top: -var(--safe-area-inset-top);
   }
 }
 

@@ -123,7 +123,7 @@ useEventListener('resize', handleWindowResize);
   transition: 1s border-bottom-color ease;
   color: white;
   z-index: 3;
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left);
+  padding: var(--safe-area-inset-top) var(--safe-area-inset-right) 0 var(--safe-area-inset-left);
 }
 
 .logo {
@@ -173,8 +173,10 @@ useEventListener('resize', handleWindowResize);
 }
 
 select {
-  padding: 15px 0;
+  line-height: 40px;
+  padding: 5px 0;
   margin-left: 20px;
+  margin-bottom: 10px;
   font-size: 14px;
   letter-spacing: 2px;
   font-weight: bold;

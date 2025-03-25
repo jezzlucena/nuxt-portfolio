@@ -7,7 +7,11 @@ const config: CapacitorConfig = {
   plugins: {
     CapacitorHttp: {
       enabled: true
-    }
+    },
+    SafeArea: {
+      enabled: true,
+      customColorsForSystemBars: true
+    },
   }
 };
 
