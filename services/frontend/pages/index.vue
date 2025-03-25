@@ -90,7 +90,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="content relative bg-white" id="content">
+  <div class="content relative bg-white">
     <div class="anchor absolute -top-[60px]" id="content"></div>
     <div class="w-[100%] mx-auto py-[30px] px-[10px] md:px-[30px] lg:px-[50px]">
       <Heading>

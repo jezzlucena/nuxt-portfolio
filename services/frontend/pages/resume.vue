@@ -1,9 +1,4 @@
 <script setup lang="ts">
-import { Capacitor } from "@capacitor/core";
-import { FileOpener } from '@capacitor-community/file-opener';
-
-const isNative = import.meta.client && Capacitor.isNativePlatform();
-const pdfAnchor = useTemplateRef("pdfAnchor");
 const { t, locale } = useI18n();
 
 watch(locale, () => {
@@ -11,38 +6,15 @@ watch(locale, () => {
     title: `${t('common.resume')} - ${t('common.jezzLucena')}`
   });
 });
-
-const openPdf = () => {
-  const filePath = pdfAnchor.value?.getAttribute("href") as string;
-
-  if (isNative) {
-    try {
-      FileOpener.open({
-        filePath,
-        contentType: 'application/pdf',
-        openWithDefault: true
-      });
-    } catch (e) {
-      console.log('Error opening file', e);
-    }
-  } else {
-    window.open(filePath);
-  }
-}
 </script>
 
 <template>
-  <div class="content relative bg-white" id="content">
+  <div class="content relative bg-white">
     <div class="anchor absolute -top-[60px]" id="content"></div>
     <div class="relative w-[100%] max-w-[768px] mx-auto py-[30px] px-[20px] md:px-[30px] lg:px-[50px]">
       <Heading>
         <span>{{ $t("common.resume") }}</span>
-        <a
-          href="/files/JezzLucenaResume2025.pdf"
-          target="_blank"
-          ref="pdfAnchor"
-          @click.prevent="openPdf"
-        >
+        <a href="https://jezzlucena.com/files/JezzLucenaResume2025.pdf" target="_blank" download>
           <Button>
             <img src="/img/download.svg">
           </Button>

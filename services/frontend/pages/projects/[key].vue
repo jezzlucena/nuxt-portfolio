@@ -21,8 +21,8 @@ if (!project) {
 </script>
 
 <template>
-  <div class="content bg-white relative" id="content">
-    <div class="anchor absolute -top-[60px]"></div>
+  <div class="content bg-white relative">
+    <div class="anchor absolute -top-[60px]" id="content"></div>
     <div id="project" class="section project w-[100%] mx-auto py-[70px] px-[50px]">
 				<div class="textContainer">
           <Heading>{{ $t(project.i18nKeys.name) }}</Heading>

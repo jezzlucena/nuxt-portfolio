@@ -10,7 +10,7 @@ watch(locale, () => {
 </script>
 
 <template>
-    <div class="content relative bg-white" id="content">
+    <div class="content relative bg-white">
       <div class="anchor absolute -top-[60px]" id="content"></div>
       <div class="w-[100%] mx-auto py-[30px] px-[20px] md:px-[30px] lg:px-[50px]">
         <div id="about" class="section about">
