@@ -12,7 +12,7 @@ const send = (req, res) => {
     from: process.env.SENDGRID_SENDER_IDENTITY_EMAIL,
     to: process.env.SENDGRID_SENDER_IDENTITY_EMAIL,
     subject: 'Contact from jezzlucena.com',
-    text: `Hello!\n\n
+    text: `Hello!
 
           You received an entry on the contact form at jezzlucena.com, or one of the apps.
 
