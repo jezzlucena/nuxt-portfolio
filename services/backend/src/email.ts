@@ -14,18 +14,18 @@ const send = (req, res) => {
     subject: 'Contact from jezzlucena.com',
     text: `Hello!\n\n
 
-          You received an entry on the contact form at jezzlucena.com, or one of the apps.\n\n
+          You received an entry on the contact form at jezzlucena.com, or one of the apps.
 
-          Source: ${req.body.source}\n\n
+          Source: ${req.body.source}
 
-          First Name: ${req.body.firstName}\n
-          Last Name: ${req.body.lastName}\n\n
+          First Name: ${req.body.firstName}
+          Last Name: ${req.body.lastName}
 
-          Email: ${req.body.email}\n
-          Phone: ${req.body.phone}\n\n
+          Email: ${req.body.email}
+          Phone: ${req.body.phone}
 
-          Subject: ${req.body.subject}\n
-          Message: ${req.body.message}\n\n
+          Subject: ${req.body.subject}
+          Message: ${req.body.message}
 
           Kind regards,
           Jezz Lucena`

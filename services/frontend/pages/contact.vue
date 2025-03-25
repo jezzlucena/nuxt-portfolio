@@ -26,21 +26,18 @@ const handleSubmit = async () => {
   status.value = undefined;
   result.value = t("contact.pleaseWait");
   try {
-    const response: {
-      message: string,
-      status: number
-    } = await $fetch(`${import.meta.env.VITE_BACKEND_URL}/contact`, {
+    const response: boolean = await $fetch(`${import.meta.env.VITE_BACKEND_URL}/contact`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: form.value,
     });
 
-    result.value = response.message;
-
-    if (response.status === 200) {
+    if (response) {
       status.value = "success";
       result.value = t("contact.thankYou");
     } else {
+      console.log('Response error fetching');
+      console.log(`${import.meta.env.VITE_BACKEND_URL}/contact`);
       console.log(response); // Log for debugging, can be removed
       result.value = t("contact.generalError");
       status.value = "error";
@@ -54,6 +51,8 @@ const handleSubmit = async () => {
     form.value.subject = "";
     form.value.message = "";
   } catch (error) {
+    console.log('Try/catch error fetching');
+    console.log(`${import.meta.env.VITE_BACKEND_URL}/contact`);
     console.log(error); // Log for debugging, can be removed
     status.value = "error";
     result.value = t("contact.generalError");
