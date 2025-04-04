@@ -33,7 +33,12 @@ onMounted(() => {
       </div>
     </div>
 
-    <div class="disclaimer">{{ $t("footer.creativeCommons") }}<br/>{{ $t("footer.lastUpdated") }} {{ (new Date(twoWeeksAgo)).toLocaleDateString($i18n.locale || $i18n.defaultLocale, { year: 'numeric', month: 'long', day: 'numeric' }) }}. <a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/2.0/">{{ $t("footer.someRightsReserved") }}</a>.</div>
+    <div class="disclaimer">
+      {{ $t("footer.creativeCommons") }}<br/>
+      {{ $t("footer.lastUpdated") }} 
+      {{ (new Date(twoWeeksAgo)).toLocaleDateString($i18n.locale || $i18n.defaultLocale, { year: 'numeric', month: 'long', day: 'numeric' }) }}. <a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/2.0/">{{ $t("footer.someRightsReserved") }}</a>.<br/>
+      Read our <NuxtLink to="/privacy#content">Privacy Policy.</NuxtLink> Use of this website or apps is subject to our <NuxtLink to="/terms#content">Terms and Conditions.</NuxtLink>
+    </div>
   </div>
 </template>
 

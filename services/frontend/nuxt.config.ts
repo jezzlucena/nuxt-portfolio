@@ -39,12 +39,17 @@ export default defineNuxtConfig({
   },
 
   modules: ['@nuxtjs/i18n', '@vueuse/nuxt', 'nuxt-gtag'],
+
   i18n: {
     defaultLocale: 'en',
     locales: [ 'en', 'es', 'pt' ],
-    detectBrowserLanguage: false,
+    detectBrowserLanguage: {
+      useCookie: true,
+      redirectOn: 'root'
+    },
     vueI18n: './i18n.config.ts'
   },
+  
   gtag: {
     id: 'G-BDHVX4N3YQ'
   }

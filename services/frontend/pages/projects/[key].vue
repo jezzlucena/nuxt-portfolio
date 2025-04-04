@@ -4,13 +4,6 @@ import type { Project } from '~/types/Project';
 
 const route = useRoute();
 const project: Project = PROJECTS[route.params.key as keyof typeof PROJECTS];
-const { t, locale } = useI18n();
-
-watch(locale, () => {
-  useHead({
-    title: `${t(project.i18nKeys.name)} - ${t('common.jezzLucena')}`
-  });
-});
 
 if (!project) {
   throw createError({
@@ -18,6 +11,12 @@ if (!project) {
     statusMessage: 'Project Not Found'
   });
 }
+
+const { t, locale } = useI18n();
+
+const setLocaleTitle = () => useHead({ title: `${t(project.i18nKeys.name)} - ${t('common.jezzLucena')}` });
+watch(locale, setLocaleTitle);
+setLocaleTitle();
 </script>
 
 <template>

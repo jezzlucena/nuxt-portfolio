@@ -6,11 +6,9 @@ const isNative = import.meta.client && Capacitor.isNativePlatform();
 const pdfAnchor = useTemplateRef("pdfAnchor");
 const { t, locale } = useI18n();
 
-watch(locale, () => {
-  useHead({
-    title: `${t('common.resume')} - ${t('common.jezzLucena')}`
-  });
-});
+const setLocaleTitle = () => useHead({ title: `${t('common.resume')} - ${t('common.jezzLucena')}` });
+watch(locale, setLocaleTitle);
+setLocaleTitle();
 
 const openPdf = () => {
   const url = pdfAnchor.value?.getAttribute("href") as string;

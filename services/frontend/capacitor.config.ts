@@ -2,7 +2,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.portfolio.nuxt',
-  appName: 'nuxt-portfolio',
+  appName: 'Jezz\'s Portfolio',
   webDir: '.output/public',
   plugins: {
     CapacitorHttp: {
@@ -12,6 +12,9 @@ const config: CapacitorConfig = {
       enabled: true,
       customColorsForSystemBars: true
     },
+    CapacitorCookies: {
+      enabled: true
+    }
   }
 };
 

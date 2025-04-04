@@ -8,11 +8,9 @@ const isMasonryActive = ref(false);
 let galleryTimeout: NodeJS.Timeout;
 const { t, locale } = useI18n();
 
-watch(locale, () => {
-  useHead({
-    title: `${t('common.portfolio')} - ${t('common.jezzLucena')}`
-  });
-});
+const setLocaleTitle = () => useHead({ title: `${t('common.portfolio')} - ${t('common.jezzLucena')}` });
+watch(locale, setLocaleTitle);
+setLocaleTitle();
 
 const getColumns = (numColumns: number) => {
   const colArrays: string[][] = Array.from({ length: numColumns }, () => []);

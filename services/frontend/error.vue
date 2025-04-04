@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import type { NuxtError } from '#app'
+const { t, locale } = useI18n();
 
 const props = defineProps({
   error: Object as () => NuxtError
 })
+
+const setLocaleTitle = () => useHead({ title: `${t('error.error')} ${props.error?.statusCode} - ${t('common.jezzLucena')}` });
+watch(locale, setLocaleTitle);
+setLocaleTitle();
 </script>
 
 <template>

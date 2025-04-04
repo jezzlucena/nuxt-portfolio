@@ -12,11 +12,9 @@ const form = ref({
   source: import.meta.env.VITE_SOURCE
 });
 
-watch(locale, () => {
-  useHead({
-    title: `${t('common.contact')} - ${t('common.jezzLucena')}`
-  });
-});
+const setLocaleTitle = () => useHead({ title: `${t('common.contact')} - ${t('common.jezzLucena')}` });
+watch(locale, setLocaleTitle);
+setLocaleTitle();
 
 const handleSubmit = async () => {
   status.value = undefined;

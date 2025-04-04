@@ -2,11 +2,9 @@
 const isTextCollapsed = ref(true);
 const { t, locale } = useI18n();
 
-watch(locale, () => {
-  useHead({
-    title: `${t('common.about')} - ${t('common.jezzLucena')}`
-  });
-});
+const setLocaleTitle = () => useHead({ title: `${t('common.about')} - ${t('common.jezzLucena')}` });
+watch(locale, setLocaleTitle);
+setLocaleTitle();
 </script>
 
 <template>
