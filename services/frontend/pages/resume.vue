@@ -38,7 +38,7 @@ const openPdf = () => {
           @click.prevent="openPdf"
         >
           <div class="icon">
-            <img src="/img/download.svg" class="symbol">
+            <img src="/img/download.png" class="symbol">
           </div>
         </a>
       </Heading>
@@ -46,7 +46,7 @@ const openPdf = () => {
       <div class="relative w-[100%] pdfContainer">
         <embed
           class="absolute top-0 left-0 w-[100%] h-[100%]"
-          src="/files/JezzLucenaResume2025.pdf#toolbar=1&navpanes=0&scrollbar=0&view=FitH"
+          src="https://jezzlucena.com/files/JezzLucenaResume2025.pdf#toolbar=1&navpanes=0&scrollbar=0&view=FitH"
         />
       </div>
     </div>
