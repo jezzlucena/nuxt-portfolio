@@ -64,15 +64,15 @@ const handleWindowResize = useDebounceFn(() => {
 
   if (galleryMode.value === 'list') {
     numColumns = 1;
-  } else if (!import.meta.client || window.innerWidth >= 1024) { // lg
+  } else if (!import.meta.client || window.innerWidth >= 1280) { // xl
     numColumns = 5;
-  } else if (window.innerWidth >= 768) { // md
+  } else if (window.innerWidth >= 1024) { // lg
     numColumns = 4;
-  } else if (window.innerWidth >= 640) { // sm
+  } else if (window.innerWidth >= 768) { // md
     numColumns = 3;
   } else if (window.innerWidth >= 393) { // iPhone 14 Pro viewport dimensions
     numColumns = 2;
-  } else {
+  } else { // xs and lower
     numColumns = 1;
   }
 
