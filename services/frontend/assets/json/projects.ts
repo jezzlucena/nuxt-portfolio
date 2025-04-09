@@ -31,7 +31,7 @@ const PROJECTS: { [key: string]: Project } = {
     "thumbAspectRatio": 1.15,
     "thumbVideoUrl": "/img/portfolio/chatbot/chatbot_thumb.mp4",
     "githubUrl": "https://github.com/jezzlucena/vue-ai-chatbot",
-    "liveDemoUrl": "https://chatbot.jezzlucena.com/"
+    "liveDemoUrl": "https://chatbot.jezzlucena.xyz/"
   },
   "climatempo": {
     "i18nKeys": {
