@@ -1,4 +1,8 @@
 <script setup lang="ts">
+/**
+ * Component that displays the footer, to be imported in every page
+ */
+
 const twoWeeksAgo = ref(0);
 
 onMounted(() => {

@@ -1,4 +1,8 @@
 <script setup lang="ts">
+/**
+ * Top Bar used for navigation, to be imported on every page
+ */
+
 import type { Language } from '~/types/Language';
 import { LANGUAGES } from '~/utils/constants';
 

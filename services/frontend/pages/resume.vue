@@ -1,4 +1,8 @@
 <script setup lang="ts">
+/**
+ * Page that displays an embedded resumé, with a link for download 
+ */
+
 import { InAppBrowser, DefaultSystemBrowserOptions } from "@capacitor/inappbrowser"
 import { Capacitor } from "@capacitor/core";
 

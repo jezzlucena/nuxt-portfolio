@@ -1,30 +1,13 @@
 <script setup lang="ts">
-import PROJECTS from '~/assets/json/projects';
-
-const { scrollY } = useScroll();
 const galleryMode = ref<'columns' | 'list'>('columns');
 const isShowingGallery = ref(true);
-const isMasonryActive = ref(false);
+const projectGallery = ref();
 let galleryTimeout: NodeJS.Timeout;
 const { t, locale } = useI18n();
 
 const setLocaleTitle = () => useHead({ title: `${t('common.portfolio')} - ${t('common.jezzLucena')}` });
 watch(locale, setLocaleTitle);
 setLocaleTitle();
-
-const getColumns = (numColumns: number) => {
-  const colArrays: string[][] = Array.from({ length: numColumns }, () => []);
-  let columnIndex = 0;
-
-  for (const key in PROJECTS) {
-    colArrays[columnIndex].push(key);
-    columnIndex = (columnIndex + 1) % numColumns;
-  }
-
-  return colArrays;
-}
-
-const columns = ref<string[][]>(getColumns(3));
 
 const toggleGalleryMode = () => {
   isShowingGallery.value = false;
@@ -37,54 +20,9 @@ const toggleGalleryMode = () => {
       galleryMode.value = 'columns';
     }
     isShowingGallery.value = true;
-    nextTick(handleWindowResize);
+    nextTick(projectGallery.value.handleWindowResize);
   }, 700);
 }
-
-const handleMasonryLayout = () => {
-  if (!import.meta.browser) return;
-
-  const galleryBox = document.querySelector('.gallery')?.getBoundingClientRect();
-  document.querySelectorAll('.column .item').forEach(item => {
-    const masonryItem = document.querySelector(`.masonryItem[data-key=${item.getAttribute('data-key')}]`);
-    const itemBox = item.getBoundingClientRect();
-    const roundedBox = {
-      height: Math.round(itemBox.height * 10) / 10,
-      width: Math.round(itemBox.width * 10) / 10,
-      x: Math.round((itemBox.x - (galleryBox?.left || 0)) * 10) / 10,
-      y: Math.round((itemBox.y - (galleryBox?.top || 0 + scrollY.value)) * 10) / 10,
-    }
-    masonryItem?.setAttribute('style', `height: ${roundedBox.height}px; width: ${roundedBox.width}px; transform: translate(${roundedBox.x}px, ${roundedBox.y}px)`);
-  });
-  isMasonryActive.value = true;
-}
-
-const handleWindowResize = useDebounceFn(() => {
-  let numColumns: number;
-
-  if (galleryMode.value === 'list') {
-    numColumns = 1;
-  } else if (!import.meta.client || window.innerWidth >= 1280) { // xl
-    numColumns = 5;
-  } else if (window.innerWidth >= 1024) { // lg
-    numColumns = 4;
-  } else if (window.innerWidth >= 768) { // md
-    numColumns = 3;
-  } else if (window.innerWidth >= 393) { // iPhone 14 Pro viewport dimensions
-    numColumns = 2;
-  } else { // xs and lower
-    numColumns = 1;
-  }
-
-  columns.value = getColumns(numColumns);
-
-  nextTick(handleMasonryLayout);
-}, 100);
-
-onMounted(() => {
-  useEventListener('resize', handleWindowResize);
-  handleWindowResize();
-});
 </script>
 
 <template>
@@ -103,35 +41,11 @@ onMounted(() => {
         </div>
       </Heading>
 
-      <div
-        class="gallery relative"
-        :class="{ [galleryMode]: true, show: isShowingGallery, masonryActive: isMasonryActive }"
-      >
-        <div v-for="projectKeys of columns" class="column">
-          <div class="layoutItem">
-            <GalleryItem
-              v-for="key of projectKeys"
-              :project="PROJECTS[key]"
-              :key="key"
-              :data-key="key"
-              :projectKey="key"
-              :galleryMode="galleryMode"
-            />
-          </div>
-        </div>
-        <div
-          class="absolute top-0 left-0 masonryItem"
-          v-for="key of Object.keys(PROJECTS)"
-          :data-key="key"
-        >
-          <GalleryItem
-            :project="PROJECTS[key]"
-            :key="key"
-            :projectKey="key"
-            :galleryMode="galleryMode"
-          />
-        </div>
-      </div>
+      <ProjectGallery
+        ref="projectGallery"
+        :galleryMode="galleryMode"
+        :isShowingGallery="isShowingGallery"
+      />
     </div>
   </div>
 </template>

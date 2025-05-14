@@ -1,4 +1,8 @@
 <script setup lang="ts">
+/**
+ * Component that represents a stylized button
+ */
+
 const props = defineProps<{
   theme?: 'light' | 'dark',
 }>();

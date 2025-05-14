@@ -1,4 +1,10 @@
 <script setup lang="ts">
+/**
+ * Instance of a Testimonial to be used on the About screen
+ * 
+ * @prop {string} href Hyperlink to be opened on a separate tab of the browser upon clicking this testimonial
+ */
+
 const props = defineProps<{
   href?: string
 }>();

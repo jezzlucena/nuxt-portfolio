@@ -1,4 +1,8 @@
 <script setup lang="ts">
+/** 
+ * Container for the very large (and optimized) interactive SVG that decorates every page
+ */
+
 import useVisibility from '~/composables/useVisibility';
 
 const { scrollY } = useScroll();

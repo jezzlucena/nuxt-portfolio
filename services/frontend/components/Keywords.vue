@@ -1,4 +1,11 @@
 <script setup lang="ts">
+/**
+ * Wrapper for keywords, with label
+ * 
+ * @prop {string} label Label to be displayed as a title for the current list of keywords
+ * @prop {string[]} keywords Array containing keywords to be displayed
+ */
+
 const props = defineProps<{
   label: string,
   keywords: string[]

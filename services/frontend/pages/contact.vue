@@ -1,4 +1,8 @@
 <script setup lang="ts">
+/**
+ * Contact page that enables users to send messages using the appropriate API endpoint
+ */
+
 const { t, locale } = useI18n();
 const result = ref("");
 const status = ref<'success' | 'error'>();

@@ -1,4 +1,8 @@
 <script setup lang="ts">
+/**
+ * Page that displays an individual detailed project
+ */
+
 import PROJECTS from '~/assets/json/projects'
 import type { Project } from '~/types/Project';
 

@@ -1,4 +1,9 @@
 <script setup lang="ts">
+/**
+ * Page that displays details about Jezz's career, including testimonials from former
+ * coworkers and academic partners
+ */
+
 const isTextCollapsed = ref(true);
 const { t, locale } = useI18n();
 

@@ -1,4 +1,13 @@
 <script setup lang="ts">
+/**
+ * Component that displays a project in the gallery, considering different configurations
+ * (e.g. List vs Columns)
+ * 
+ * @prop {Project} project Instance of the project to be displayed
+ * @prop {string} projectKey Key of the currently displayed project, to be used for permalinking
+ * @prop {'list' | 'column'} galleryMode Current mode of the gallery, influencing the configuration of the gallery item (e.g. List vs Columns)
+ */
+
 import type { Project } from '~/types/Project';
 
 const { project, projectKey, galleryMode } = defineProps<{
