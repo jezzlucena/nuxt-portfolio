@@ -14,7 +14,7 @@ const route = useRoute();
 
 async function changeLocale() {
   // Change URL to correct language, ex: '/about' to '/pt/about'
-  await window.history.pushState({}, document.title, localePath(useRoute().path));
+  await window.history.pushState({}, document.title, localePath(route.path));
 }
 
 const toggleNavOpen = () => {

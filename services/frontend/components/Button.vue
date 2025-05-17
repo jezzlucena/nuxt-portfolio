@@ -14,7 +14,7 @@ const props = defineProps<{
     :class="{ light: props.theme === 'light' }"
   >
     <slot />
-</span>
+  </span>
 </template>
 
 <style scoped>
