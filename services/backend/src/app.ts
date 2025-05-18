@@ -24,5 +24,5 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
-app.post('/contact', emailController.send);
+app.post('/contact', emailController.sendEmail);
 app.listen(process.env.PORT || 5050);

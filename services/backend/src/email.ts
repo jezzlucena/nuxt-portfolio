@@ -1,43 +1,44 @@
-import nodemailer from 'nodemailer';
-import sgTransport from 'nodemailer-sendgrid-transport';
+import sgMail from '@sendgrid/mail'
 
-const transporter = nodemailer.createTransport(sgTransport({
-  auth: {
-    api_key: process.env.SENDGRID_API_KEY
-  }
-}))
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-const send = (req, res) => {
-  transporter.sendMail({
-    from: process.env.SENDGRID_SENDER_IDENTITY_EMAIL,
+async function sendEmail(req, res) {
+  const msg = {
     to: process.env.SENDGRID_SENDER_IDENTITY_EMAIL,
+    from: process.env.SENDGRID_SENDER_IDENTITY_EMAIL, // Use your verified sender
     subject: 'Contact from jezzlucena.com',
     text: `Hello!
 
-          You received an entry on the contact form at jezzlucena.com, or one of the apps.
+You received an entry on the contact form at jezzlucena.com, or one of the apps.
 
-          Source: ${req.body.source}
+Source: ${req.body.source}
 
-          First Name: ${req.body.firstName}
-          Last Name: ${req.body.lastName}
+First Name: ${req.body.firstName}
+Last Name: ${req.body.lastName}
 
-          Email: ${req.body.email}
-          Phone: ${req.body.phone}
+Email: ${req.body.email}
+Phone: ${req.body.phone}
 
-          Subject: ${req.body.subject}
-          Message: ${req.body.message}
+Subject: ${req.body.subject}
+Message: ${req.body.message}
 
-          Kind regards,
-          Jezz Lucena`
-  }, function(err){
-    if (!err) {
-      res.status(200).json(true)
-    } else {
-      console.error(err)
+Kind regards,
+Jezz Lucena`,
+  };
+
+  try {
+    await sgMail.send(msg);
+    res.status(200).json(true);
+    console.log(`Email sent successfully from ${req.body.email}.`);
+  } catch (error) {
+    console.error('Error sending email:', error);
+    if (error.response) {
+      console.error(error.response.body);
     }
-  })
+    res.status(500).json(false);
+  }
 }
 
 export default {
-  send
+  sendEmail
 }
