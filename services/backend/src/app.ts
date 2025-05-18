@@ -10,8 +10,8 @@ import emailController from './email'
 
 const app = express();
 
-var whitelist = ['https://jezzlucena.com', 'https://www.jezzlucena.com', 'http://localhost:8080']
-var corsOptions = {
+const whitelist = ['https://jezzlucena.com', 'https://www.jezzlucena.com', 'https://jezzlucena.xyz', 'https://www.jezzlucena.xyz', 'http://localhost:8080', 'http://localhost:8086']
+const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || whitelist.includes(origin)) {
       callback(null, true)
