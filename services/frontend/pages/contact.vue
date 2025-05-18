@@ -34,12 +34,12 @@ const handleSubmit = async () => {
       }
     );
 
-    if (response) {
+    if (response?.status === 200) {
       status.value = "success";
       result.value = t("contact.thankYou");
     } else {
-      result.value = t("contact.generalError");
       status.value = "error";
+      result.value = t("contact.generalError");
     }
 
     // Reset form after submission
